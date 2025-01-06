@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\core",
+    "\\src\\app\\features",
+    "\\src\\app\\features\\language-selection",
+    "\\src\\app\\shared",
+    "\\src\\app\\shared\\components",
+    "\\src\\app\\shared\\components\\button",
+    "\\src\\app\\shared\\components\\dropdown"
+  ],
+  "SelectedNode": "\\src\\app\\features\\language-selection\\language-selection.component.html",
+  "PreviewInSolutionExplorer": false
+}

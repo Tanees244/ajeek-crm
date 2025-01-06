@@ -1,0 +1,8 @@
+<!-- src/app/features/language-selection/language-selection.component.html -->
+<div class="language-selection">
+  <h1>Select Your Language</h1>
+  <app-dropdown [options]="languages"
+                placeholder="Choose Language"
+                (selectionChange)="onLanguageSelected($event)"></app-dropdown>
+  <app-button label="Continue" type="button" (click)="onContinue()"></app-button>
+</div>

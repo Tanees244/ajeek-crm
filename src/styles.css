@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mulish:wght@400;500;600&display=swap');
+
+:root {
+  /* Colors */
+  --primary-color: #01BCCD;
+  --secondary-color: #2F4858;
+  --tertiary-color: #33658A;
+  --neutral-gray: #909090;
+  --black: #000000;
+  --white: #FFFFFF;
+  /* Typography Sizes */
+  --h1-font-size: 32px;
+  --h2-font-size: 28px;
+  --h3-font-size: 24px;
+  --h4-font-size: 20px;
+  --h5-font-size: 16px;
+  --h6-font-size: 14px;
+  --paragraph-font-size: 14px;
+  /* Fonts */
+  --primary-font: 'Inter', sans-serif;
+  --secondary-font: 'Mulish', sans-serif;
+}
+
+/* Base Styles */
+body {
+  font-family: var(--primary-font);
+  color: var(--black);
+  background-color: var(--white);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1 {
+  font-size: var(--h1-font-size);
+}
+
+h2 {
+  font-size: var(--h2-font-size);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+h4 {
+  font-size: var(--h4-font-size);
+}
+
+h5 {
+  font-size: var(--h5-font-size);
+  font-family: var(--secondary-font);
+}
+
+h6 {
+  font-size: var(--h6-font-size);
+  font-family: var(--secondary-font);
+}
+
+p {
+  font-size: var(--paragraph-font-size);
+  font-family: var(--secondary-font);
+  color: var(--neutral-gray);
+  margin: 1rem 0;
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  button:hover {
+    background-color: var(--secondary-color);
+  }

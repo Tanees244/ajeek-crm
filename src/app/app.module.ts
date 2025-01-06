@@ -3,14 +3,16 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LanguageSelectionComponent } from './features/language-selection/language-selection.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LanguageSelectionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     provideClientHydration(withEventReplay())
