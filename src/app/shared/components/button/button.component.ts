@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
+  standalone: false,
+  
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css'],
+  styleUrl: './button.component.css'
 })
 export class ButtonComponent {
-  @Input() label: string = 'Submit';
-  @Input() type: 'button' | 'submit' = 'button';
-  @Input() disabled: boolean = false;
+  @Input() label: string = '';  // Input property to set the button label
+  @Input() type: string = 'button';
 }

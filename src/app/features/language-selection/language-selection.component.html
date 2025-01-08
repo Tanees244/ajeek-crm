@@ -1,8 +1,14 @@
-<!-- src/app/features/language-selection/language-selection.component.html -->
-<div class="language-selection">
-  <h1>Select Your Language</h1>
-  <app-dropdown [options]="languages"
-                placeholder="Choose Language"
-                (selectionChange)="onLanguageSelected($event)"></app-dropdown>
-  <app-button label="Continue" type="button" (click)="onContinue()"></app-button>
+<div class="language-selection-container">
+  <div class="language-selection">
+    <img src="assets/logo/mainLogo.svg" alt="Main Logo" class="logo">
+    <h2 class="welcome-message">Welcome to Ajeek!</h2>
+    <div class="separator"></div>
+    <h4 class="message">Select Your Preferred Language</h4>
+    <select class="language-dropdown">
+      <option value="en">English</option>
+      <option value="fr">French</option>
+      <option value="es">Spanish</option>
+    </select>
+    <button class="continue-button" (click)="onContinue()">Continue</button>
+  </div>
 </div>

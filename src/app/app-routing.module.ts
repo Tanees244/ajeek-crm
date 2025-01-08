@@ -1,19 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { featureRoutes } from './features/features-routing.module';
 
 const routes: Routes = [
   {
-    path: 'language-selection',
-    loadComponent: () =>
-      import('./features/language-selection/language-selection.component').then(
-        (m) => m.LanguageSelectionComponent
-      ),
+    path: '',
+    redirectTo: 'language-selection',
+    pathMatch: 'full'
   },
-  { path: '**', redirectTo: 'language-selection' }, // Default route
+  ...featureRoutes,  
+  {
+    path: '**',
+    redirectTo: 'login'
+    // Wildcard route catches any undefined paths and redirects them to the 'login' component
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

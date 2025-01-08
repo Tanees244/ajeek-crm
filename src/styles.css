@@ -1,5 +1,5 @@
 /* src/styles.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mulish:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mulish:wght@400;500;600;700&display=swap');
 
 :root {
   /* Colors */
@@ -18,60 +18,46 @@
   --h6-font-size: 14px;
   --paragraph-font-size: 14px;
   /* Fonts */
-  --primary-font: 'Inter', sans-serif;
-  --secondary-font: 'Mulish', sans-serif;
+  --primary-font: 'Mulish', sans-serif;
+  --secondary-font: 'Inter', sans-serif;
 }
 
 /* Base Styles */
 body {
   font-family: var(--primary-font);
   color: var(--black);
-  background-color: var(--white);
+  background-color: #F8F9FA;
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  font-weight: 400; /* Normal weight for body text */
 }
 
-h1 {
-  font-size: var(--h1-font-size);
-}
-
-h2 {
-  font-size: var(--h2-font-size);
-}
-
-h3 {
-  font-size: var(--h3-font-size);
-}
-
-h4 {
-  font-size: var(--h4-font-size);
-}
-
-h5 {
-  font-size: var(--h5-font-size);
-  font-family: var(--secondary-font);
-}
-
-h6 {
-  font-size: var(--h6-font-size);
-  font-family: var(--secondary-font);
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700; /* Bold weight for all headings */
+  margin-block: 0;
+  margin-inline: 0;
 }
 
 p {
   font-size: var(--paragraph-font-size);
   font-family: var(--secondary-font);
   color: var(--neutral-gray);
-  margin: 1rem 0;
+  margin-block: 0;
+  margin-inline: 0;
+  font-weight: 400; /* Normal weight for paragraphs */
 }
 
 button {
   background-color: var(--primary-color);
   color: var(--white);
-  padding: 10px 20px;
+  padding: 15px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 500; /* Medium weight for button text */
+  width: 100%;
+  font-family: var(--primary-font);
 }
 
   button:hover {

@@ -1,0 +1,38 @@
+<div class="signin-container">
+  <div class="signin-form">
+    <img src="assets/logo/mainLogo.svg" alt="Main Logo" class="logo">
+    <div class="header-group">
+      <h2>Sign In</h2>
+      <p class="welcome-text">Welcome to the Ajeek!</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">User name</label>
+        <input type="text" id="username" formControlName="username" placeholder="User Name">
+      </div>
+
+      <div class="form-group">
+        <div class="password-header">
+          <label for="password">Password</label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <input type="password" id="password" formControlName="password" placeholder="Password">
+      </div>
+
+      <div class="remember-me">
+        <label class="checkbox-container">
+          <input type="checkbox" formControlName="rememberMe">
+          <span class="checkbox-text">Remember password?</span>
+        </label>
+      </div>
+
+      <button type="submit" (click)="onSubmit()">Sign In</button>
+
+      <div class="signup-prompt">
+        Don't have an account?
+        <a href="#" class="contact-link">Contact Us</a>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,5 @@
-// src/app/features/language-selection/language-selection.component.ts
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-language-selection',
@@ -7,20 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./language-selection.component.css'],
 })
 export class LanguageSelectionComponent {
-  languages: string[] = ['English', 'Spanish', 'French', 'German'];
-  selectedLanguage: string | null = null;
-
-  onLanguageSelected(language: string) {
-    this.selectedLanguage = language;
-    console.log('Selected language:', language);
-  }
+  constructor(private router: Router) { }
 
   onContinue() {
-    if (this.selectedLanguage) {
-      console.log('Proceeding with language:', this.selectedLanguage);
-      // Navigate or trigger next action
-    } else {
-      alert('Please select a language first.');
-    }
+    this.router.navigate(['/login']); 
   }
 }
+
