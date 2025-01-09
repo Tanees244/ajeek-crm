@@ -1,0 +1,29 @@
+<div class="dashboard-container">
+  <div class="partner-info">
+    <div class="partner-profile">
+      <div class="avatar">
+        <!-- Default avatar image placeholder -->
+        <img src="assets/icons/avatar.svg" alt="Partner Avatar">
+      </div>
+      <div class="info">
+        <h2 class="title">Partner Dashboard</h2>
+        <p class="ticket-stats">
+          You have <span class="pending">{{pendingTickets}}</span> Pending Tickets &
+          <span class="resolved">{{resolvedTickets}}</span> Resolved This Month.
+        </p>
+      </div>
+    </div>
+    <button class="register-btn">
+      <i class="fas fa-plus"></i>
+      Register New Ticket
+    </button>
+  </div>
+
+  <div class="search-section">
+    <div class="search-label">Looking for a Customer or Tickets?</div>
+    <div class="search-container">
+      <input type="text" placeholder="Search for Tickets" class="search-input">
+      <button class="search-btn">Search</button>
+    </div>
+  </div>
+</div>

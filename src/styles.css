@@ -1,65 +1,8 @@
-/* src/styles.css */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Mulish:wght@400;500;600;700&display=swap');
-
-:root {
-  /* Colors */
-  --primary-color: #01BCCD;
-  --secondary-color: #2F4858;
-  --tertiary-color: #33658A;
-  --neutral-gray: #909090;
-  --black: #000000;
-  --white: #FFFFFF;
-  /* Typography Sizes */
-  --h1-font-size: 32px;
-  --h2-font-size: 28px;
-  --h3-font-size: 24px;
-  --h4-font-size: 20px;
-  --h5-font-size: 16px;
-  --h6-font-size: 14px;
-  --paragraph-font-size: 14px;
-  /* Fonts */
-  --primary-font: 'Mulish', sans-serif;
-  --secondary-font: 'Inter', sans-serif;
-}
-
-/* Base Styles */
-body {
-  font-family: var(--primary-font);
-  color: var(--black);
-  background-color: #F8F9FA;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  font-weight: 400; /* Normal weight for body text */
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700; /* Bold weight for all headings */
-  margin-block: 0;
-  margin-inline: 0;
-}
-
-p {
-  font-size: var(--paragraph-font-size);
-  font-family: var(--secondary-font);
-  color: var(--neutral-gray);
-  margin-block: 0;
-  margin-inline: 0;
-  font-weight: 400; /* Normal weight for paragraphs */
-}
-
-button {
-  background-color: var(--primary-color);
-  color: var(--white);
-  padding: 15px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500; /* Medium weight for button text */
-  width: 100%;
-  font-family: var(--primary-font);
-}
-
-  button:hover {
-    background-color: var(--secondary-color);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html {
+    @apply font-primary text-paragraph bg-body-bg;
   }
+}

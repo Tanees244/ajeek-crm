@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: [],
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -18,6 +18,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.router.navigate(['/dashboard']); 
+    this.router.navigate(['/dashboard/partner']); 
   }
 }

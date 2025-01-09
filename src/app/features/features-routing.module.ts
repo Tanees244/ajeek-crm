@@ -1,33 +1,10 @@
 import { Routes } from '@angular/router';
-import { LanguageSelectionComponent } from '../features/language-selection/language-selection.component';
-import { LoginComponent } from '../features/login/login.component';
-import { DashboardComponent } from '../features/dashboard/dashboard.component';
+import { LanguageSelectionComponent } from './language-selection/language-selection.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PartnerDashboardComponent } from './dashboard/components/partner-dashboard/partner-dashboard.component';
+import { TicketsComponent } from './dashboard/components/tickets/tickets.component';
 
-// Auth related routes
-//const authRoutes: Routes = [
-  
-//];
-
-// Dashboard related routes
-//const dashboardRoutes: Routes = [
-//  {
-//    path: 'dashboard',
-//    component: DashboardComponent,
-//    canActivate: [AuthGuard],
-//    children: [
-//      {
-//        path: 'tickets',
-//        component: TicketsComponent
-//      },
-//      {
-//        path: 'profiles',
-//        component: ProfilesComponent
-//      }
-//    ]
-//  }
-//];
-
-// Combine all feature routes
 export const featureRoutes: Routes = [
   {
     path: 'language-selection',
@@ -40,5 +17,18 @@ export const featureRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-  }
+    data: { breadcrumb: 'Dashboard' },
+    children: [
+      {
+        path: 'partner',
+        component: PartnerDashboardComponent,
+        data: { breadcrumb: 'Partner Dashboard' }
+      },
+      {
+        path: 'tickets',
+        component: TicketsComponent,
+        data: { breadcrumb: 'Tickets' }
+      }
+    ],
+  },
 ];

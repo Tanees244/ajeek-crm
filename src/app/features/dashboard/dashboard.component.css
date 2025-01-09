@@ -1,10 +1,53 @@
-.dashboard-container {
+.layout {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
-.dashboard-content {
-  flex: 1;
+.main-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding-block: 20px;
+  padding-inline: 20px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.page-info {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.breadcrumb {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #7f8c8d;
+}
+
+ Page Number Styling 
+.page-number {
+  background-color: lightblue;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #2c3e50;
 }

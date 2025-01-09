@@ -1,5 +1,16 @@
-<div class="dashboard-container">
-  <div class="dashboard-content">
-    <app-header></app-header>
+<div class="layout">
+  <app-sidebar [isCollapsed]="isCollapsed"></app-sidebar>
+  <div class="main-content">
+    <app-header (toggleSidebarEvent)="toggleSidebar()"></app-header>
+    <div class="content">
+      <div class="header">
+        <div class="page-info">
+          <h1 class="page-title">Partner Dashboard</h1>
+          <app-breadcrumb></app-breadcrumb>
+        </div>
+        <span class="page-number">Page - 1.1</span>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

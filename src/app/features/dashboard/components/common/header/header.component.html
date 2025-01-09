@@ -1,0 +1,37 @@
+<nav class="header">
+  <div class="header-container">
+    <!-- Left Section -->
+    <div class="left-section">
+      <button (click)="toggleSidebar()"
+              class="toggle-sidebar-btn"
+              [class.rotated]="isRotated">
+        <img src="assets/icons/menuBar.svg" alt="Toggle Sidebar" class="icon" />
+      </button>
+      <div class="search-container">
+        <input type="search" placeholder="Search" class="search-input">
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+      <button class="icon-btn">
+        <img src="assets/icons/globe.svg" alt="Global" class="icon" />
+      </button>
+      <button class="icon-btn">
+        <img src="assets/icons/bell.svg" alt="Notifications" class="icon" />
+      </button>
+      <button class="icon-btn" (click)="toggleFullScreen()">
+        <img src="assets/icons/fullScreen.svg" alt="Full Screen" class="icon" />
+      </button>
+      <div class="divider"></div>
+      <div class="user-info">
+        <img src="assets/user-avatar.png" alt="User" class="user-avatar" />
+        <span>John</span>
+      </div>
+      <div class="divider"></div>
+      <button class="icon-btn">
+        <img src="assets/icons/cog.svg" alt="Settings" class="icon" />
+      </button>
+    </div>
+  </div>
+</nav>

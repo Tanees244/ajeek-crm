@@ -1,0 +1,108 @@
+.header {
+  display: flex;
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Ensure left and right sections are on opposite sides */
+  background-color: white;
+  padding: 20px;
+  height: 60px;
+  box-sizing: border-box; /* Include padding in height and width calculations */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between left and right sections */
+  width: 100%; /* Full width of the header */
+}
+
+/* Left Section */
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between toggle button and search */
+}
+
+/* Search Bar */
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 200px; /* Fixed width for the search bar */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Right Section */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between buttons and user info */
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, padding 0.3s ease; /* Smooth transition for background and padding */
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-btn:hover {
+  background-color: lightgray; /* Light gray background on hover */
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+toggle-sidebar-btn .icon-btn:hover {
+  background-color: lightgray; /* Light gray background on hover */
+  border-radius: 3px;
+  padding: 10px 10px;
+}
+
+.icon:hover {
+  background-color: transparent;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.divider {
+  width: 1px;
+  height: 30px;
+  background-color: #ccc;
+}
+
+.toggle-sidebar-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+
+}
+
+  .toggle-sidebar-btn:hover {
+    background-color: lightgray;
+    padding: 10px 10px;
+  }
+
+  .toggle-sidebar-btn.rotated {
+    transform: rotate(180deg);
+  }

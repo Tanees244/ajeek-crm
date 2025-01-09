@@ -1,14 +1,22 @@
-<div class="language-selection-container">
-  <div class="language-selection">
-    <img src="assets/logo/mainLogo.svg" alt="Main Logo" class="logo">
-    <h2 class="welcome-message">Welcome to Ajeek!</h2>
-    <div class="separator"></div>
-    <h4 class="message">Select Your Preferred Language</h4>
-    <select class="language-dropdown">
+<div class="flex items-center justify-center h-screen w-full relative">
+  <div class="bg-white px-15 py-15 rounded-[10px] text-center shadow-lg flex flex-col items-start max-w-sm w-full relative">
+    <img src="assets/logo/mainLogo.svg"
+         alt="Main Logo"
+         class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-[70px] rounded-lg z-10">
+    <div class="text-h3 font-bold font-secondary w-full my-6 text-center">
+      Welcome to Ajeek!
+    </div>
+    <div class="w-full h-px bg-[#EDEDED] mb-2"></div>
+    <div class="text-h6 font-medium font-primary w-full my-4 text-left">
+      Select Your Preferred Language
+    </div>
+    <select class="w-full p-2 text-paragraph font-normal font-secondary border border-neutral-gray rounded-lg bg-white text-neutral-gray mb-5 focus:outline-none focus:border-primary focus:ring focus:ring-primary/20">
       <option value="en">English</option>
-      <option value="fr">French</option>
-      <option value="es">Spanish</option>
+      <option value="ar">Arabic</option>
     </select>
-    <button class="continue-button" (click)="onContinue()">Continue</button>
+    <button class="w-full py-3 font-primary text-paragraph font-medium bg-primary text-white rounded-lg hover:bg-tertiary focus:outline-none focus:ring focus:ring-primary/20"
+            (click)="onContinue()">
+      Continue
+    </button>
   </div>
 </div>

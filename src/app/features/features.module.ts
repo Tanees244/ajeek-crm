@@ -2,23 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { LanguageSelectionComponent } from './language-selection/language-selection.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
-  declarations: [
-    // LoginComponent
-    //DashboardComponent,
-  ],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    //RouterModule,
-  ],
-  exports: [
-    // LoginComponent
-    ReactiveFormsModule, // Export if needed in other modules
+    RouterModule,
+    DashboardModule,
+    // If Login and LanguageSelection are also standalone:
+    LoginComponent,
+    LanguageSelectionComponent,
   ]
 })
 export class FeaturesModule { }
