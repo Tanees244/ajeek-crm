@@ -1,0 +1,29 @@
+<div class="metric-card">
+  <div class="metric-row">
+    <!-- First Column: Icon or Image -->
+    <div class="metric-column icon-column">
+      <ng-container ngIf="imgSrc; else iconTemplate">
+        <img [src]="imgSrc" alt="Metric Icon" class="metric-image" />
+      </ng-container>
+      <ng-template #iconTemplate>
+        <div class="metric-icon" [style.background-color]="iconBgColor">
+          <i [class]="iconClass"></i>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- Second Column: Title and Value -->
+    <div class="metric-column content-column">
+      <div class="metric-title">{{ title }}</div>
+      <div class="metric-value">{{ value }}{{ unit }}</div>
+    </div>
+
+    <!-- Third Column: Trend -->
+    <div class="metric-column trend-column">
+      <div class="metric-trend" [class.positive]="trend > 0" [class.negative]="trend < 0">
+        <i class="fas" [class.fa-arrow-up]="trend > 0" [class.fa-arrow-down]="trend < 0"></i>
+        {{ Math.abs(trend) }}%
+      </div>
+    </div>
+  </div>
+</div>

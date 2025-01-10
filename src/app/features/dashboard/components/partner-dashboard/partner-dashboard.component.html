@@ -13,10 +13,11 @@
         </p>
       </div>
     </div>
-    <button class="register-btn">
+    <button class="register-btn" (click)="navigateToRegisterTicket()">
       <i class="fas fa-plus"></i>
       Register New Ticket
     </button>
+
   </div>
 
   <div class="search-section">
@@ -26,4 +27,35 @@
       <button class="search-btn">Search</button>
     </div>
   </div>
+  <div class="kpi-section">
+    <app-metric-card title="Total Tickets"
+                     [value]="100239"
+                     unit=""
+                     [trend]="19.01"
+                     imgSrc="assets/kpiLogo/tickets.svg">
+    </app-metric-card>
+
+    <app-metric-card title="Avg. Res Rate"
+                     [value]="89"
+                     unit="%"
+                     [trend]="19.01"
+                     imgSrc="assets/kpiLogo/resRate.svg">
+    </app-metric-card>
+
+    <app-metric-card title="Conversion Rate"
+                     [value]="96"
+                     unit="%"
+                     [trend]="19.01"
+                     imgSrc="assets/kpiLogo/conversionRate.svg">
+    </app-metric-card>
+
+    <app-metric-card title="Active Technicians"
+                     [value]="96"
+                     unit="%"
+                     [trend]="-19.01"
+                     imgSrc="assets/kpiLogo/technicians.svg">
+    </app-metric-card>
+  </div>
+
+
 </div>

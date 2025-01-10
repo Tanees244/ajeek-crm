@@ -1,0 +1,102 @@
+<div class="bg-gray-50 w-full">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header with filters -->
+    <div class="flex justify-between items-center mb-4">
+      <div class="flex items-center space-x-2">
+        <span class="text-gray-500">Row Per Page:</span>
+        <select class="border rounded px-2 py-1">
+          <option>50</option>
+        </select>
+        <span class="text-gray-500">50 Files</span>
+      </div>
+
+      <div class="flex space-x-2">
+        <select class="border rounded px-3 py-1.5 text-gray-600">
+          <option>Select Priority</option>
+        </select>
+        <select class="border rounded px-3 py-1.5 text-gray-600">
+          <option>Select Location</option>
+        </select>
+        <select class="border rounded px-3 py-1.5 text-gray-600">
+          <option>Product Type</option>
+        </select>
+        <select class="border rounded px-3 py-1.5 text-gray-600">
+          <option>Sort By: Last 7 Days</option>
+        </select>
+
+        <div class="flex items-center">
+          <input type="text" placeholder="Search for Tickets" class="border rounded-l px-3 py-1.5">
+          <button class="bg-cyan-500 text-white px-4 py-1.5 rounded-r">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="bg-white rounded-lg shadow">
+      <table class="min-w-full">
+        <thead>
+          <tr class="border-b">
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Ticket ID</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Created At</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Customer Name</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Product</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Priority</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">City</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Assigned Tech</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Assigned At</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
+            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b hover:bg-gray-50">
+            <td class="px-6 py-4 text-sm text-gray-600">10931235</td>
+            <td class="px-6 py-4 text-sm text-gray-600">2024-12-19</td>
+            <td class="px-6 py-4 text-sm text-gray-600">Mustafa Ali</td>
+            <td class="px-6 py-4 text-sm text-gray-600">Ac, Refrigerator</td>
+            <td class="px-6 py-4">
+              <span class="inline-flex items-center justify-center w-6 h-6 bg-red-100 text-red-600 rounded-full font-bold">P</span>
+            </td>
+            <td class="px-6 py-4 text-sm text-gray-600">Riyadh</td>
+            <td class="px-6 py-4 text-sm text-blue-600">Abdul Malik</td>
+            <td class="px-6 py-4 text-sm text-gray-600">2024-12-19</td>
+            <td class="px-6 py-4">
+              <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">In Progress</span>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex items-center space-x-2">
+                <button class="p-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                </button>
+                <button class="bg-gray-700 text-white px-3 py-1 rounded text-sm">Manage</button>
+              </div>
+            </td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="flex items-center justify-between px-6 py-3 border-t">
+        <div class="text-sm text-gray-500">
+          Showing 1 - 10 of 10 entries
+        </div>
+        <div class="flex items-center space-x-2">
+          <button class="p-1 rounded border">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <span class="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded">1</span>
+          <button class="p-1 rounded border">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

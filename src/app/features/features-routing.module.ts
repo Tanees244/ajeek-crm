@@ -4,15 +4,17 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PartnerDashboardComponent } from './dashboard/components/partner-dashboard/partner-dashboard.component';
 import { TicketsComponent } from './dashboard/components/tickets/tickets.component';
+import { RegisterTicketComponent } from './dashboard/components/tickets/register-ticket/register-ticket.component'; // Import the RegisterTicketComponent
+import { TicketListComponent } from './dashboard/components/tickets/ticket-list/ticket-list.component';
 
 export const featureRoutes: Routes = [
   {
     path: 'language-selection',
-    component: LanguageSelectionComponent
+    component: LanguageSelectionComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'dashboard',
@@ -22,13 +24,24 @@ export const featureRoutes: Routes = [
       {
         path: 'partner',
         component: PartnerDashboardComponent,
-        data: { breadcrumb: 'Partner Dashboard' }
+        data: { breadcrumb: 'Partner Dashboard' },
       },
       {
         path: 'tickets',
         component: TicketsComponent,
-        data: { breadcrumb: 'Tickets' }
-      }
+        data: { breadcrumb: 'Tickets' },
+        children: [
+          {
+            path: '',
+            component: TicketListComponent,
+          },
+          {
+            path: 'register-ticket',
+            component: RegisterTicketComponent,
+            data: { breadcrumb: 'Register Ticket' },
+          },
+        ],
+      },
     ],
   },
 ];

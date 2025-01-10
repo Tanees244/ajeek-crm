@@ -3,7 +3,15 @@ import { BreadcrumbService } from '../../../core/services/breadcrumbs.service';
 
 @Component({
   selector: 'app-breadcrumb',
-  templateUrl: './breadcrumb.component.html',
+  template: `
+    <nav class="breadcrumb">
+      <ng-container ngFor="let breadcrumb of breadcrumbs; let i = index">
+        <p ngIf="i < breadcrumbs.length - 1">
+          {{ breadcrumbs[1].label }}
+        </p>
+      </ng-container>
+    </nav>
+  `,
   styleUrls: []
 })
 export class BreadcrumbComponent implements OnInit {
@@ -13,7 +21,6 @@ export class BreadcrumbComponent implements OnInit {
 
   ngOnInit(): void {
     this.breadcrumbService.breadcrumbs$.subscribe((breadcrumbs: Array<{ label: string, url: string }>) => {
-      console.log(breadcrumbs); // Debugging: Log the breadcrumbs array
       this.breadcrumbs = breadcrumbs;
     });
   }
