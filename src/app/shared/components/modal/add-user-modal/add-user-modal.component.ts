@@ -1,19 +1,29 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../../button/button.component';
 
 @Component({
   selector: 'app-add-user-modal',
   templateUrl: './add-user-modal.component.html',
-  imports: [CommonModule]
+  standalone: true,
+  imports: [CommonModule, FormsModule, ButtonComponent]
 })
 export class AddUserModalComponent {
-  customerData = {
-    name: '',
-    email: '',
-    phone: ''
-  };
   isVisible = false;
+
+  customerData = {
+    fullName: '',
+    email: '',
+    phone: '',
+    companyName: '',
+    //address: '',
+    //apartment: '',
+    //country: '',
+    //state: '',
+    //city: '',
+    //zipCode: ''
+  };
 
   @Output() customerAdded = new EventEmitter<any>();
 
@@ -26,9 +36,31 @@ export class AddUserModalComponent {
   }
 
   saveCustomer(): void {
-    if (this.customerData.name && this.customerData.email && this.customerData.phone) {
+    if (this.isFormValid()) {
       this.customerAdded.emit(this.customerData);
-      this.closeModal(); // Close modal after saving
+      this.resetForm();
+      this.closeModal();
+    } else {
+      alert('Please fill in all required fields.');
     }
+  }
+
+  private isFormValid(): boolean {
+    return Object.values(this.customerData).every(value => value.trim() !== '');
+  }
+
+  private resetForm(): void {
+    this.customerData = {
+      fullName: '',
+      email: '',
+      phone: '',
+      companyName: '',
+      //address: '',
+      //apartment: '',
+      //country: '',
+      //state: '',
+      //city: '',
+      //zipCode: ''
+    };
   }
 }

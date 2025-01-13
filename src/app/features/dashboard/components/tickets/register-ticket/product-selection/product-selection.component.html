@@ -1,0 +1,14 @@
+<div class="p-6">
+  <h2 class="text-xl font-bold mb-4">Select Product/Appliance</h2>
+
+  <div *ngFor="let product of products" class="mb-4">
+    <input type="radio" id="{{product.id}}" name="product" [value]="product" />
+    <label for="{{product.id}}" class="ml-2 text-sm font-medium text-gray-700">{{product.name}} - {{product.type}}</label>
+  </div>
+
+  <div class="mt-6">
+    <button type="button" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+      Next
+    </button>
+  </div>
+</div>
