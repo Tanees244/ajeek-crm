@@ -1,0 +1,95 @@
+<div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" *ngIf="isVisible" (click)="closeModal()">
+  <div class="bg-white py-8 px-6 rounded w-[850px] relative" (click)="$event.stopPropagation()">
+    <!-- Close Button as Image -->
+    <button (click)="closeModal()" class="absolute top-6 right-6 p-2 border border-neutral-gray rounded-[2px]">
+      <img src="assets/icons/close.svg" alt="Close" class="w-6 h-6" />
+    </button>
+
+    <div class="bg-[#F6F6F6] mt-12 mb-6 p-4 rounded">
+      <h2 class="font-bold text-h5 mb-0">Enter Customer Details</h2>
+      <p class="font-normal text-p text-secondary">Fill the below customer details</p>
+    </div>
+
+    <form (ngSubmit)="saveCustomer()" class="space-y-6">
+      <!-- First Row -->
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <label for="fullName" class="block mb-1 text-h6 font-bold">Full Name</label>
+          <input type="text" id="fullName" name="fullName" placeholder="Sheikh Abdul" required class="w-full p-2 border rounded">
+        </div>
+
+        <div>
+          <label for="email" class="block mb-1 text-h6 font-bold">Email Address</label>
+          <input type="email" id="email" name="email" required class="w-full p-2 border rounded">
+        </div>
+
+        <div>
+          <label for="phone" class="block mb-1 text-h6 font-bold">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required class="w-full p-2 border rounded">
+        </div>
+
+        <div>
+          <label for="companyName" class="block mb-1 text-h6 font-bold">Company Name</label>
+          <input type="text" id="companyName" name="companyName" required class="w-full p-2 border rounded">
+        </div>
+      </div>
+
+      <!-- Second Row -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="address" class="block mb-1 text-h6 font-bold">Address</label>
+          <input type="text" id="address" name="address" required class="w-full p-2 border rounded">
+        </div>
+
+        <div>
+          <label for="apartment" class="block mb-1 text-h6 font-bold">Apartment, Suite, Building, etc.</label>
+          <input type="text" id="apartment" name="apartment" required class="w-full p-2 border rounded">
+        </div>
+      </div>
+
+      <!-- Third Row -->
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <label for="country" class="block mb-1 text-h6 font-bold">Country</label>
+          <select id="country" name="country" required class="w-full p-2 border rounded">
+            <option value="">Select Country</option>
+            <option value="us">United States</option>
+            <option value="ca">Canada</option>
+            <option value="uk">United Kingdom</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="state" class="block mb-1 text-h6 font-bold">State/Province/Region</label>
+          <select id="state" name="state" required class="w-full p-2 border rounded">
+            <option value="">Select State</option>
+            <option value="ny">New York</option>
+            <option value="ca">California</option>
+            <option value="tx">Texas</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="city" class="block mb-1 text-h6 font-bold">City</label>
+          <select id="city" name="city" required class="w-full p-2 border rounded">
+            <option value="">Select City</option>
+            <option value="nyc">New York City</option>
+            <option value="la">Los Angeles</option>
+            <option value="hou">Houston</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="zipCode" class="block mb-1 text-h6 font-bold">Zip Code</label>
+          <input type="text" id="zipCode" name="zipCode" required class="w-full p-2 border rounded">
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="mt-4">
+        <button type="submit" class="bg-primary text-white px-6 py-2 rounded">Save</button>
+      </div>
+    </form>
+
+  </div>
+</div>

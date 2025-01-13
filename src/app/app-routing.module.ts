@@ -12,7 +12,6 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'login'
-    // Wildcard route catches any undefined paths and redirects them to the 'login' component
   }
 ];
 

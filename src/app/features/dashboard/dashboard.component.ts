@@ -4,13 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/common/header/header.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 import { RouterModule, Routes, provideRouter } from '@angular/router';
-import { SharedModule } from '../../shared/shared.module';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  styleUrls: [],
   standalone: true,
   imports: [
     CommonModule,
@@ -19,7 +18,6 @@ import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcru
     RouterModule,
     BreadcrumbComponent,
   ],
-  //providers: [provideRouter(twoRoutes)],
 })
 export class DashboardComponent {
   isCollapsed = false;

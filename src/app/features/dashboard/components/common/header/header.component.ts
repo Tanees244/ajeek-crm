@@ -6,7 +6,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: []
 })
 export class HeaderComponent {
   isRotated = false;

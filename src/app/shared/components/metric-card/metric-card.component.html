@@ -1,29 +1,46 @@
-<div class="metric-card">
-  <div class="metric-row">
+<div class="bg-white rounded-lg p-4 items-center shadow-md h-[90px] flex flex-col w-full min-w-[320px] border border-white-edgar mx-2 md:mx-0 mt-2">
+  <div class="flex w-full justify-evenly items-center space-x-4 md:space-x-2">
     <!-- First Column: Icon or Image -->
-    <div class="metric-column icon-column">
-      <ng-container ngIf="imgSrc; else iconTemplate">
-        <img [src]="imgSrc" alt="Metric Icon" class="metric-image" />
+    <div class="flex flex-col items-center justify-center space-y-2">
+      <ng-container *ngIf="imgSrc; else iconTemplate">
+        <img [src]="imgSrc"
+             alt="Metric Icon"
+             class="w-[55px] h-[55px] object-contain rounded-full bg-tertiary p-3" />
       </ng-container>
       <ng-template #iconTemplate>
-        <div class="metric-icon" [style.background-color]="iconBgColor">
-          <i [class]="iconClass"></i>
+        <div class="w-[40px] h-[40px] rounded-full flex items-center justify-center"
+             [style.background-color]="iconBgColor">
+          <i [class]="iconClass" class="text-white text-[20px]"></i>
         </div>
       </ng-template>
     </div>
 
     <!-- Second Column: Title and Value -->
-    <div class="metric-column content-column">
-      <div class="metric-title">{{ title }}</div>
-      <div class="metric-value">{{ value }}{{ unit }}</div>
+    <div class="flex flex-col justify-center text-left space-y-1">
+      <div class="text-black font-bold text-h6">{{ title }}</div>
+      <div class="text-h3 font-bold text-primary">{{ value }}{{ unit }}</div>
     </div>
 
     <!-- Third Column: Trend -->
-    <div class="metric-column trend-column">
-      <div class="metric-trend" [class.positive]="trend > 0" [class.negative]="trend < 0">
-        <i class="fas" [class.fa-arrow-up]="trend > 0" [class.fa-arrow-down]="trend < 0"></i>
-        {{ Math.abs(trend) }}%
+    <div class="flex flex-col items-center text-center space-y-1">
+      <div class="flex items-center text-[12px] font-semibold font-secondary gap-4">
+        <!-- Background with 10% opacity and rounded style -->
+        <div class="flex items-center justify-center rounded gap-2 p-2"
+             [ngStyle]="{'background-color' : trend > 0 ? 'rgba(0, 128, 0, 0.1)' : 'rgba(255, 0, 0, 0.1)', 'color': trend > 0 ? '#008000' : '#FF0000'
+          }">
+          <!-- Image Icon based on trend -->
+          <img [src]="trend > 0 ? 'assets/icons/greenVariationArrow.svg' : 'assets/icons/redVariationArrow.svg'"
+               alt="Arrow Icon"
+               class="w-4 h-4" />
+
+          <!-- Trend Percentage -->
+          <span [class.text-green]="trend > 0" [class.text-red]="trend < 0">
+           + {{ Math.abs(trend) }}%
+          </span>
+        </div>
       </div>
     </div>
+
+
   </div>
 </div>

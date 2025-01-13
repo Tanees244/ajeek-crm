@@ -1,13 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../../../../../shared/components/button/button.component';
+import { AddUserModalComponent } from '../../../../../shared/components/modal/add-user-modal/add-user-modal.component';
 
 @Component({
   selector: 'app-register-ticket',
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent, AddUserModalComponent],
   templateUrl: './register-ticket.component.html',
   styleUrl: './register-ticket.component.css'
 })
 export class RegisterTicketComponent {
+
+  @ViewChild('addUserModal') addUserModal!: AddUserModalComponent;
+
+  openAddNewCustomerModal(): void {
+    this.addUserModal.openModal();
+  }
+
+  handleCustomerAdded(customerData: any): void {
+    // Handle the customer data here, for example, add it to an array or send it to the server
+    console.log('New Customer Added:', customerData);
+  }
 
   currentStep = 1;
 
