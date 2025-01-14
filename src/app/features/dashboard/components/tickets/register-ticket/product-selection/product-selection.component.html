@@ -1,14 +1,17 @@
-<div class="p-6">
-  <h2 class="text-xl font-bold mb-4">Select Product/Appliance</h2>
-
-  <div *ngFor="let product of products" class="mb-4">
-    <input type="radio" id="{{product.id}}" name="product" [value]="product" />
-    <label for="{{product.id}}" class="ml-2 text-sm font-medium text-gray-700">{{product.name}} - {{product.type}}</label>
-  </div>
-
-  <div class="mt-6">
-    <button type="button" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
-      Next
-    </button>
+<div class="bg-white rounded border border-white-edgar p-6 shadow-sm mb-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-h4 font-bold">Register your Ticket</h2>
+      <p class="text-p text-neutral-gray font-secondary font-normal">Step-by-Step ticket Submission Form</p>
+    </div>
+    <app-button label="Add New Product"
+                type="button"
+                buttonType="primary"
+                iconUrl="assets/icons/plus.svg"
+                customClass="py-4 px-8"
+                (click)="openAddNewProductModal()">
+    </app-button>
   </div>
 </div>
+
+<app-add-product-modal #addProductModal (productAdded)="handleProductsAdded($event)"></app-add-product-modal>

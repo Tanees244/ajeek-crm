@@ -17,12 +17,12 @@ export class AddUserModalComponent {
     email: '',
     phone: '',
     companyName: '',
-    //address: '',
-    //apartment: '',
-    //country: '',
-    //state: '',
-    //city: '',
-    //zipCode: ''
+    address: '',
+    apartment: '',
+    country: '',
+    state: '',
+    city: '',
+    zipCode: ''
   };
 
   @Output() customerAdded = new EventEmitter<any>();
@@ -55,12 +55,12 @@ export class AddUserModalComponent {
       email: '',
       phone: '',
       companyName: '',
-      //address: '',
-      //apartment: '',
-      //country: '',
-      //state: '',
-      //city: '',
-      //zipCode: ''
+      address: '',
+      apartment: '',
+      country: '',
+      state: '',
+      city: '',
+      zipCode: ''
     };
   }
 }

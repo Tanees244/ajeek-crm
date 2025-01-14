@@ -5,7 +5,7 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { NgChartsModule } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-
+ 
 @Component({
   selector: 'app-partner-dashboard',
   imports: [MetricCardComponent, ButtonComponent, NgChartsModule],

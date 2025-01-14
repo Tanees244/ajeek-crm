@@ -8,23 +8,26 @@ import { TimeSlotComponent } from './time-slot/time-slot.component';
 
 @Component({
   selector: 'app-register-ticket',
-  imports: [CommonModule, CustomerDetailsComponent, ProductSelectionComponent, TimeSlotComponent],
+  imports: [CommonModule, CustomerDetailsComponent, ProductSelectionComponent, TimeSlotComponent, ButtonComponent],
   templateUrl: './register-ticket.component.html'
 })
 export class RegisterTicketComponent {
   @ViewChild('addUserModal') addUserModal!: AddUserModalComponent;
-  currentStep = 1;
+  currentStep = 2;
 
   steps = [
     { number: 1, title: 'Enter Customer Details' },
     { number: 2, title: 'Select Product/Appliance' },
     { number: 3, title: 'Select Time Slot' },
-    { number: 4, title: 'Confirmation' }
   ];
 
   customers: any[] = [];
   handleCustomerAdded(customerData: any): void {
     this.customers.push(customerData);
+  }
+
+  updateStep(stepNumber: number): void {
+    this.currentStep = stepNumber; 
   }
 
   nextStep() {

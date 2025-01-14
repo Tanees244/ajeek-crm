@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { NgChartsModule } from 'ng2-charts';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     NgChartsModule,
     FormsModule,
-    CommonModule
+    CommonModule, NgxPaginationModule
   ],
   providers: [
     provideAnimationsAsync()
