@@ -6,6 +6,7 @@ import { PartnerDashboardComponent } from './dashboard/components/partner-dashbo
 import { TicketsComponent } from './dashboard/components/tickets/tickets.component';
 import { RegisterTicketComponent } from './dashboard/components/tickets/register-ticket/register-ticket.component'; // Import the RegisterTicketComponent
 import { TicketListComponent } from './dashboard/components/tickets/ticket-list/ticket-list.component';
+import { TicketDetailsComponent } from './dashboard/components/tickets/ticket-details/ticket-details.component';
 
 export const featureRoutes: Routes = [
   {
@@ -40,6 +41,11 @@ export const featureRoutes: Routes = [
             component: RegisterTicketComponent,
             data: { breadcrumb: 'Register Ticket' },
           },
+          {
+            path: 'ticket-no/:id', 
+            component: TicketDetailsComponent,
+            data: { breadcrumb: (data: any) => `Ticket No. ${data.id}` }, 
+          }
         ],
       },
     ],

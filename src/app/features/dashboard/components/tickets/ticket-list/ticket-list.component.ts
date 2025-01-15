@@ -19,6 +19,10 @@ export class TicketListComponent {
     this.router.navigate(['/dashboard/tickets/register-ticket']);
   }
 
+  navigateToTicketDetails(ticketId: string) {
+    this.router.navigate([`/dashboard/tickets/ticket-no/${ticketId}`]);
+  }
+
   tickets = [
     {
       id: '10931235',

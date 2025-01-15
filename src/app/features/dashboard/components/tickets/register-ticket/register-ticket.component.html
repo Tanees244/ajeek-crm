@@ -15,7 +15,7 @@
 
   <!-- Step content containers -->
   <div [ngSwitch]="currentStep">
-    <!--<app-customer-details *ngSwitchCase="1" (stepChange)="updateStep($event)"></app-customer-details>-->
+    <app-customer-details *ngSwitchCase="1" (stepChange)="updateStep($event)"></app-customer-details>
     <app-product-selection *ngSwitchCase="2"></app-product-selection>
     <!--<app-time-slot *ngSwitchCase="3"></app-time-slot>-->
     <!--<app-confirmation *ngSwitchCase="4"></app-confirmation>-->
