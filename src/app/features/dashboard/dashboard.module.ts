@@ -23,6 +23,11 @@ import { TicketDetailsComponent } from './components/tickets/ticket-details/tick
     //TimeSlotComponent
   
     //TicketDetailsComponent
+  
+    //TechniciansDetailsComponent,
+    //TechnicianDetailsComponent,
+    //TechnicianListComponent,
+    //TechniciansComponent
   ]
 })
 export class DashboardModule { }

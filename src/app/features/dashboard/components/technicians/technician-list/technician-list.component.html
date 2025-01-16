@@ -1,0 +1,101 @@
+<div class="w-full py-6 overflow-x-auto">
+  <!-- Header and Filters -->
+  <div class="flex flex-col items-center bg-white rounded border border-white-edgar">
+    <div class="flex w-full gap-4 items-center justify-between border-b p-5 border-white-edgar">
+      <h1 class="font-bold text-black text-h4">Technician List</h1>
+      <div class="flex gap-x-4">
+        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select"
+                (change)="onExperienceChange($event)">
+          <option value="">Select Experience</option>
+          <option value="1-week">Last 1 Week</option>
+          <option value="2-weeks">Last 2 Weeks</option>
+          <option value="1-month">Last 1 Month</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="flex flex-row w-full p-5 justify-between items-center gap-5">
+      <div class="flex items-center">
+        <label class="text-neutral-gray text-p font-secondary mr-2">Rows Per Page</label>
+        <select [value]="pageSize"
+                (change)="onPageSizeChange($event)"
+                class="px-2 py-1 border border-white-edgar rounded focus:outline-primary font-secondary text-neutral-gray text-p form-select">
+          <option *ngFor="let option of pageSizeOptions" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+        <label class="text-neutral-gray text-p font-secondary ml-2">Entries</label>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <input type="text"
+               [(ngModel)]="searchQuery"
+               placeholder="Search by Iqama No."
+               class="flex-1 px-6 py-2 border border-white-edgar rounded focus:border-primary focus:outline-none">
+        <app-button label="Search"
+                    type="button"
+                    buttonType="primary"
+                    (click)="onSearch()"
+                    customClass="h-[35px] px-8">
+        </app-button>
+      </div>
+    </div>
+
+    <table class="table-auto border-collapse w-full">
+      <thead class="bg-[#F6F6F6]">
+        <tr>
+          <th class="px-6 py-2 text-left">Technician ID</th>
+          <th class="px-4 py-2 text-left">Registered At</th>
+          <th class="px-4 py-2 text-left">Technician Name</th>
+          <th class="px-4 py-2 text-left">Iqama Number</th>
+          <th class="px-4 py-2 text-left">Iqama Expiry Date</th>
+          <th class="px-4 py-2 text-left">Contact Information</th>
+          <th class="px-4 py-2 text-left">Years of Experience</th>
+          <th class="px-4 py-2"></th>
+          <th class="px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tech of filteredTechnicians" class="border-white-edgar border-b items-center">
+          <td class="px-6 py-2 font-bold text-p">{{ tech.id }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ tech.registeredAt }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ tech.technicianName }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ tech.iqamaNumber }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-green">{{ tech.iqamaExpiryDate }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ tech.contactInformation }}</td>
+          <td class="px-4 py-4">
+            <span class="px-6 py-1 w-full bg-primary-10 text-primary font-medium rounded">
+              {{ tech.yearsOfExperience }}
+            </span>
+          </td>
+          <td class="py-2">
+            <div class="flex items-center justify-between">
+              <button class="text-primary font-bold underline"
+                      (click)="navigateToTechnicianProfile(tech.id)">
+                View Technician Profile
+              </button>
+              <div class="flex gap-x-2">
+                <img src="assets/icons/edit.svg" alt="Edit" class="w-5 h-5 cursor-pointer">
+                <img src="assets/icons/delete.svg" alt="Delete" class="w-5 h-5 cursor-pointer">
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="flex flex-row w-full items-center justify-between px-6">
+      <div>
+        <span class="font-secondary font-normal text-p text-neutral-gray">
+          {{ currentPageRange }}
+        </span>
+      </div>
+      <div>
+        <mat-paginator [length]="totalItems"
+                       [pageSize]="pageSize"
+                       (page)="onPageChange($event)"
+                       class="!bg-transparent">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

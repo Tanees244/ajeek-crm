@@ -55,8 +55,10 @@
     <div class="flex flex-row w-full p-5 justify-between items-center gap-5">
       <div class="flex items-center">
         <label class="text-neutral-gray text-p font-secondary mr-2">Rows Per Page</label>
-        <select class="px-2 py-1 border border-white-edgar rounded  focus:outline-primary font-secondary  text-neutral-gray text-p form-select">
-          <option *ngFor="let option of rowsPerPageOptions" [value]="option">
+        <select [value]="pageSize"
+                (change)="onPageSizeChange($event)"
+                class="px-2 py-1 border border-white-edgar rounded focus:outline-primary font-secondary text-neutral-gray text-p form-select">
+          <option *ngFor="let option of pageSizeOptions" [value]="option">
             {{ option }}
           </option>
         </select>
@@ -74,7 +76,7 @@
 
 
     <!-- Ticket List -->
-    <table class="table-auto border-collapse w-full shadow-md">
+    <table class="table-auto border-collapse w-full">
       <thead class="bg-[#F6F6F6]">
         <tr>
           <th class="px-4 py-2">Ticket ID</th>
@@ -90,7 +92,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let ticket of filteredTickets">
+        <tr *ngFor="let ticket of filteredTickets" class="border-white-edgar border-b">
           <!-- Each row wrapped in a div for custom padding -->
           <td class="px-4 py-6 font-bold text-p">{{ ticket.id }}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.createdAt }}</td>
@@ -130,6 +132,21 @@
         </tr>
       </tbody>
     </table>
+
+    <div class="flex flex-row w-full items-center justify-between px-6">
+      <div>
+        <span class="font-secondary font-normal text-p text-neutral-gray">
+          {{ currentPageRange }}
+        </span>
+      </div>
+      <div>
+        <mat-paginator [length]="totalItems"
+                       [pageSize]="pageSize"
+                       (page)="onPageChange($event)"
+                       class="!bg-transparent">
+        </mat-paginator>
+      </div>
+    </div>
   </div>
 
   <!-- Pagination -->

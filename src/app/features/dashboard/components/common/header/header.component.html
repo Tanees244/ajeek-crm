@@ -1,6 +1,5 @@
 <nav class="flex items-center justify-between bg-white px-5 h-[80px] shadow-sm w-full box-border">
   <div class="flex items-center justify-between w-full">
-    <!-- Left Section -->
     <div class="flex items-center gap-2">
       <button (click)="toggleSidebar()"
               class="p-2 bg-none border-none cursor-pointer transition-transform hover:bg-white-smoke-30 rounded-md"
@@ -13,14 +12,11 @@
       </div>
     </div>
 
-    <!-- Right Section -->
     <div class="flex items-center gap-x-6">
       <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md">
         <img src="assets/icons/globe.svg" alt="Global" class="w-5 h-5" />
       </button>
-      <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md">
-        <img src="assets/icons/bell.svg" alt="Notifications" class="w-5 h-5" />
-      </button>
+      
       <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md"
               (click)="toggleFullScreen()">
         <img src="assets/icons/fullScreen.svg" alt="Full Screen" class="w-5 h-5" />
@@ -32,7 +28,7 @@
       </div>
       <div class="h-7 w-px bg-white-edgar"></div>
       <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md">
-        <img src="assets/icons/cog.svg" alt="Settings" class="w-5 h-5" />
+        <img src="assets/icons/bell.svg" alt="Notifications" class="w-5 h-5" />
       </button>
     </div>
   </div>

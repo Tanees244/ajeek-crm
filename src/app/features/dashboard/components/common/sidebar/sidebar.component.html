@@ -18,65 +18,62 @@
     <nav class="navigation flex flex-col flex-grow p-4 space-y-2">
       <span *ngIf="!isCollapsed" class="ml-4 mb-2 text-h5 font-bold">Menu</span>
       <a routerLink="/dashboard/partner"
-         routerLinkActive="active"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
-          'p-4': !isCollapsed,
-          'py-2': isCollapsed
-        }"
-         class="nav-item flex items-center text-h5 font-bold rounded-l-lg transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
-        <div class="icon bg-transparent rounded-l-lg p-2 transition-all duration-300 hover:bg-white-smoke-30 active:bg-white-smoke-30">
-          <img src="assets/icons/dashboard.svg" alt="Dashboard Logo" class="w-5 h-5 hover:brightness-110 active:brightness-110" />
+           'p-4': !isCollapsed,
+           'py-2': isCollapsed
+         }"
+         class="nav-item flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div class="icon bg-transparent rounded">
+          <img src="assets/icons/dashboard.svg" alt="Dashboard Logo" class="w-5 h-5" />
         </div>
         <span class="ml-3" [class.hidden]="isCollapsed">Dashboard</span>
       </a>
       <a routerLink="/dashboard/tickets"
-         routerLinkActive="active"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
-          'p-4': !isCollapsed,
-          'py-2': isCollapsed
-        }"
-
-         class="nav-item flex items-center text-h5 font-bold rounded-l-lg transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
-        <div class="icon bg-transparent rounded-l-lg p-2 transition-all duration-300 hover:bg-white-smoke-30 active:bg-white-smoke-30">
-          <img src="assets/icons/tickets.svg" alt="Tickets Logo" class="w-5 h-5 hover:brightness-110 active:brightness-110" />
+           'p-4': !isCollapsed,
+           'py-2': isCollapsed
+         }"
+         class="nav-item flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div class="icon bg-transparent rounded">
+          <img src="assets/icons/tickets.svg" alt="Tickets Logo" class="w-5 h-5" />
         </div>
         <span class="ml-3" [class.hidden]="isCollapsed">Tickets</span>
       </a>
-      <a routerLink="/technician"
-         routerLinkActive="active"
+      <a routerLink="/dashboard/technicians"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
-          'p-4': !isCollapsed,
-          'py-2': isCollapsed
-        }"
-         class="nav-item flex items-center text-h5 font-bold rounded-l-lg transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
-        <div class="icon bg-transparent rounded-l-lg p-2 transition-all duration-300 hover:bg-white-smoke-30 active:bg-white-smoke-30">
-          <img src="assets/icons/technicians.svg" alt="Technician Logo" class="w-5 h-5 hover:brightness-110 active:brightness-110" />
+           'p-4': !isCollapsed,
+           'py-2': isCollapsed
+         }"
+         class="nav-item flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div class="icon bg-transparent rounded">
+          <img src="assets/icons/technicians.svg" alt="Technician Logo" class="w-5 h-5" />
         </div>
         <span class="ml-3" [class.hidden]="isCollapsed">Technician</span>
       </a>
       <a routerLink="/chat"
-         routerLinkActive="active"
-         
+         routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
-          'p-4': !isCollapsed,
-          'py-2': isCollapsed
-        }"
-         class="nav-item flex items-center text-h5 font-bold rounded-l-lg transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
-        <div class="icon bg-transparent rounded-l-lg p-2 transition-all duration-300 hover:bg-white-smoke-30 active:bg-white-smoke-30">
-          <img src="assets/icons/chat.svg" alt="Chat Logo" class="w-5 h-5 hover:brightness-110 active:brightness-110" />
+           'p-4': !isCollapsed,
+           'py-2': isCollapsed
+         }"
+         class="nav-item flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div class="icon bg-transparent rounded">
+          <img src="assets/icons/chat.svg" alt="Chat Logo" class="w-5 h-5" />
         </div>
         <span class="ml-3" [class.hidden]="isCollapsed">Chat</span>
       </a>
       <a routerLink="/alert"
-         routerLinkActive="active"
-         
+         routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
-          'p-4': !isCollapsed,
-          'py-2': isCollapsed
-        }"
-         class="nav-item flex items-center text-h5 font-bold rounded-l-lg transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
-        <div class="icon bg-transparent rounded-l-lg p-2 transition-all duration-300 hover:bg-white-smoke-30 active:bg-white-smoke-30">
-          <img src="assets/icons/alerts.svg" alt="Alert Logo" class="w-5 h-5 hover:brightness-110 active:brightness-110" />
+           'p-4': !isCollapsed,
+           'py-2': isCollapsed
+         }"
+         class="nav-item flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
+        <div class="icon bg-transparent rounded">
+          <img src="assets/icons/alerts.svg" alt="Alert Logo" class="w-5 h-5" />
         </div>
         <span class="ml-3" [class.hidden]="isCollapsed">Alerts</span>
       </a>
@@ -84,15 +81,15 @@
   </div>
 
   <div class="logout p-4">
-    <a routerLink="/login"
-       routerLinkActive="active"
-         [ngClass]="{
-          'p-4': !isCollapsed,
-          'py-2': isCollapsed
-        }"
-       class="nav-item flex items-center text-h5 font-bold rounded-l-lg transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
-      <div class="icon bg-transparent rounded-l-lg p-2 transition-all duration-300 hover:bg-white-smoke-30 active:bg-white-smoke-30">
-        <img src="assets/icons/signOut.svg" alt="Logout Logo" class="w-5 h-5 hover:brightness-110 active:brightness-110" />
+    <a routerLink="/logout"
+       routerLinkActive="bg-white-smoke-30 shadow-md"
+       [ngClass]="{
+           'p-4': !isCollapsed,
+           'py-2': isCollapsed
+         }"
+       class="nav-item flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
+      <div class="icon bg-transparent rounded">
+        <img src="assets/icons/signOut.svg" alt="Logout Logo" class="w-5 h-5" />
       </div>
       <span class="ml-3" [class.hidden]="isCollapsed">Logout</span>
     </a>
