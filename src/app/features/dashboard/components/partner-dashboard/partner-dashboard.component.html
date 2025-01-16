@@ -66,8 +66,14 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
     <!-- Bar Chart -->
-    <div class="bg-white rounded-lg shadow p-4">
-      <h3 class="text-lg font-semibold mb-4">Yearly Tickets Stats</h3>
+    <div class="bg-white rounded-lg shadow py-4 px-2">
+      <div class="flex items-center justify-between border-b border-white-edgar">
+        <h3 class="text-h6 font-bold mb-4">Yearly Tickets Stats</h3>
+        <div class="flex flex-row gap-x-2 p-4 rounded bg-primary">
+          <img src="assets/icons/share.svg" class="w-4 h-4"/>
+          <p class="font-medium text-white text-[12px]">Export</p>
+        </div>
+      </div>
       <canvas baseChart
               [datasets]="barChartData.datasets"
               [labels]="barChartData.labels"
@@ -104,10 +110,10 @@
     </div>
 
     <!-- Priority Bar Chart -->
-    <!--<div class="bg-white rounded-lg shadow p-4">
+    <div class="bg-white rounded-lg shadow p-4">
       <h3 class="text-lg font-semibold mb-4">Pending Tickets by Priority</h3>
       <div class="space-y-4">
-        <div ngFor="let priority of priorities" class="space-y-2">
+        <div *ngFor="let priority of priorities" class="space-y-2">
           <div class="flex justify-between text-sm">
             <span>{{priority.name}}</span>
             <span>{{priority.value}}%</span>
@@ -124,6 +130,6 @@
         <div class="text-xl font-bold">5.70</div>
         <div class="text-gray-600 text-sm">Average Response Time</div>
       </div>
-    </div>-->
+    </div>
   </div>
 </div>
