@@ -162,7 +162,8 @@ export class TechnicianListComponent {
     },
   ];
 
-  displayedTechnicians: Technician[] = [];
+
+  filteredTechnicians: Technician[] = [];
   pageSize = 5;
   pageSizeOptions = [5, 10, 25, 50];
   selectedExperience = '';
@@ -228,7 +229,6 @@ export class TechnicianListComponent {
     });
   }
 
-  // Refactored updateDisplayedTechnicians to simplify pagination logic
   updateDisplayedTechnicians() {
     const filteredTechnicians = this.getFilteredTechnicians();
     this.totalItems = filteredTechnicians.length;
@@ -236,7 +236,7 @@ export class TechnicianListComponent {
     const startIndex = this.paginator ? this.paginator.pageIndex * this.paginator.pageSize : 0;
     const endIndex = startIndex + (this.paginator ? this.paginator.pageSize : this.pageSize);
 
-    this.displayedTechnicians = filteredTechnicians.slice(startIndex, endIndex);
+    this.filteredTechnicians = filteredTechnicians.slice(startIndex, endIndex);
     this.updatePageRange();
   }
 
