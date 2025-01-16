@@ -1,0 +1,79 @@
+<div class="mt-6">
+  <!-- Header -->
+  <div class="flex justify-between items-center mb-6">
+    <button (click)="navigateBack()" class="flex items-center text-black font-bold text-h4 hover:text-gray-800">
+      <img src="assets/icons/leftArrow.svg" class="w-5 h-5 mr-4" alt="Back" />
+      <span>Technician Details</span>
+    </button>
+  </div>
+
+  <div class="bg-white rounded border border-white-edgar px-4 py-6 mb-6">
+    <!-- Basic Information -->
+    <h1 class="text-2xl font-bold">Technician Profile</h1>
+
+    <div class="border-b border-white-edgar my-8"></div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <!-- Left Column -->
+      <div class="space-y-6">
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-4">Contact Information</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="text-gray-600 block">Phone Number</label>
+              <p>{{ technician.phoneNumber }}</p>
+            </div>
+            <div>
+              <label class="text-gray-600 block">Email Address</label>
+              <p>{{ technician.email }}</p>
+            </div>
+            <div>
+              <label class="text-gray-600 block">Address</label>
+              <p>{{ technician.address }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-4">Document Details</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="text-gray-600 block">Iqama Number</label>
+              <p>{{ technician.iqamaNumber }}</p>
+            </div>
+            <div>
+              <label class="text-gray-600 block">Date of Expiry</label>
+              <p>{{ technician.expiryDate }}</p>
+            </div>
+            <div>
+              <button class="text-primary hover:underline">
+                View Document
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-lg font-semibold mb-4">Skills</h2>
+          <div class="flex flex-wrap gap-2">
+            <span *ngFor="let skill of technician.skills"
+                  class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+              {{ skill }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column - Performance Chart -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-lg font-semibold mb-4">Performance</h2>
+        <!-- Performance Chart would go here - You'll need to add a charting library -->
+        <div class="h-64 bg-gray-50 rounded flex items-center justify-center">
+          Performance Chart Placeholder
+        </div>
+      </div>
+    </div>
+
+  </div>
+    
+</div>

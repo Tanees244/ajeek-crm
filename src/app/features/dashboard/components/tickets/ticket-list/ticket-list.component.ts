@@ -112,8 +112,6 @@ export class TicketListComponent {
       assignedAt: '2024-12-11',
       status: 'In Progress',
     },
-
-    // Add more dummy data here
   ];
 
   page = 1;

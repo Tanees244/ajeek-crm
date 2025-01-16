@@ -90,7 +90,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let ticket of filteredTickets">
+        <tr *ngFor="let ticket of filteredTickets" class="border-white-edgar border-b">
           <!-- Each row wrapped in a div for custom padding -->
           <td class="px-4 py-6 font-bold text-p">{{ ticket.id }}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.createdAt }}</td>

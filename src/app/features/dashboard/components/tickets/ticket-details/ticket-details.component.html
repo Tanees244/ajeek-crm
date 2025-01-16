@@ -1,5 +1,4 @@
 <div class="mt-6">
-  <!-- Back Button and Header -->
   <div class="mb-6 flex justify-between items-center">
     <button (click)="navigateBack()" class="flex items-center text-black font-bold text-h4 hover:text-gray-800">
       <img src="assets/icons/leftArrow.svg" class="w-5 h-5 mr-4" alt="Back" />
@@ -21,12 +20,9 @@
     </div>
   </div>
 
-  <!-- Main Content -->
   <div class="grid grid-cols-3 gap-6">
-    <!-- Left Column: Ticket Info -->
     <div class="col-span-2 bg-white rounded-lg shadow">
       <div class="">
-        <!-- Ticket Header -->
         <div class="flex items-center justify-between p-6">
           <h2 class="text-xl font-bold">Ticket No: {{ ticket.id }}</h2>
           <span class="px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm">
@@ -34,10 +30,8 @@
           </span>
         </div>
 
-        <!-- Products Section -->
         <div class="border-t border-white-edgar">
           <div class="p-6">
-            <!-- Ticket and Issue Headers -->
             <div class="flex items-center gap-2 mb-4">
               <div class="bg-primary-10 text-primary px-3 py-1 rounded-full">
                 <span class="text-p">Ticket - 091</span>
@@ -53,7 +47,6 @@
               </div>
             </div>
 
-              <!-- Assignment Info -->
               <div class="flex items-center gap-4 mb-6">
                 <div class="flex items-center gap-2 text-neutral-gray font-normal text-p">
                   <img src="assets/icons/avatar.svg" class="w-6 h-6 rounded-full" alt="User" />
@@ -67,12 +60,10 @@
 
               <div class="border border-white-edgar"></div>
 
-              <!-- Selected Product Details -->
               <div *ngIf="selectedProduct" class="space-y-4 mt-4">
                 <div>
                   <div class="grid grid-cols-12">
-                    <!-- Detailed Description -->
-                    <div class="col-span-8 space-y-4">
+                    <div class="col-span-7 space-y-4">
                       <h3 class="font-bold text-h5 mb-4">Detailed Description of Issue: {{ selectedProduct.name }}</h3>
                       <div *ngFor="let detail of selectedProduct.issues.details">
                         <p class="font-normal font-secondary text-p">{{ detail.heading }}</p>
@@ -80,19 +71,26 @@
                       </div>
                     </div>
 
-                    <!-- Vertical Line -->
                     <div class="col-span-1 flex justify-center">
                       <div class="border-l border-white-edgar h-full"></div>
                     </div>
 
-                    <!-- Issue Types -->
-                    <div class="col-span-3">
-                      <h4 class="font-bold text-h5 mb-4">Issue Type(s):</h4>
-                      <ul class="list-disc pl-5 space-y-2 font-normal font-secondary text-p text-neutral-gray">
-                        <li *ngFor="let type of selectedProduct.issues.issueTypes">
-                          {{ type }}
-                        </li>
-                      </ul>
+                    <div class="col-span-4">
+                      <div class="flex flex-col gap-y-2">
+                        <div *ngFor="let product of ticket.products; let i = index"
+                             (click)="selectProduct(i)"
+                             class="cursor-pointer mt-4 border rounded-lg p-6 transition-all duration-200"
+                             [class.bg-primary-10]="selectedProductIndex === i"
+                             [class.bg-gray-50]="selectedProductIndex !== i"
+                             [class.border-primary]="selectedProductIndex === i"
+                             [class.border-white-edgar]="selectedProductIndex !== i">
+                          <h4 class="font-bold text-h5 mb-2">{{ product.name }}</h4>
+                          <div class="py-2 text-p font-medium text-neutral-gray">
+                            <p>Product Type: {{ product.type }}</p>
+                            <p>Serial Number: {{ product.serial }}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -100,25 +98,15 @@
 
                 <div class="border border-white-edgar"></div>
 
-                <div class="flex flex-row gap-x-8">
-                  <div *ngFor="let product of ticket.products; let i = index"
-                       (click)="selectProduct(i)"
-                       class="cursor-pointer mt-4 border rounded-lg p-6 transition-all duration-200"
-                       [class.bg-primary-10]="selectedProductIndex === i"
-                       [class.bg-gray-50]="selectedProductIndex !== i"
-                       [class.border-primary]="selectedProductIndex === i"
-                       [class.border-white-edgar]="selectedProductIndex !== i">
-                    <h4 class="font-bold text-h5 mb-2">{{ product.name }}</h4>
-                    <div class="py-2 text-p font-medium text-neutral-gray">
-                      <p>Product Type: {{ product.type }}</p>
-                      <p>Brand: {{ product.brand || 'Samsung' }}</p>
-                      <p>Model: {{ product.model }}</p>
-                      <p>Serial Number: {{ product.serial }}</p>
-                      <p>Purchase Date: {{ product.purchaseDate }}</p>
-                    </div>
-                  </div>
-                </div>
 
+                <div class="">
+                  <h4 class="font-bold text-h5 mb-4">Issue Type(s):</h4>
+                  <ul class="list-disc pl-5 space-y-2 font-normal font-secondary text-p text-neutral-gray">
+                    <li *ngFor="let type of selectedProduct.issues.issueTypes">
+                      {{ type }}
+                    </li>
+                  </ul>
+                </div>
 
 
               </div>
@@ -127,7 +115,6 @@
       </div>
     </div>
 
-    <!-- Right Column: Additional Info -->
     <div class="bg-white rounded-lg shadow">
       <div class="border-b border-white-edgar p-6">
         <h3 class="font-bold text-h4">Ticket Details</h3>
