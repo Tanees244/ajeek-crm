@@ -1,0 +1,17 @@
+<div class="bg-white rounded border border-white-edgar p-6 shadow-sm mb-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-h4 font-bold">Register your Ticket</h2>
+      <p class="text-p text-neutral-gray font-secondary font-normal">Step-by-Step ticket Submission Form</p>
+    </div>
+    <app-button label="Add New Product"
+                type="button"
+                buttonType="primary"
+                iconUrl="assets/icons/plus.svg"
+                customClass="py-4 px-8"
+                (click)="openAddNewProductModal()">
+    </app-button>
+  </div>
+</div>
+
+<app-add-product-modal #addProductModal (productAdded)="handleProductsAdded($event)"></app-add-product-modal>

@@ -6,6 +6,10 @@ import { PartnerDashboardComponent } from './dashboard/components/partner-dashbo
 import { TicketsComponent } from './dashboard/components/tickets/tickets.component';
 import { RegisterTicketComponent } from './dashboard/components/tickets/register-ticket/register-ticket.component'; // Import the RegisterTicketComponent
 import { TicketListComponent } from './dashboard/components/tickets/ticket-list/ticket-list.component';
+import { TicketDetailsComponent } from './dashboard/components/tickets/ticket-details/ticket-details.component';
+import { TechniciansComponent } from './dashboard/components/technicians/technicians.component';
+import { TechnicianDetailsComponent } from './dashboard/components/technicians/technician-details/technician-details.component';
+import { TechnicianListComponent } from './dashboard/components/technicians/technician-list/technician-list.component';
 
 export const featureRoutes: Routes = [
   {
@@ -40,6 +44,27 @@ export const featureRoutes: Routes = [
             component: RegisterTicketComponent,
             data: { breadcrumb: 'Register Ticket' },
           },
+          {
+            path: 'ticket-no/:id', 
+            component: TicketDetailsComponent,
+            data: { breadcrumb: (data: any) => `Ticket No. ${data.id}` }, 
+          }
+        ],
+      },
+      {
+        path: 'technicians',
+        component: TechniciansComponent,
+        data: { breadcrumb: 'Technician Listing' },
+        children: [
+          {
+            path: '',
+            component: TechnicianListComponent,
+          },
+          {
+            path: 'technician/:id',
+            component: TechnicianDetailsComponent,
+            data: { breadcrumb: (data: any) => `TECH-${data.id}` },
+          }
         ],
       },
     ],

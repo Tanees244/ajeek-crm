@@ -1,0 +1,90 @@
+<div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" *ngIf="isVisible" (click)="closeModal()">
+  <div class="bg-white py-8 px-6 rounded w-[850px] relative" (click)="$event.stopPropagation()">
+    <!-- Close Button -->
+    <button (click)="closeModal()" class="absolute top-6 right-6 p-2 border border-neutral-gray rounded-[2px]">
+      <img src="assets/icons/close.svg" alt="Close" class="w-6 h-6" />
+    </button>
+
+    <div class="bg-[#F6F6F6] mt-12 mb-6 p-4 rounded">
+      <h2 class="font-bold text-h5 mb-0">Enter Customer Details</h2>
+      <p class="font-normal text-p text-secondary">Fill the below customer details</p>
+    </div>
+
+    <form (ngSubmit)="saveCustomer()" class="space-y-6">
+      <!-- First Row -->
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <label for="fullName" class="block mb-1 text-h6 font-bold">Full Name</label>
+          <input type="text" id="fullName" [(ngModel)]="customerData.fullName" name="fullName" placeholder="Enter full name" required
+                 class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+        <div>
+          <label for="email" class="block mb-1 text-h6 font-bold">Email Address</label>
+          <input type="email" id="email" [(ngModel)]="customerData.email" name="email" placeholder="Enter email address" required
+                 class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+        <div>
+          <label for="phone" class="block mb-1 text-h6 font-bold">Phone Number</label>
+          <input type="tel" id="phone" [(ngModel)]="customerData.phone" name="phone" placeholder="Enter phone number" required
+                 class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+        <div>
+          <label for="companyName" class="block mb-1 text-h6 font-bold">Company Name</label>
+          <input type="text" id="companyName" [(ngModel)]="customerData.companyName" name="companyName" placeholder="Enter company name" required
+                 class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+      </div>
+      <!-- Additional Rows -->
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="address" class="block mb-1 text-h6 font-bold">Address</label>
+          <input type="text" id="address" [(ngModel)]="customerData.address" name="address" placeholder="Enter street address" required
+                 class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+        <div>
+          <label for="apartment" class="block mb-1 text-h6 font-bold">Apartment, Suite, Building</label>
+          <input type="text" id="apartment" [(ngModel)]="customerData.apartment" name="apartment" placeholder="Enter apartment details" required
+                 class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+      </div>
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <label for="country" class="block mb-1 text-h6 font-bold">Country</label>
+          <select id="country" [(ngModel)]="customerData.country" name="country" required
+                  class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary">
+            <option value="" disabled selected>Select country</option>
+            <option value="us">United States</option>
+            <option value="ca">Canada</option>
+            <option value="uk">United Kingdom</option>
+          </select>
+        </div>
+        <div>
+          <label for="state" class="block mb-1 text-h6 font-bold">State/Province</label>
+          <select id="state" [(ngModel)]="customerData.state" name="state" required
+                  class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary">
+            <option value="" disabled selected>Select state</option>
+            <option value="ny">New York</option>
+            <option value="ca">California</option>
+          </select>
+        </div>
+        <div>
+          <label for="city" class="block mb-1 text-h6 font-bold">City</label>
+          <select id="city" [(ngModel)]="customerData.city" name="city" required
+                  class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary">
+            <option value="" disabled selected>Select city</option>
+            <option value="nyc">New York City</option>
+          </select>
+        </div>
+        <div>
+          <label for="zipCode" class="block mb-1 text-h6 font-bold">Zip Code</label>
+          <input type="text" id="zipCode" [(ngModel)]="customerData.zipCode" name="zipCode" placeholder="Enter zip code" required
+                 class="w-full py-3 px-2 border rounded focus:border-primary focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+      </div>
+      <!-- Save Button -->
+      <div class="mt-4 flex justify-end">
+        <app-button label="Save" type="submit" buttonType="primary" customClass="py-2 px-6"></app-button>
+      </div>
+    </form>
+  </div>
+</div>

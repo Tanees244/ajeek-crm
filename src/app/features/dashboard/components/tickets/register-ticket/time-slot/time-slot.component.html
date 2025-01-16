@@ -1,0 +1,14 @@
+<div class="p-6">
+  <h2 class="text-xl font-bold mb-4">Select Time Slot</h2>
+
+  <div *ngFor="let day of days" class="mb-4">
+    <input type="radio" id="{{day.name}}" name="timeSlot" [value]="day" />
+    <label for="{{day.name}}" class="ml-2 text-sm font-medium text-gray-700">{{day.name}} - {{day.date}}</label>
+  </div>
+
+  <div class="mt-6">
+    <button type="button" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+      Next
+    </button>
+  </div>
+</div>

@@ -3,13 +3,20 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './components/button/button.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { MetricCardComponent } from './components/metric-card/metric-card.component';
+import { AddUserModalComponent } from './components/modal/add-user-modal/add-user-modal.component';
+import { AddProductModalComponent } from './components/modal/add-product-modal/add-product-modal.component';
 
 @NgModule({
   declarations: [
-    ButtonComponent,
+    //ButtonComponent,
     //MetricCardComponent,
+    //AddUserModalComponent
+  
+    //AddUserModalComponent
+  
+    //AddProductModalComponent
   ],
-  imports: [CommonModule, BreadcrumbComponent],
-  exports: [ButtonComponent],
+  imports: [CommonModule, BreadcrumbComponent, ButtonComponent],
+  exports: [],
 })
 export class SharedModule { }
