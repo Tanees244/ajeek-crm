@@ -5,6 +5,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { MetricCardComponent } from './components/metric-card/metric-card.component';
 import { AddUserModalComponent } from './components/modal/add-user-modal/add-user-modal.component';
 import { AddProductModalComponent } from './components/modal/add-product-modal/add-product-modal.component';
+import { AddressListingModalComponent } from './components/modal/address-listing-modal/address-listing-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,8 @@ import { AddProductModalComponent } from './components/modal/add-product-modal/a
     //AddUserModalComponent
   
     //AddProductModalComponent
+  
+    //AddressListingModalComponent
   ],
   imports: [CommonModule, BreadcrumbComponent, ButtonComponent],
   exports: [],

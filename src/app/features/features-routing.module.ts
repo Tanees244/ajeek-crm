@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PartnerDashboardComponent } from './dashboard/components/partner-dashboard/partner-dashboard.component';
 import { TicketsComponent } from './dashboard/components/tickets/tickets.component';
-import { RegisterTicketComponent } from './dashboard/components/tickets/register-ticket/register-ticket.component'; // Import the RegisterTicketComponent
+import { RegisterTicketComponent } from './dashboard/components/tickets/register-ticket/register-ticket.component'; 
 import { TicketListComponent } from './dashboard/components/tickets/ticket-list/ticket-list.component';
 import { TicketDetailsComponent } from './dashboard/components/tickets/ticket-details/ticket-details.component';
 import { TechniciansComponent } from './dashboard/components/technicians/technicians.component';
@@ -23,7 +23,7 @@ export const featureRoutes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    data: { breadcrumb: 'Dashboard' },
+    data: { breadcrumb: '' },
     children: [
       {
         path: 'partner',
@@ -33,11 +33,12 @@ export const featureRoutes: Routes = [
       {
         path: 'tickets',
         component: TicketsComponent,
-        data: { breadcrumb: 'Tickets' },
+        data: { breadcrumb: 'Tickets' }, 
         children: [
           {
             path: '',
             component: TicketListComponent,
+            data: { breadcrumb: '' }, 
           },
           {
             path: 'register-ticket',
@@ -45,28 +46,31 @@ export const featureRoutes: Routes = [
             data: { breadcrumb: 'Register Ticket' },
           },
           {
-            path: 'ticket-no/:id', 
+            path: 'ticket-no/:id',
             component: TicketDetailsComponent,
             data: { breadcrumb: (data: any) => `Ticket No. ${data.id}` }, 
-          }
+          },
         ],
       },
       {
         path: 'technicians',
         component: TechniciansComponent,
-        data: { breadcrumb: 'Technician Listing' },
+        data: { breadcrumb: 'Technician Listing' }, 
         children: [
           {
             path: '',
             component: TechnicianListComponent,
+            data: { breadcrumb: '' }, 
           },
           {
             path: 'technician/:id',
             component: TechnicianDetailsComponent,
-            data: { breadcrumb: (data: any) => `TECH-${data.id}` },
-          }
+            data: { breadcrumb: (data: any) => `${data.id}` },
+          },
         ],
       },
     ],
   },
 ];
+
+

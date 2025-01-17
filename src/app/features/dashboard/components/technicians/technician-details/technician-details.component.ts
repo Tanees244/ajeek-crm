@@ -64,7 +64,7 @@ interface Technician {
 @Component({
   selector: 'app-technician-details',
   templateUrl: './technician-details.component.html',
-  imports: [ButtonComponent, CommonModule],
+  imports: [CommonModule],
   standalone: true
 })
 export class TechnicianDetailsComponent implements OnInit {
