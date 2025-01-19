@@ -12,6 +12,198 @@
                 (click)="openAddNewProductModal()">
     </app-button>
   </div>
+
+  <div *ngIf="!selectedProduct; else detailsView" class="items-center border border-white-edgar rounded">
+    <div class="flex w-full gap-4 bg-[#F6F6F6] p-4 items-center justify-between">
+      <div>
+        <h1 class="font-bold text-black text-h5">Select Product/Appliance</h1>
+        <h1 class="font-normal font-secondary text-neutral-gray text-p">Choose the appliance(s) you are submitting the ticket for. </h1>
+      </div>
+      <div class="flex gap-x-4">
+        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select">
+          <option value="">Select Category</option>
+          <option value="1-week">Last 1 Week</option>
+          <option value="2-weeks">Last 2 Weeks</option>
+          <option value="1-month">Last 1 Month</option>
+        </select>
+        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select">
+          <option value="">Select Brand</option>
+          <option value="1-week">Last 1 Week</option>
+          <option value="2-weeks">Last 2 Weeks</option>
+          <option value="1-month">Last 1 Month</option>
+        </select>
+        <input type="text"
+               placeholder="Search for Serial No."
+               class="flex-1 px-6 py-3 border border-white-edgar rounded focus:border-primary focus:outline-none">
+        <app-button label="Search"
+                    type="button"
+                    buttonType="primary"
+                    customClass="h-[40px] px-8">
+        </app-button>
+      </div>
+    </div>
+
+    <div class="bg-white px-4 py-8">
+      <!-- TODO Add pagination -->
+    </div>
+
+    <table class="table-auto border-collapse w-full">
+      <thead class="bg-[#F6F6F6]">
+        <tr>
+          <th class="px-6 py-2 text-left">Product ID</th>
+          <th class="px-4 py-2 text-left">Product Name</th>
+          <th class="px-4 py-2 text-left">Product Type</th>
+          <th class="px-4 py-2 text-left">Brand</th>
+          <th class="px-4 py-2 text-left">Warranty</th>
+          <th class="px-4 py-2 text-left">Serial Number</th>
+          <th class="px-4 py-2 text-left">Model Number</th>
+          <th class="px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of products" class="border-white-edgar border-b items-center">
+          <td class="px-6 py-2 font-bold text-h6">{{ prod.productId }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.productName }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ prod.productType }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ prod.brand }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.warranty }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.serialNumber }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.modelNumber}}</td>
+          <td class="py-5">
+            <div class="flex items-center justify-between">
+              <button class="text-primary font-bold underline" (click)="selectProduct(prod)">
+                Select Product
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
 </div>
 
+<ng-template #detailsView>
+  <div class="border border-white-edgar rounded">
+    <div class="flex flex-row bg-[#F6F6F6] justify-between items-center px-6 py-4">
+      <div>
+        <h2 class="text-h4 font-bold">Product Detail: <span class="font-normal">{{ selectedProduct.productName }}</span></h2>
+        <p class="text-p text-neutral-gray font-secondary font-normal">Please review the details of the selected product before proceeding with your request.</p>
+      </div>
+      <div class="flex gap-x-4">
+        <button class="text-primary font-bold underline" (click)="unselectProduct()">Unselect Product</button>
+        <button class="px-4 py-2 bg-primary text-white rounded font-bold" (click)="isCollapsed = !isCollapsed">
+          {{ isCollapsed ? 'Expand Details' : 'Collapse Details' }}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!isCollapsed" class="flex flex-col gap-y-6 p-6">
+      <div class="flex flex-col border border-white-edgar px-4 rounded py-6 gap-y-6">
+        <div class="grid grid-cols-4 gap-4">
+          <div>
+            <label for="productName" class="block mb-1 text-h6 font-bold">Product Name</label>
+            <input type="text" id="productName" [value]="selectedProduct?.productName" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+          <div>
+            <label for="brand" class="block mb-1 text-h6 font-bold">Brand</label>
+            <input type="text" id="brand" [value]="selectedProduct?.brand" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+          <div>
+            <label for="productModel" class="block mb-1 text-h6 font-bold">Model</label>
+            <input type="text" id="productModel" [value]="selectedProduct?.model" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+          <div>
+            <label for="productType" class="block mb-1 text-h6 font-bold">Product Type</label>
+            <input type="text" id="productType" [value]="selectedProduct?.productType" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4">
+          <div>
+            <label for="productName" class="block mb-1 text-h6 font-bold">Serial Number</label>
+            <input type="text" id="productName" [value]="selectedProduct?.productName" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+          <div>
+            <label for="brand" class="block mb-1 text-h6 font-bold">Purchase Date</label>
+            <input type="date" id="brand" [value]="selectedProduct?.brand" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+          <div>
+            <label for="productModel" class="block mb-1 text-h6 font-bold">Warranty Status</label>
+            <input type="text" id="productModel" [value]="selectedProduct?.model" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+          <div>
+            <label for="productType" class="block mb-1 text-h6 font-bold">Last Maintenance/Service Date:</label>
+            <input type="date" id="productType" [value]="selectedProduct?.productType" readonly
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1">
+          <div>
+            <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+            <input type="text" id="productName" [value]="selectedProduct?.productName"
+                   class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]" />
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col border border-white-edgar rounded gap-y-6">
+        <div class="flex flex-row bg-[#F6F6F6] justify-between items-center px-6 py-4">
+          <div>
+            <h2 class="text-h4 font-bold">Product Detail: <span class="font-normal">{{ selectedProduct.productName }}</span></h2>
+            <p class="text-p text-neutral-gray font-secondary font-normal">Please review the details of the selected product before proceeding with your request.</p>
+          </div>
+          <div>
+            <button class="text-primary font-bold underline" (click)="openChooseAddressModal()">Choose Other Address</button>
+          </div>
+        </div>
+        <div class="flex flex-col px-6 py-4 gap-y-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+              <input type="text" id="productName" [value]="selectedProduct?.productName"
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]" />
+            </div>
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+              <input type="text" id="productName" [value]="selectedProduct?.productName"
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]" />
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4">
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+              <input type="text" id="productName" [value]="selectedProduct?.productName"
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]" />
+            </div>
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+              <input type="text" id="productName" [value]="selectedProduct?.productName"
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]" />
+            </div>
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+              <input type="text" id="productName" [value]="selectedProduct?.productName"
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]" />
+            </div>
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+              <input type="text" id="productName" [value]="selectedProduct?.productName"
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <app-add-product-modal #addProductModal (productAdded)="handleProductsAdded($event)"></app-add-product-modal>
+<app-address-listing-modal #addressModal ></app-address-listing-modal>

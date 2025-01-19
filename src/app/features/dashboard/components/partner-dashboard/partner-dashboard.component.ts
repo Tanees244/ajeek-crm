@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { MetricCardComponent } from '../../../../shared/components/metric-card/metric-card.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { NgChartsModule } from 'ng2-charts';
@@ -8,7 +9,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
  
 @Component({
   selector: 'app-partner-dashboard',
-  imports: [MetricCardComponent, ButtonComponent, NgChartsModule],
+  imports: [MetricCardComponent, ButtonComponent, NgChartsModule, CommonModule],
   templateUrl: './partner-dashboard.component.html',
 })
 export class PartnerDashboardComponent {

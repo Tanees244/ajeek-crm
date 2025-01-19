@@ -8,12 +8,12 @@ import { TimeSlotComponent } from './time-slot/time-slot.component';
 
 @Component({
   selector: 'app-register-ticket',
-  imports: [CommonModule, CustomerDetailsComponent, ProductSelectionComponent, TimeSlotComponent, ButtonComponent],
+  imports: [CommonModule, CustomerDetailsComponent, ProductSelectionComponent],
   templateUrl: './register-ticket.component.html'
 })
 export class RegisterTicketComponent {
   @ViewChild('addUserModal') addUserModal!: AddUserModalComponent;
-  currentStep = 1;
+  currentStep = 2;
 
   steps = [
     { number: 1, title: 'Enter Customer Details' },

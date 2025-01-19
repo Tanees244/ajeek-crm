@@ -36,8 +36,10 @@ interface Technician {
   email: string;
   iqamaNumber: string;
   expiryDate: string;
+  birthDate: string;
   address: string;
   skills: string[];
+  expertiseType: string[];
   performance: TechnicianPerformance[];
   monthlyStats: {
     inProgress: number;
@@ -62,7 +64,7 @@ interface Technician {
 @Component({
   selector: 'app-technician-details',
   templateUrl: './technician-details.component.html',
-  imports: [ButtonComponent, CommonModule],
+  imports: [CommonModule],
   standalone: true
 })
 export class TechnicianDetailsComponent implements OnInit {
@@ -71,9 +73,11 @@ export class TechnicianDetailsComponent implements OnInit {
     phoneNumber: '+966 50 123 4567',
     email: 'tech@example.com',
     iqamaNumber: '2437-8956-4321',
-    expiryDate: '2030-12-19',
+    birthDate: '1990-12-9',
+    expiryDate:'2030-12-19',
     address: '#567 Al Olya Street, Riyadh 122, Building 2, Suite 3',
-    skills: ['HVAC Efficiency Test', 'Efficiency Test', 'Troubleshooting'],
+    skills: ['HVAC Efficiency Test, Efficiency, Troubleshooting'],
+    expertiseType: ['Air Conditioning (AC), Washing Machine, Refrigerator, Juicer'],
     performance: [
       { month: 'Jan', value: 45 },
       { month: 'Feb', value: 52 },

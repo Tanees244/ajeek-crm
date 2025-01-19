@@ -55,7 +55,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let tech of displayedTechnicians" class="border-white-edgar border-b items-center">
+        <tr *ngFor="let tech of filteredTechnicians" class="border-white-edgar border-b items-center">
           <td class="px-6 py-2 font-bold text-p">{{ tech.id }}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ tech.registeredAt }}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ tech.technicianName }}</td>
