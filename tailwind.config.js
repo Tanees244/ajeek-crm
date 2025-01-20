@@ -18,7 +18,11 @@ module.exports = {
         'body-bg': '#F8F9FA',
         'white-edgar': '#EDEDED',
         'green': '#0EBC01',
-        'red': '#FF0000'
+        'green-10': '#E8FDE6',
+        'red': '#FF0000',
+        'red-10': '#FDE6E6',
+        'yellow': '#9B8900',
+        'yellow-10': '#FFF39A', 
       },
       fontSize: {
         'h1': '32px',

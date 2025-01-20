@@ -1,41 +1,29 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ButtonComponent } from '../../button/button.component';
 
+interface Product {
+  productId: string;
+  productName: string;
+  productType: string;
+  brand: string;
+  warranty: string;
+  serialNumber: string;
+  modelNumber: string;
+}
+
 @Component({
-  selector: 'app-address-listing-modal',
-  templateUrl: './address-listing-modal.component.html',
+  selector: 'app-product-listing-modal',
+  templateUrl: './product-listing-modal.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule, ButtonComponent]
+  imports: [CommonModule, ButtonComponent]
 })
-export class AddressListingModalComponent {
-  isVisible = false;
+export class ProductListingModalComponent {
+  @Output() productSelected = new EventEmitter<any>();
 
-  customerData = {
-    fullName: '',
-    email: '',
-    phone: '',
-    companyName: '',
-    address: '',
-    apartment: '',
-    country: '',
-    state: '',
-    city: '',
-    zipCode: ''
-  };
+  selectedProduct: string[] = []
 
-  selectProduct(product: any) {
-    //const alreadySelected = this.selectedProducts.some((p: any) => p.productId === product.productId);
-
-    //if (!alreadySelected) {
-    //  this.selectedProducts.push(product);
-    //}
-    console.log("Products Are : ", product);
-  }
-
-
-  products: any[] = [
+  products: Product[] = [
     {
       productId: '456001',
       productName: 'Smartphone X1',
@@ -119,8 +107,7 @@ export class AddressListingModalComponent {
     },
   ];
 
-  @Output() customerAdded = new EventEmitter<any>();
-
+  isVisible = false;
   openModal(): void {
     this.isVisible = true;
   }
@@ -129,33 +116,14 @@ export class AddressListingModalComponent {
     this.isVisible = false;
   }
 
-  saveCustomer(): void {
-    if (this.isFormValid()) {
-      this.customerAdded.emit(this.customerData);
-      this.resetForm();
-      this.closeModal();
-    } else {
-      alert('Please fill in all required fields.');
-    }
+  selectProduct(product: any): void {
+    this.productSelected.emit(product); 
+    this.closeModal(); 
   }
 
-  private isFormValid(): boolean {
-    return Object.values(this.customerData).every(value => value.trim() !== '');
-  }
-
-  private resetForm(): void {
-    this.customerData = {
-      fullName: '',
-      email: '',
-      phone: '',
-      companyName: '',
-      address: '',
-      apartment: '',
-      country: '',
-      state: '',
-      city: '',
-      zipCode: ''
-    };
-  }
+  currentPage = 1;
+  itemsPerPage = 5;
+  paginatedProducts = [];
+  totalPages = 0;
 
 }

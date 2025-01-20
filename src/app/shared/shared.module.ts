@@ -6,6 +6,7 @@ import { MetricCardComponent } from './components/metric-card/metric-card.compon
 import { AddUserModalComponent } from './components/modal/add-user-modal/add-user-modal.component';
 import { AddProductModalComponent } from './components/modal/add-product-modal/add-product-modal.component';
 import { AddressListingModalComponent } from './components/modal/address-listing-modal/address-listing-modal.component';
+import { ProductListingModalComponent } from './components/modal/product-listing-modal/product-listing-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,10 @@ import { AddressListingModalComponent } from './components/modal/address-listing
     //AddProductModalComponent
   
     //AddressListingModalComponent
+  
+    //ProductListingComponent
+  
+    //ProductListingModalComponent
   ],
   imports: [CommonModule, BreadcrumbComponent, ButtonComponent],
   exports: [],

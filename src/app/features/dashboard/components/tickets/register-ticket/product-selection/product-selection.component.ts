@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
 import { AddProductModalComponent } from '../../../../../../shared/components/modal/add-product-modal/add-product-modal.component';
+import { ProductListingModalComponent } from '../../../../../../shared/components/modal/product-listing-modal/product-listing-modal.component';
 import { AddressListingModalComponent } from '../../../../../../shared/components/modal/address-listing-modal/address-listing-modal.component';
 import { ButtonComponent } from '../../../../../../shared/components/button/button.component';
 
@@ -17,18 +18,33 @@ interface Product {
 @Component({
   selector: 'app-product-selection',
   templateUrl: './product-selection.component.html',
-  imports: [CommonModule, AddProductModalComponent, AddressListingModalComponent, ButtonComponent],
+  imports: [CommonModule, AddProductModalComponent, AddressListingModalComponent, ButtonComponent, ProductListingModalComponent],
 })
 export class ProductSelectionComponent {
   @ViewChild('addProductModal') addProductModal!: AddProductModalComponent;
   @ViewChild('addressModal') addressModal!: AddressListingModalComponent;
+  @ViewChild('productListingModal') productListingModal!: ProductListingModalComponent; 
   @Output() stepChange = new EventEmitter<number>();
+
+  collapsedState: { [productId: string]: boolean } = {};
+
+  constructor() {
+    // Initialize all products as expanded
+    this.selectedProducts.forEach((product) => {
+      this.collapsedState[product.productId] = false;
+    });
+  }
+
+  toggleCollapse(productId: string): void {
+    this.collapsedState[productId] = !this.collapsedState[productId];
+  }
 
   openChooseAddressModal(): void {
     this.addressModal.openModal();
   }
 
-
+  customers: any[] = [];
+  selectedProducts: Product[] = [];
   products: Product[] = [
     {
       productId: '456001',
@@ -113,26 +129,116 @@ export class ProductSelectionComponent {
     },
   ];
 
+  issues: string[] = [
+    'Powering On Issues',
+    'Excessive Noise',
+    'Control Panel Malfunctions',
+    'Water Leaks',
+    'Error Codes',
+    'Electrical Issues',
+    'Sensor Malfunctions',
+    'Unresponsive Buttons',
+    'Screen Display Problems',
+    'Overheating',
+    'Motor Failures',
+    'Battery Issues',
+    'Software Glitches',
+    'Connectivity Problems',
+    'Frequent Restarts',
+    'Faulty Wiring',
+    'Temperature Fluctuations',
+    'Airflow Blockages',
+    'Grinding Noises',
+    'Unexpected Shutdowns',
+    'Unit Not Cooling/Heating',
+    'Compressor Issues',
+    'Lighting Problems',
+    'Faulty Door Mechanisms',
+    'Leaking Gas',
+    'Broken Handles',
+    'Cracked Panels',
+    'Fan Malfunctions',
+    'Unusual Vibrations',
+    'Faulty Remote Control',
+    'Power Supply Issues',
+    'Broken Hinges',
+    'Seal Leaks',
+    'Water Overflow',
+    'Display Malfunctions',
+    'Unresponsive Sensors',
+    'Incomplete Cycles',
+    'Sudden Power Surges',
+    'Wire Burns',
+    'Loose Screws',
+    'Dust Accumulation',
+    'Paint Peeling',
+    'Rust Formation',
+    'Missing Components',
+    'Faulty Plug',
+    'Improper Grounding',
+    'Sparking Outlets',
+    'Unstable Base',
+    'Tilted Frame',
+  ];
+
+  visibleRows = 3; 
+  issuesPerRow = 4;
+
+  get limitedIssues() {
+    return this.issues.slice(0, this.visibleRows * this.issuesPerRow);
+  }
+
+  showAllIssues = false;
+
   filteredProducts: Product[] = [];
-  selectedProducts: string[] = [];
   isCollapsed: boolean = false;
   selectedProduct: any = null;
+  selectedPriority: string = '';
 
   selectProduct(product: any) {
-    this.selectedProduct = product;
+    const alreadySelected = this.selectedProducts.some((p: any) => p.productId === product.productId);
+
+    if (!alreadySelected) {
+      this.selectedProducts.push(product);
+    }
+    console.log("Products Are : ", product);
   }
 
-  unselectProduct() {
-    this.selectedProduct = null;
+
+  unselectProduct(productId: string): void {
+    // Remove product and its corresponding collapse state
+    delete this.collapsedState[productId];
+    this.selectedProducts = this.selectedProducts.filter(
+      (product) => product.productId !== productId
+    );
   }
+
 
   openAddNewProductModal(): void {
     this.addProductModal.openModal();
   }
 
+  openProductListingModal(): void {
+    this.productListingModal.openModal();
+  }
+
   handleProductsAdded(productData: Product): void {
     this.products.push(productData); // Add the product to the array
     console.log('New Product Added:', productData);
+  }
+
+  nextStep(): void {
+    console.log('Next Step button clicked!');
+    this.changeStep(3);
+  }
+
+  prevStep(): void {
+    console.log("Prev Button");
+    this.changeStep(1);
+  }
+
+  changeStep(stepNumber: number): void {
+    this.stepChange.emit(stepNumber);
   }
 
   private filterByWarranty(warranty: string, filter: string): boolean {

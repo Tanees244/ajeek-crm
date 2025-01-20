@@ -8,7 +8,7 @@ import { TimeSlotComponent } from './time-slot/time-slot.component';
 
 @Component({
   selector: 'app-register-ticket',
-  imports: [CommonModule, CustomerDetailsComponent, ProductSelectionComponent],
+  imports: [CommonModule, CustomerDetailsComponent, ProductSelectionComponent, TimeSlotComponent],
   templateUrl: './register-ticket.component.html'
 })
 export class RegisterTicketComponent {
