@@ -13,7 +13,14 @@ import { TimeSlotComponent } from './time-slot/time-slot.component';
 })
 export class RegisterTicketComponent {
   @ViewChild('addUserModal') addUserModal!: AddUserModalComponent;
-  currentStep = 2;
+  currentStep = 1
+
+
+  isTicketRegistered = false; 
+
+  onStep3Submit() {
+    this.isTicketRegistered = true; 
+  }
 
   steps = [
     { number: 1, title: 'Enter Customer Details' },

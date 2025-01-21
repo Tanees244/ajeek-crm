@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { PartnerDashboardComponent } from './components/partner-dashboard/partner-dashboard.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 //import { CustomerDetailsComponent } from './components/tickets/register-ticket/step-1/customer-details/customer-details.component';
 //import { ProductSelectionComponent } from './components/tickets/register-ticket/product-selection/product-selection.component';
 //import { TimeSlotComponent } from './components/tickets/register-ticket/time-slot/time-slot.component';
@@ -28,6 +29,8 @@ import { TicketDetailsComponent } from './components/tickets/ticket-details/tick
     //TechnicianDetailsComponent,
     //TechnicianListComponent,
     //TechniciansComponent
+  
+    //NotificationsComponent
   ]
 })
 export class DashboardModule { }

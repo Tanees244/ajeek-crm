@@ -65,18 +65,6 @@
         </div>
         <span class="ml-3" [class.hidden]="isCollapsed">Chat</span>
       </a>
-      <a routerLink="/alert"
-         routerLinkActive="bg-white-smoke-30 shadow-md"
-         [ngClass]="{
-           'p-4': !isCollapsed,
-           'p-3': isCollapsed
-         }"
-         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
-        <div>
-          <img src="assets/icons/alerts.svg" alt="Alert Logo" class="w-5 h-5" />
-        </div>
-        <span class="ml-3" [class.hidden]="isCollapsed">Alerts</span>
-      </a>
     </nav>
   </div>
 

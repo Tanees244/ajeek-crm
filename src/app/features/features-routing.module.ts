@@ -10,6 +10,7 @@ import { TicketDetailsComponent } from './dashboard/components/tickets/ticket-de
 import { TechniciansComponent } from './dashboard/components/technicians/technicians.component';
 import { TechnicianDetailsComponent } from './dashboard/components/technicians/technician-details/technician-details.component';
 import { TechnicianListComponent } from './dashboard/components/technicians/technician-list/technician-list.component';
+import { NotificationsComponent } from './dashboard/components/notifications/notifications.component';
 
 export const featureRoutes: Routes = [
   {
@@ -29,6 +30,11 @@ export const featureRoutes: Routes = [
         path: 'partner',
         component: PartnerDashboardComponent,
         data: { breadcrumb: 'Partner Dashboard' },
+      },
+      {
+        path: 'notifications',
+        component: NotificationsComponent,
+        data: { breadcrumb: 'Notifications' },
       },
       {
         path: 'tickets',

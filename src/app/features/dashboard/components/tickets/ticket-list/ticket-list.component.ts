@@ -33,7 +33,7 @@ export interface Ticket {
   `]
 })
 export class TicketListComponent {
-  pendingTickets: number = 90;
+  pendingTickets: number = 100;
   resolvedTickets: number = 150;
 
   constructor(private router: Router) { }

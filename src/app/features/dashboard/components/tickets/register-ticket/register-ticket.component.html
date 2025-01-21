@@ -1,5 +1,5 @@
-<div class="py-6">
-  <div class="flex items-center justify-between mb-8 bg-white border border-white-edgar rounded p-6 gap-x-8">
+<ng-container *ngIf="!isTicketRegistered; else ticketRegisteredTemplate" class="py-6 ">
+  <div class="flex items-center justify-between mb-8 bg-white border border-white-edgar rounded mt-6 gap-x-8 p-6">
     <div class="flex-1 relative" *ngFor="let step of steps; let i = index">
       <div class="border-2 rounded p-4 shadow-md transition-all duration-300"
            [ngClass]="currentStep >= step.number ? 'bg-primary-10 border-primary' : 'bg-white border-white-edgar'">
@@ -13,11 +13,95 @@
     </div>
   </div>
 
-  <!-- Step content containers -->
   <div [ngSwitch]="currentStep">
     <app-customer-details *ngSwitchCase="1" (stepChange)="updateStep($event)"></app-customer-details>
     <app-product-selection *ngSwitchCase="2" (stepChange)="updateStep($event)"></app-product-selection>
-    <app-time-slot *ngSwitchCase="3"></app-time-slot>
-    <!--<app-confirmation *ngSwitchCase="4"></app-confirmation>-->
+    <app-time-slot *ngSwitchCase="3" (submit)="onStep3Submit()"></app-time-slot>
   </div>
-</div>
+</ng-container>
+
+
+<ng-template #ticketRegisteredTemplate>
+  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-6">
+    <div class="text-center mb-6">
+      <div class="flex justify-center items-center">
+        <img src="assets/icons/confirmationLogo.svg" alt="Logout Logo" class="w-48 h-48" />
+      </div>
+      <h1 class="text-h4 font-bold mt-4">Your ticket has been successfully submitted.</h1>
+      <p class="text-p text-secondary font-bold"><span class="text-primary">Ticket ID:  #T-342123</span>. Please refer to this ID for any future updates or inquiries.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <!-- Customer Details -->
+      <div class="bg-[#F6F6F6] border border-white-edgar rounded">
+        <h2 class="bg-white font-bold text-h5 p-4">Customer Details:</h2>
+        <div class="bg-[#F6F6F6] border-t border-white-edgar p-4">
+          <p class="text-neutral-gray"><span class="font-bold text-black">Name:</span> John Doe</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Contact:</span> john.doeemail.com +966 512 345 678</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Location:</span> 1234 Elm St, Riyadh, KSA</p>
+        </div>
+      </div>
+
+      <!-- Assigned To -->
+      <div class="bg-[#F6F6F6] border border-white-edgar rounded">
+        <h2 class="bg-white font-bold text-h5 p-4">Assigned To:</h2>
+        <div class="border-t border-white-edgar p-4">
+          <p class="text-neutral-gray"><span class="font-bold text-black">Name:</span> Sheikh Nizam</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Contact:</span> sheikh.nizamemail.com <br> +966 112 234 123</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Location:</span> 1234 Elm St, Riyadh, KSA</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[#F6F6F6] border border-white-edgar rounded">
+      <h2 class="bg-white font-bold text-h5 p-4">Product Details:</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Refrigerator Details -->
+        <div class="p-4">
+          <h3 class="font-bold mb-2">Details of Refrigerator:</h3>
+          <ul class="list-disc list-inside text-neutral-gray">
+            <li>Product Type: Refrigerator</li>
+            <li>Brand: Samsung</li>
+            <li>Model: RS50N3513SA</li>
+            <li>Serial Number: 1234567890</li>
+            <li>Purchase Date: 2024-08-15</li>
+          </ul>
+          <h4 class="font-bold mt-4 mb-2">Issues:</h4>
+          <ul class="list-disc list-inside text-neutral-gray">
+            <li>Overheating</li>
+            <li>Powering On Issues</li>
+            <li>Error Codes</li>
+            <li>Panel Malfunctions</li>
+            <li>Excessive Noise</li>
+          </ul>
+          <p class="mt-2 text-neutral-gray"><span class="font-bold text-black">Address:</span> King Khalid International Airport Road, Riyadh 13412</p>
+        </div>
+
+        <!-- AC Details -->
+        <div class="border-l-2 border-[#BABABA] p-6">
+          <div class="">
+            <h3 class="font-bold ">Details of AC:</h3>
+            <ul class="list-disc list-inside text-neutral-gray">
+              <li>Product Type: AC</li>
+              <li>Brand: Dawlance</li>
+              <li>Model: RS50123DSFDA</li>
+              <li>Serial Number: 1231231232</li>
+              <li>Purchase Date: 2024-08-15</li>
+            </ul>
+            <h4 class="font-bold  mt-4 mb-2">Issues:</h4>
+            <ul class="list-disc list-inside text-neutral-gray">
+              <li>Overheating</li>
+              <li>Powering On Issues</li>
+              <li>Error Codes</li>
+              <li>Panel Malfunctions</li>
+              <li>Excessive Noise</li>
+            </ul>
+            <p class="mt-2 text-neutral-gray"><span class="font-bold text-black">Address:</span> Al Ameen Abdullah Al Ali Al Naeem Street, Al Malaz, Riyadh 12836</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+
