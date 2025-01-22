@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from '../../../../../shared/components/button/button.component';
 import { CommonModule } from '@angular/common';
+import { Tickets } from '../technician-details/tickets.type'
+import { NgChartsModule } from 'ng2-charts';
+import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
+import { MetricCardComponent } from '../../../../../shared/components/metric-card/metric-card.component';
 
 interface TechnicianPerformance {
   month: string;
@@ -20,7 +24,7 @@ interface SparePart {
   name: string;
   description: string;
   quantity: string;
-}
+}  
 
 interface SparePartsRequest {
   date: string;
@@ -64,10 +68,61 @@ interface Technician {
 @Component({
   selector: 'app-technician-details',
   templateUrl: './technician-details.component.html',
-  imports: [CommonModule],
+  imports: [CommonModule, NgChartsModule, MetricCardComponent],
+  styleUrl: './technician-details.component.css',
   standalone: true
 })
 export class TechnicianDetailsComponent implements OnInit {
+  ticket: Tickets [] = [
+    {
+       ticketId: 10931235,
+        createdAt: '2025-1-22',
+        priority: 'Low',
+        assignedAt: '2025-1-22',
+        status: 'In Progress'
+    },
+
+     {
+       ticketId: 10931235,
+        createdAt: '2025-1-22',
+        priority: 'Medium',
+        assignedAt: '2025-1-22',
+        status: 'Completed'
+    },
+
+     {
+       ticketId: 10931235,
+        createdAt: '2025-1-22',
+        priority: 'Low',
+        assignedAt: '2025-1-22',
+        status: 'In Progress'
+    },
+
+     {
+       ticketId: 10931235,
+        createdAt: '2025-1-22',
+        priority: 'High',
+        assignedAt: '2025-1-22',
+        status: 'Pending'
+    },
+
+     {
+       ticketId: 10931235,
+        createdAt: '2025-1-22',
+        priority: 'Low',
+        assignedAt: '2025-1-22',
+        status: 'Pending'
+    },
+
+     {
+       ticketId: 10931235,
+        createdAt: '2025-1-22',
+        priority: 'Low',
+        assignedAt: '2025-1-22',
+        status: 'Completed'
+    }
+  ]
+
   technician: Technician = {
     id: 'TECH-001',
     phoneNumber: '+966 50 123 4567',
@@ -167,6 +222,41 @@ export class TechnicianDetailsComponent implements OnInit {
         return 'bg-yellow-100 text-yellow-800';
       default:
         return 'bg-gray-100 text-gray-800';
+    }
+  }
+
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: ['In Progress', 'Pending', 'Completed'],
+    datasets: [{
+      data: [7321, 5023, 3393],
+      backgroundColor: ['#2196F3', '#FFB946', '#2ED47A']
+    }]
+  };
+
+  public doughnutChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom'
+      }
+    },
+    //radius: '90%'
+  };
+
+  public doughnutChartPlugins = [];
+
+  
+  getPriorityStyles(priority: string): { bgColor: string; icon: string } {
+    switch (priority) {
+      case 'High':
+        return { bgColor: '#FDE6E6', icon: 'assets/icons/redFlag.svg' };
+      case 'Medium':
+        return { bgColor: '#FFF39A', icon: 'assets/icons/yellowFlag.svg' };
+      case 'Low':
+        return { bgColor: '#E8FDE6', icon: 'assets/icons/greenFlag.svg' };
+      default:
+        return { bgColor: '', icon: '' };
     }
   }
 }
