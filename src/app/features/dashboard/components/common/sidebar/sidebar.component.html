@@ -69,17 +69,17 @@
   </div>
 
   <div class="logout p-4">
-    <a routerLink="/logout"
-       routerLinkActive="bg-white-smoke-30 shadow-md"
+    <div 
        [ngClass]="{
            'p-4': !isCollapsed,
            'p-3': isCollapsed
          }"
-       class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15">
+       class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15 cursor-pointer"
+       (click)=logout()>
       <div>
         <img src="assets/icons/signOut.svg" alt="Logout Logo" class="w-5 h-5" />
       </div>
       <span class="ml-3" [class.hidden]="isCollapsed">Logout</span>
-    </a>
+    </div>
   </div>
 </aside>

@@ -23,8 +23,7 @@ interface Technician {
     ::ng-deep .mat-mdc-paginator-page-size-label,
     ::ng-deep .mat-mdc-paginator-page-size-value,
     ::ng-deep .mat-mdc-paginator-range-label,
-    ::ng-deep .mat-mdc-paginator-page-size,
-    ::ng-deep .mat-mdc-paginator-container{
+    ::ng-deep .mat-mdc-paginator-page-size{
       display:none;
     }
   `]

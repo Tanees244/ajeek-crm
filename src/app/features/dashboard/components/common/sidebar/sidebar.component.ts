@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,6 +10,13 @@ import { RouterModule } from '@angular/router';
   styleUrls: []
 })
 export class SidebarComponent {
-  @Input() isCollapsed: boolean = false;
+  constructor(private router: Router) { }
 
+  @Input() isCollapsed: boolean = false;
+  logout() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

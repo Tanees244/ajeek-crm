@@ -34,14 +34,6 @@
           <option value="Low">Low</option>
           <option value="None">None</option>
         </select>
-        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select">
-          <option value="">Select City</option>
-          <option *ngFor="let city of uniqueCities" [value]="city">{{ city }}</option>
-        </select>
-        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select">
-          <option value="">Product Type</option>
-          <option *ngFor="let product of uniqueProducts" [value]="product">{{ product }}</option>
-        </select>
         <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select"
                 (change)="sortTicketsByDate()">
           <option value="">Sort By</option>
@@ -53,7 +45,7 @@
     </div>
 
     <div class="flex flex-row w-full p-5 justify-between items-center gap-5">
-      <div class="flex items-center">
+      <!--<div class="flex items-center">
         <label class="text-neutral-gray text-p font-secondary mr-2">Rows Per Page</label>
         <select [value]="pageSize"
                 (change)="onPageSizeChange($event)"
@@ -63,7 +55,7 @@
           </option>
         </select>
         <label class="text-neutral-gray text-p font-secondary ml-2">Entries</label>
-      </div>
+      </div>-->
       <div class="flex flex-col sm:flex-row items-center gap-4">
         <input type="text" placeholder="Search for Tickets" class="flex-1 px-6 py-2 border border-white-edgar rounded focus:border-primary focus:outline-none">
         <app-button label="Search"
@@ -82,22 +74,23 @@
           <th class="px-4 py-2">Ticket ID</th>
           <th class="px-4 py-2">Created At</th>
           <th class="px-4 py-2">Customer Name</th>
-          <th class="px-4 py-2">Product</th>
+          <th class="px-4 py-2">No of Products</th>
           <th class="px-4 py-2">Priority</th>
-          <th class="px-4 py-2">City</th>
-          <th class="px-4 py-2">Assigned Tech</th>
-          <th class="px-4 py-2">Assigned At</th>
+          <th class="px-4 py-2">No of Issues</th>
+          <th class="px-4 py-2">Updated At</th>
           <th class="px-4 py-2">Status</th>
           <th class="px-4 py-2"></th>
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="filteredTickets.length === 0">
+          <td colspan="12" class="text-center py-8">No tickets available</td>
+        </tr>
         <tr *ngFor="let ticket of filteredTickets" class="border-white-edgar border-b">
-          <!-- Each row wrapped in a div for custom padding -->
           <td class="px-4 py-6 font-bold text-p">{{ ticket.id }}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.createdAt }}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.customerName }}</td>
-          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.product }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.noOfProducts }}</td>
           <td class="px-4 py-2 flex justify-center items-center">
             <div [style.backgroundColor]="getPriorityStyles(ticket.priority).bgColor"
                  class="flex items-center justify-center rounded-full p-1 w-12 h-12">
@@ -106,14 +99,11 @@
                    class="w-4 h-4" />
             </div>
           </td>
-          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.city }}</td>
-          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.assignedTech }}</td>
-          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.assignedAt }}</td>
-          <td class="px-4 py-2 ">
-            <div class="px-2 py-1 bg-[#F6E69D] text-[#A05D25] text-center font-medium items-center rounded">
-              {{ ticket.status }}
-            </div>
-          </td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.noOfIssues }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.updatedAt }}</td>
+          <td [style.backgroundColor]="getStatusStyles(ticket.status).bgColor"
+              class="px-4 py-2 font-secondary text-h6 font-normal"
+              [style.textColor]="getStatusStyles(ticket.status).textColor">{{ ticket.status }}</td>
           <td class="px-4 py-2 flex items-center gap-4">
             <img src="assets/icons/edit.svg" alt="Edit Icon"
                  class="w-5 h-5 cursor-pointer"
@@ -128,24 +118,23 @@
                         (click)="navigateToTicketDetails(ticket.id)">
             </app-button>
           </td>
-
         </tr>
       </tbody>
     </table>
 
-    <div class="flex flex-row w-full items-center justify-between px-6">
+    <div class="flex flex-row w-full items-center justify-between px-6 border-t border-white-edgar ">
       <div>
         <span class="font-secondary font-normal text-p text-neutral-gray">
           {{ currentPageRange }}
         </span>
       </div>
-      <div>
+      <!--<div>
         <mat-paginator [length]="totalItems"
                        [pageSize]="pageSize"
                        (page)="onPageChange($event)"
                        class="!bg-transparent">
         </mat-paginator>
-      </div>
+      </div>-->
     </div>
   </div>
 
