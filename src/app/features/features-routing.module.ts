@@ -11,6 +11,7 @@ import { TechniciansComponent } from './dashboard/components/technicians/technic
 import { TechnicianDetailsComponent } from './dashboard/components/technicians/technician-details/technician-details.component';
 import { TechnicianListComponent } from './dashboard/components/technicians/technician-list/technician-list.component';
 import { NotificationsComponent } from './dashboard/components/notifications/notifications.component';
+import { CommunicationComponent } from './dashboard/components/communication/communication.component';
 
 export const featureRoutes: Routes = [
   {
@@ -74,6 +75,11 @@ export const featureRoutes: Routes = [
             data: { breadcrumb: (data: any) => `${data.id}` },
           },
         ],
+      },
+      {
+        path: 'communication',
+        component: CommunicationComponent,
+        data: { breadcrumb: 'Communication' },
       },
     ],
   },

@@ -5,6 +5,7 @@ import { HeaderComponent } from './components/common/header/header.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 import { RouterModule, Routes, provideRouter } from '@angular/router';
 import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcrumb.component';
+import { TranslatePipe } from '../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ import { BreadcrumbComponent } from '../../shared/components/breadcrumb/breadcru
     SidebarComponent,
     RouterModule,
     BreadcrumbComponent,
+    TranslatePipe
   ],
 })
 export class DashboardComponent {

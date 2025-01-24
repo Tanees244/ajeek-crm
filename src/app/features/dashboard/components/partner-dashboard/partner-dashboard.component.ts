@@ -6,10 +6,11 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { NgChartsModule } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { TranslatePipe } from '../../../../shared/pipes/translate.pipe';
  
 @Component({
   selector: 'app-partner-dashboard',
-  imports: [MetricCardComponent, ButtonComponent, NgChartsModule, CommonModule],
+  imports: [MetricCardComponent, ButtonComponent, NgChartsModule, CommonModule, TranslatePipe],
   templateUrl: './partner-dashboard.component.html',
 })
 export class PartnerDashboardComponent {
