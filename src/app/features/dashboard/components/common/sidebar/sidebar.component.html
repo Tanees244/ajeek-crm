@@ -65,6 +65,18 @@
         </div>
         <span class="mx-3" [class.hidden]="isCollapsed">Chat</span>
       </a>
+      <a routerLink="/crm/admin"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
+         [ngClass]="{
+      'p-4': !isCollapsed,
+      'p-3': isCollapsed
+    }"
+         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div>
+          <img src="assets/icons/admin.png" alt="IAM Logo" class="w-5 h-5" />
+        </div>
+        <span class="mx-3" [class.hidden]="isCollapsed">IAM</span>
+      </a>
     </nav>
   </div>
 
