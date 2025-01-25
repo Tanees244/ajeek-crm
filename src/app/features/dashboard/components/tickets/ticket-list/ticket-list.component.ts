@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule, MatPaginator, PageEvent } from '@angular/material/paginator';
 import { TicketService } from '../../../../../core/services/ticket.service';
 import { Ticket } from '../../../../../core/models/tickets.model';
+import { CrmRouterService } from '../../../../../core/services/crm-router.service';
 
 @Component({
   selector: 'app-ticket-list',
@@ -24,16 +25,16 @@ export class TicketListComponent {
   pendingTickets: number = 100;
   resolvedTickets: number = 150;
 
-  constructor(private router: Router, private ticketService: TicketService) { }
+  constructor(private crmRouter: CrmRouterService, private ticketService: TicketService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   navigateToRegisterTicket(): void {
-    this.router.navigate(['/dashboard/tickets/register-ticket']);
+    this.crmRouter.navigate(['dashboard','tickets','register-ticket']);
   }
 
   navigateToTicketDetails(ticketId: string) {
-    this.router.navigate([`/dashboard/tickets/ticket-no/${ticketId}`]);
+    this.crmRouter.navigate(['dashboard','tickets','ticket-no',ticketId]);
   }
 
 

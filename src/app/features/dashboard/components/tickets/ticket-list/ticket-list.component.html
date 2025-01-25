@@ -26,22 +26,10 @@
   <div class="flex flex-col items-center bg-white rounded border border-white-edgar">
     <div class="flex w-full gap-4 items-center justify-between border-b p-5 border-white-edgar">
       <h1 class="font-bold text-black text-h4">Tickets List</h1>
-      <div class="flex gap-x-4">
-        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select">
-          <option value="">Select Priority</option>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-          <option value="None">None</option>
-        </select>
-        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select"
-                (change)="sortTicketsByDate()">
-          <option value="">Sort By</option>
-          <option value="1-week">Last 1 Week</option>
-          <option value="2-weeks">Last 2 Weeks</option>
-          <option value="1-month">Last 1 Month</option>
-        </select>
-      </div>
+      <button class="flex items-center justify-between gap-x-4">
+        <img src="assets/icons/filter.svg" />
+        <p class="text-tertiary font-semibold text-h5">Filters</p>
+      </button>
     </div>
 
     <div class="flex flex-row w-full p-5 justify-between items-center gap-5">

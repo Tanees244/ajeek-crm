@@ -16,8 +16,8 @@
     </div>
 
     <nav class="flex flex-col flex-grow p-4 space-y-2">
-      <span *ngIf="!isCollapsed" class="ml-4 mb-2 text-h5 font-bold">Menu</span>
-      <a routerLink="/dashboard/partner"
+      <span *ngIf="!isCollapsed" class="m-4 mb-2 text-h5 font-bold">Menu</span>
+      <a routerLink="/crm/dashboard/partner"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -27,9 +27,9 @@
         <div>
           <img src="assets/icons/dashboard.svg" alt="Dashboard Logo" class="w-5 h-5" />
         </div>
-        <span class="ml-3" [class.hidden]="isCollapsed">Dashboard</span>
+        <span class="mx-3" [class.hidden]="isCollapsed">Dashboard</span>
       </a>
-      <a routerLink="/dashboard/tickets"
+      <a routerLink="/crm/dashboard/tickets"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -39,9 +39,9 @@
         <div>
           <img src="assets/icons/tickets.svg" alt="Tickets Logo" class="w-5 h-5" />
         </div>
-        <span class="ml-3" [class.hidden]="isCollapsed">Tickets</span>
+        <span class="mx-3" [class.hidden]="isCollapsed">Tickets</span>
       </a>
-      <a routerLink="/dashboard/technicians"
+      <a routerLink="/crm/dashboard/technicians"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -51,9 +51,9 @@
         <div>
           <img src="assets/icons/technicians.svg" alt="Technician Logo" class="w-5 h-5" />
         </div>
-        <span class="ml-3" [class.hidden]="isCollapsed">Technician</span>
+        <span class="mx-3" [class.hidden]="isCollapsed">Technician</span>
       </a>
-      <a routerLink="/chat"
+      <a routerLink="/crm/dashboard/communication"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -63,7 +63,19 @@
         <div>
           <img src="assets/icons/chat.svg" alt="Chat Logo" class="w-5 h-5" />
         </div>
-        <span class="ml-3" [class.hidden]="isCollapsed">Chat</span>
+        <span class="mx-3" [class.hidden]="isCollapsed">Chat</span>
+      </a>
+      <a routerLink="/crm/admin"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
+         [ngClass]="{
+      'p-4': !isCollapsed,
+      'p-3': isCollapsed
+    }"
+         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div>
+          <img src="assets/icons/admin.png" alt="IAM Logo" class="w-5 h-5" />
+        </div>
+        <span class="mx-3" [class.hidden]="isCollapsed">IAM</span>
       </a>
     </nav>
   </div>
@@ -79,7 +91,7 @@
       <div>
         <img src="assets/icons/signOut.svg" alt="Logout Logo" class="w-5 h-5" />
       </div>
-      <span class="ml-3" [class.hidden]="isCollapsed">Logout</span>
+      <span class="mx-3" [class.hidden]="isCollapsed">Logout</span>
     </div>
   </div>
 </aside>

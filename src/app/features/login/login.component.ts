@@ -6,6 +6,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotificationService } from '../../core/services/notifications.service';
 import { APIResponseCodes } from '../../core/constants/api-response-codes';
+import { CrmRouterService } from '../../core/services/crm-router.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private crmRouter: CrmRouterService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -38,8 +40,7 @@ export class LoginComponent {
         next: (response) => {
           localStorage.setItem('accessToken', response.data.token); 
           localStorage.setItem('refreshToken', response.data.refreshToken);
-          //console.log("tokens", response.data.token);
-          this.router.navigate(['/dashboard/partner']);
+          this.crmRouter.navigate(['dashboard', 'partner']);
           this.notificationService.showNotification(APIResponseCodes.SUCCESS.code);  
         },
         error: (error: HttpErrorResponse) => {

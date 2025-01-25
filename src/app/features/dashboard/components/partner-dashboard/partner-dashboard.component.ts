@@ -6,20 +6,22 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 import { NgChartsModule } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { TranslatePipe } from '../../../../shared/pipes/translate.pipe';
+import { CrmRouterService } from '../../../../core/services/crm-router.service';
  
 @Component({
   selector: 'app-partner-dashboard',
-  imports: [MetricCardComponent, ButtonComponent, NgChartsModule, CommonModule],
+  imports: [MetricCardComponent, ButtonComponent, NgChartsModule, CommonModule, TranslatePipe],
   templateUrl: './partner-dashboard.component.html',
 })
 export class PartnerDashboardComponent {
   pendingTickets: number = 90;
   resolvedTickets: number = 150;
 
-  constructor(private router: Router) { } 
+  constructor(private crmRouter: CrmRouterService) { } 
 
   navigateToRegisterTicket(): void {
-    this.router.navigate(['/dashboard/tickets/register-ticket']);
+    this.crmRouter.navigate(['dashboard', 'tickets', 'register-ticket']);
   }
 
   public barChartData: ChartData<'bar'> = {
