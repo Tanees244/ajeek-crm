@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslationService } from '../../core/services/translation.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { CrmRouterService } from '../../core/services/crm-router.service';
 
 @Component({
   selector: 'app-language-selection',
@@ -11,10 +11,10 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 export class LanguageSelectionComponent {
   isLanguageDropdownVisible = false;
   currentLanguage = 'en';
-  constructor(private router: Router, private translationService: TranslationService) { }
+  constructor(private crmRouter: CrmRouterService, private translationService: TranslationService) { }
 
   onContinue() {
-    this.router.navigate(['/login']); 
+    this.crmRouter.navigate(['login']); 
   }
 
   onLanguageChange(event: Event): void {
