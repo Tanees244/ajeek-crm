@@ -13,9 +13,28 @@
     </div>
 
     <div class="flex items-center gap-x-4">
-      <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md">
-        <img src="assets/icons/globe.svg" alt="Global" class="w-5 h-5" />
-      </button>
+      <div class="relative">
+        <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md"
+                (click)="toggleLanguageDropdown()">
+          <img src="assets/icons/globe.svg" alt="Global" class="w-5 h-5" />
+        </button>
+        <div *ngIf="isLanguageDropdownVisible"
+             class="absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-md w-40 z-10">
+          <ul class="flex flex-col">
+            <li (click)="setLanguage('en')"
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                [class.font-bold]="currentLanguage === 'en'">
+              English
+            </li>
+            <li (click)="setLanguage('ar')"
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                [class.font-bold]="currentLanguage === 'ar'">
+              Arabic
+            </li>
+          </ul>
+        </div>
+      </div>
+
 
       <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md"
               (click)="toggleFullScreen()">
@@ -27,7 +46,7 @@
         <span>John</span>
       </div>
       <div class="h-7 w-px bg-white-edgar"></div>
-      <a routerLink="/dashboard/notifications"
+      <a routerLink="/crm/dashboard/notifications"
          class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md">
         <div>
           <img src="assets/icons/bell.svg" alt="Notifications" class="w-5 h-5" />

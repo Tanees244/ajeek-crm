@@ -35,4 +35,5 @@ export const APIResponseCodes = {
     code: 500,
     message: 'An unexpected error occurred. Please try again.',
   },
+  //TODO 402
 };

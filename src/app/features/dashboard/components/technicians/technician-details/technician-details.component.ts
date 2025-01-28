@@ -68,7 +68,7 @@ interface Technician {
 @Component({
   selector: 'app-technician-details',
   templateUrl: './technician-details.component.html',
-  imports: [CommonModule, NgChartsModule, MetricCardComponent],
+  imports: [CommonModule, NgChartsModule],
   styleUrl: './technician-details.component.css',
   standalone: true
 })
