@@ -12,6 +12,7 @@ import { Customer } from '../../../../../../core/models/customer.model';
   imports: [CommonModule, ButtonComponent, AddUserModalComponent, FormsModule],
 })
 export class CustomerDetailsComponent {
+  searchId: string = '';
   customers: Customer[] = [];
   isLoading = false;
   error: string | null = null;
@@ -25,16 +26,33 @@ export class CustomerDetailsComponent {
   } 
 
   fetchCustomerDetails(): void {
+    if (!this.searchId.trim()) {
+      this.error = 'Please enter a valid customer ID.';
+      return;
+    }
+
     this.isLoading = true;
-    this.customerService.getCustomerById('customerId123') // Pass the actual customer ID here
+    this.error = null; // Reset error message
+
+    this.customerService.getCustomerById(this.searchId.trim())
       .subscribe(
-        (response) => {
-          this.customers = [response]; // Assuming only one customer is returned, else update accordingly
+        (response: any) => {
           this.isLoading = false;
+
+          if (response.isRequestSuccess) {
+            this.customers = [response.data];
+            this.error = null;
+            console.log('Customer Details:', response.data);
+          } else {
+            this.customers = [];
+            this.error = response.message || 'Customer not found.';
+          }
         },
         (error) => {
-          this.error = 'Error fetching customer details';
+          console.error('Error:', error);
           this.isLoading = false;
+          this.customers = [];
+          this.error = 'Error fetching customer details';
         }
       );
   }
@@ -44,13 +62,10 @@ export class CustomerDetailsComponent {
   }
 
   handleCustomerAdded(customerData: any): void {
-    this.customers.push(customerData); // Add customer to the array
-    console.log('New Customer Added:', this.customers);
-    //this.changeStep(2);
+    this.customers.push(customerData);
   }
 
   nextStep(): void {
-    console.log('Next Step button clicked!'); 
     this.changeStep(2);
   }
 

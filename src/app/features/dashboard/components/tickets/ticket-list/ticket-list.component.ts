@@ -62,13 +62,12 @@ export class TicketListComponent {
       (response) => {
         console.log('API Response:', response);
 
-        // Ensure the response contains the expected data
         if (response?.isRequestSuccess && Array.isArray(response.data)) {
           console.log('Extracted tickets data:', response.data);
           this.filteredTickets = response.data;
         } else {
           console.warn('Unexpected API response structure:', response);
-          this.filteredTickets = []; // Fallback to an empty array
+          this.filteredTickets = [];
         }
       },
       (error) => {

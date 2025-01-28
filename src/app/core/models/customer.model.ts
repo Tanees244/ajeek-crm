@@ -1,17 +1,15 @@
 export interface Customer {
-  id: string;
-  fullName: string;
-  email: string;
-  phone: string;
   companyName: string;
-  customerAddress: CustomerAddress[];
+  createdBy: string;
+  createdDate: string;
+  customer_Id: string;
+  email: string;
+  id: string;
+  isActive: boolean;
+  isArchived: boolean;
+  name: string;
+  phone_no: string;
+  updatedBy: string;
+  updatedDate: string;
 }
 
-export interface CustomerAddress {
-  address: string;
-  block: string;
-  country: string;
-  state: string;
-  city: string;
-  zipCode: string;
-}

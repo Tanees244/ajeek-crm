@@ -20,32 +20,24 @@
         <p class="text-neutral-gray text-p">Search for a customer by their number to view all their details.</p>
       </div>
       <div class="flex items-center space-x-2">
-        <div class="relative w-full flex ">
+        <div class="relative w-full flex">
           <img src="assets/icons/searchIcon.svg"
                alt="Search Icon"
                class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
           <input type="text"
+                 [(ngModel)]="searchId"
                  placeholder="Search customer by number"
                  class="w-full pr-16 pl-12 py-2 border rounded focus:outline-none focus:border-primary text-base leading-tight transition-all duration-200">
         </div>
         <app-button label="Enter"
                     type="button"
                     buttonType="primary"
-                    customClass="py-2 px-6">
+                    customClass="py-2 px-6"
+                    (click)="fetchCustomerDetails()">
         </app-button>
       </div>
-
-
     </div>
   </div>
-
-  <!-- Navigation -->
-  <!--<div class="flex justify-between mt-8">
-    <button class="bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-all duration-200"
-            (click)="nextStep()">
-      Next
-    </button>
-  </div>-->
 </div>
 
 <div *ngIf="customers.length > 0" class="bg-white rounded border border-white-edgar p-6 shadow-sm mb-6">
@@ -62,7 +54,7 @@
                  id="fullName"
                  name="fullName"
                  placeholder="Enter full name"
-                 [value]="customers[0]?.fullName"
+                 [value]="customers[0]?.name"
                  readonly
                  class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
         </div>
@@ -82,7 +74,7 @@
                  id="phone"
                  name="phone"
                  placeholder="Enter phone number"
-                 [value]="customers[0]?.phone"
+                 [value]="customers[0]?.phone_no"
                  readonly
                  class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
         </div>
@@ -98,84 +90,20 @@
         </div>
       </div>
 
-      <!-- Additional Fields -->
-      <!--<div class="grid grid-cols-2 gap-4">
-        <div>
-          <label for="address" class="block mb-1 text-h6 font-bold">Address</label>
-          <input type="text"
-                 id="address"
-                 name="address"
-                 placeholder="Enter address"
-                 [value]="customers[0]?.address"
-                 readonly
-                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
-        </div>
-        <div>
-          <label for="apartment" class="block mb-1 text-h6 font-bold">Apartment, Suite, Building</label>
-          <input type="text"
-                 id="apartment"
-                 name="apartment"
-                 placeholder="Enter apartment details"
-                 [value]="customers[0]?.apartment"
-                 readonly
-                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
-        </div>
-      </div>-->
-
-      <!-- Dropdown Fields -->
-      <!--<div class="grid grid-cols-4 gap-4">
-        <div>
-          <label for="country" class="block mb-1 text-h6 font-bold">Country</label>
-          <select id="country"
-                  name="country"
-                  [value]="customers[0]?.country"
-                  disabled
-                  class="w-full py-3 px-2 border rounded focus:outline-none text-secondary">
-          </select>
-        </div>
-        <div>
-          <label for="state" class="block mb-1 text-h6 font-bold">State/Province</label>
-          <input type="text"
-                 id="state"
-                 name="state"
-                 placeholder="Enter state"
-                 [value]="customers[0]?.state"
-                 readonly
-                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
-        </div>
-        <div>
-          <label for="city" class="block mb-1 text-h6 font-bold">City</label>
-          <input type="text"
-                 id="city"
-                 name="city"
-                 placeholder="Enter city"
-                 [value]="customers[0]?.city"
-                 readonly
-                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
-        </div>
-        <div>
-          <label for="zipCode" class="block mb-1 text-h6 font-bold">Zip Code</label>
-          <input type="text"
-                 id="zipCode"
-                 name="zipCode"
-                 placeholder="Enter zip code"
-                 [value]="customers[0]?.zipCode"
-                 readonly
-                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
-        </div>
-      </div>-->
-
-      <!-- Button (Optional) -->
       <div class="mt-6 flex justify-end">
-        <app-button label="Next"
+        <app-button label="Next Step"
                     type="button"
                     buttonType="primary"
-                    customClass="py-4 px-12"
+                    customClass="py-3 px-12"
                     (click)="nextStep()">
         </app-button>
       </div>
     </form>
-
   </div>
 </div>
+
+
+<p *ngIf="error" class="text-red-500 mt-2">{{ error }}</p>
+<p *ngIf="!error && !isLoading && customers?.length === 0" class="text-gray-500 mt-2">No customer found.</p>
+
 <app-add-user-modal #addUserModal (customerAdded)="handleCustomerAdded($event)"></app-add-user-modal>

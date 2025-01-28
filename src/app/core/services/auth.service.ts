@@ -15,13 +15,18 @@ export class AuthService {
   }
 
   refreshToken(): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
-    if (refreshToken) {
-      const body = { refreshToken };
+    console.log("Refresh Tokens: ", accessToken, " ", refreshToken);
+
+    if (refreshToken && accessToken) {
+      const body = { accessToken, refreshToken }; 
       return this.apiService.post<any>('auth', 'IAuthFeature', 'RefreshToken', body);
     }
-    return throwError(() => new Error('No refresh token found'));
+
+    return throwError(() => new Error('Missing tokens for refresh operation'));
   }
+
 
   logout(): void {
     localStorage.removeItem('accessToken');

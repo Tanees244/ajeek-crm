@@ -13,16 +13,10 @@ export class AddUserModalComponent {
   isVisible = false;
 
   customerData = {
-    fullName: '',
+    name: '',
     email: '',
-    phone: '',
+    phone_no: '',
     companyName: '',
-    address: '',
-    apartment: '',
-    country: '',
-    state: '',
-    city: '',
-    zipCode: ''
   };
 
   @Output() customerAdded = new EventEmitter<any>();
@@ -51,16 +45,10 @@ export class AddUserModalComponent {
 
   private resetForm(): void {
     this.customerData = {
-      fullName: '',
+      name: '',
       email: '',
-      phone: '',
-      companyName: '',
-      address: '',
-      apartment: '',
-      country: '',
-      state: '',
-      city: '',
-      zipCode: ''
+      phone_no: '',
+      companyName: ''
     };
   }
 }

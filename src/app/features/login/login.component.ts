@@ -6,14 +6,16 @@ import { AuthService } from '../../core/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotificationService } from '../../core/services/notifications.service';
 import { APIResponseCodes } from '../../core/constants/api-response-codes';
+import { TranslatePipe } from '../../shared/pipes/translate.pipe';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe]
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  passwordFieldType: string = 'password';
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +29,11 @@ export class LoginComponent {
       rememberMe: [false]
     });
   }
+
+  togglePasswordVisibility(): void {
+    this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
+  }
+
 
   onSubmit() {
     if (this.loginForm.valid) {

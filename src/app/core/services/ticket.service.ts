@@ -7,7 +7,7 @@ interface ApiResponse<T> {
   isRequestSuccess: boolean;
   statusCode: number;
   message: string;
-  data: T; // Generic type to hold the data
+  data: T;
 }
 
 @Injectable({
