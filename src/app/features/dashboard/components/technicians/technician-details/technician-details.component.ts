@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ButtonComponent } from '../../../../../shared/components/button/button.component';
 import { CommonModule } from '@angular/common';
@@ -73,6 +73,95 @@ interface Technician {
   standalone: true
 })
 export class TechnicianDetailsComponent implements OnInit {
+ 
+  @ViewChild('tierPointsValue', { static: false }) tierPointsValue!: ElementRef;
+  @ViewChild('targetChart', { static: false }) targetChart!: ElementRef;
+
+  totalPoints: number = 1000; 
+  differenceValue: number = 4500;
+  tierLevelPoints: number = 17999;
+  dataPercentage: string = '0';
+
+  barColor: string = '#0ebc01'; 
+  trackColor: string = '#e5e5e5';
+
+  ngAfterViewInit(): void {
+    const calculatePointsPercentage =
+      ((this.totalPoints - this.differenceValue) /
+        (this.tierLevelPoints - this.differenceValue)) *
+      100;
+    this.dataPercentage = calculatePointsPercentage.toFixed(0);
+
+    this.tierPointsValue.nativeElement.setAttribute(
+      'data-percent',
+      this.dataPercentage
+    );
+
+    this.drawPieChart();
+    this.animateCounter();
+  }
+
+  drawPieChart(): void {
+    const canvas = this.targetChart.nativeElement as HTMLCanvasElement;
+    const context = canvas.getContext('2d');
+
+    const size = 200;
+    const lineWidth = 8;
+    const radius = (size - lineWidth) / 2;
+
+    if (context) {
+      context.clearRect(0, 0, size, size);
+
+      context.beginPath();
+      context.arc(
+        size / 2,
+        size / 2,
+        radius,
+        0,
+        2 * Math.PI
+      );
+      context.strokeStyle = this.trackColor;
+      context.lineWidth = lineWidth;
+      context.stroke();
+
+      const progress = parseInt(this.dataPercentage) / 100;
+      context.beginPath();
+      context.arc(
+        size / 2,
+        size / 2,
+        radius,
+        -Math.PI / 2,
+        -Math.PI / 2 + 2 * Math.PI * progress
+      );
+      context.strokeStyle = this.barColor;
+      context.lineWidth = lineWidth;
+      context.stroke();
+    }
+  }
+
+  animateCounter(): void {
+    const totalTierPointsElement =
+      document.querySelector('.totalTierPoints') as HTMLElement;
+
+    if (totalTierPointsElement) {
+      const targetValue = this.totalPoints; 
+      const duration = 2000;
+      const frameRate = 60;
+      const stepTime = duration / frameRate;
+      let counter = 0;
+
+      const interval = setInterval(() => {
+        counter += Math.ceil(targetValue / frameRate);
+        if (counter >= targetValue) {
+          counter = targetValue;
+          clearInterval(interval);
+        }
+        totalTierPointsElement.textContent = counter.toString();
+      }, stepTime);
+    }
+  }
+  
+
   ticket: Tickets [] = [
     {
        ticketId: 10931235,
