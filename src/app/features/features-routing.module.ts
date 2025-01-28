@@ -16,11 +16,11 @@ import { CommunicationComponent } from './dashboard/components/communication/com
 export const featureRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'crm/language-selection',
+    redirectTo: 'language-selection',
     pathMatch: 'full',
   },
   {
-    path: 'crm', 
+    path: '', 
     children: [
       {
         path: 'language-selection',
@@ -95,6 +95,6 @@ export const featureRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'crm/language-selection', 
+    redirectTo: '/language-selection', 
   },
 ];

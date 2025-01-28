@@ -26,7 +26,7 @@
   <div class="flex flex-col items-center bg-white rounded border border-white-edgar">
     <div class="flex w-full gap-4 items-center justify-between border-b p-5 border-white-edgar">
       <h1 class="font-bold text-black text-h4">Tickets List</h1>
-      <button class="flex items-center justify-between gap-x-4">
+      <button class="flex items-center justify-between gap-x-4" (click)="openFilterModal()">
         <img src="assets/icons/filter.svg" />
         <p class="text-tertiary font-semibold text-h5">Filters</p>
       </button>
@@ -77,7 +77,7 @@
         <tr *ngFor="let ticket of filteredTickets" class="border-white-edgar border-b">
           <td class="px-4 py-6 font-bold text-p">{{ ticket.id }}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.createdAt }}</td>
-          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.customerName }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.customerDetails?.name}}</td>
           <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.noOfProducts }}</td>
           <td class="px-4 py-2 flex justify-center items-center">
             <div [style.backgroundColor]="getPriorityStyles(ticket.priority).bgColor"
@@ -129,3 +129,10 @@
   <!-- Pagination -->
   <!--<pagination-controls (pageChange)="page = $event"></pagination-controls>-->
 </div>
+
+
+<app-filter-modal *ngIf="showFilterModal"
+                  [filters]="filterConfigs"
+                  (filterApplied)="handleFilters($event)" 
+                  (modalClosed)="closeFilterModal()">
+</app-filter-modal>

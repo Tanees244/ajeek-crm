@@ -17,7 +17,7 @@
 
     <nav class="flex flex-col flex-grow p-4 space-y-2">
       <span *ngIf="!isCollapsed" class="m-4 mb-2 text-h5 font-bold">Menu</span>
-      <a routerLink="/crm/dashboard/partner"
+      <a routerLink="/dashboard/partner"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -29,7 +29,7 @@
         </div>
         <span class="mx-3" [class.hidden]="isCollapsed">Dashboard</span>
       </a>
-      <a routerLink="/crm/dashboard/tickets"
+      <a routerLink="/dashboard/tickets"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -41,7 +41,7 @@
         </div>
         <span class="mx-3" [class.hidden]="isCollapsed">Tickets</span>
       </a>
-      <a routerLink="/crm/dashboard/technicians"
+      <a routerLink="/dashboard/technicians"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -53,7 +53,7 @@
         </div>
         <span class="mx-3" [class.hidden]="isCollapsed">Technician</span>
       </a>
-      <a routerLink="/crm/dashboard/communication"
+      <a routerLink="/dashboard/communication"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
            'p-4': !isCollapsed,
@@ -65,7 +65,7 @@
         </div>
         <span class="mx-3" [class.hidden]="isCollapsed">Chat</span>
       </a>
-      <a routerLink="/crm/admin"
+      <a routerLink="/admin"
          routerLinkActive="bg-white-smoke-30 shadow-md"
          [ngClass]="{
       'p-4': !isCollapsed,

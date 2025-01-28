@@ -7,7 +7,6 @@ import { NgChartsModule } from 'ng2-charts';
 import { Chart, ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { TranslatePipe } from '../../../../shared/pipes/translate.pipe';
-import { CrmRouterService } from '../../../../core/services/crm-router.service';
  
 @Component({
   selector: 'app-partner-dashboard',
@@ -18,10 +17,10 @@ export class PartnerDashboardComponent {
   pendingTickets: number = 90;
   resolvedTickets: number = 150;
 
-  constructor(private crmRouter: CrmRouterService) { } 
+  constructor(private router: Router) { } 
 
   navigateToRegisterTicket(): void {
-    this.crmRouter.navigate(['dashboard', 'tickets', 'register-ticket']);
+    this.router.navigate(['dashboard', 'tickets', 'register-ticket']);
   }
 
   public barChartData: ChartData<'bar'> = {

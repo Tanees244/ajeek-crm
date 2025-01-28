@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
 import { TranslationService } from '../../core/services/translation.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
-import { CrmRouterService } from '../../core/services/crm-router.service';
+import { TranslatePipe } from '../../shared/pipes/translate.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-language-selection',
   templateUrl: './language-selection.component.html',
-  imports: [ButtonComponent]
+  imports: [ButtonComponent, TranslatePipe]
 })
 export class LanguageSelectionComponent {
   isLanguageDropdownVisible = false;
   currentLanguage = 'en';
-  constructor(private crmRouter: CrmRouterService, private translationService: TranslationService) { }
+  constructor(private router: Router, private translationService: TranslationService) { }
 
   onContinue() {
-    this.crmRouter.navigate(['login']); 
+    this.router.navigate(['login']); 
   }
 
   onLanguageChange(event: Event): void {

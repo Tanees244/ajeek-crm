@@ -6,11 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule, MatPaginator, PageEvent } from '@angular/material/paginator';
 import { TicketService } from '../../../../../core/services/ticket.service';
 import { Ticket } from '../../../../../core/models/tickets.model';
-import { CrmRouterService } from '../../../../../core/services/crm-router.service';
+import { FilterModalComponent } from '../../../../../shared/components/modal/filter-modal/filter-modal.component';
 
 @Component({
   selector: 'app-ticket-list',
-  imports: [ButtonComponent, CommonModule, FormsModule, MatPaginatorModule, RouterModule],
+  imports: [ButtonComponent, CommonModule, FormsModule, MatPaginatorModule, RouterModule, FilterModalComponent],
   templateUrl: './ticket-list.component.html',
   styles: [` 
     ::ng-deep .mat-mdc-paginator-page-size-label,
@@ -25,16 +25,16 @@ export class TicketListComponent {
   pendingTickets: number = 100;
   resolvedTickets: number = 150;
 
-  constructor(private crmRouter: CrmRouterService, private ticketService: TicketService) { }
+  constructor(private router: Router, private ticketService: TicketService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   navigateToRegisterTicket(): void {
-    this.crmRouter.navigate(['dashboard','tickets','register-ticket']);
+    this.router.navigate(['dashboard/tickets/register-ticket']);
   }
 
   navigateToTicketDetails(ticketId: string) {
-    this.crmRouter.navigate(['dashboard','tickets','ticket-no',ticketId]);
+    this.router.navigate([`dashboard/tickets/ticket-no/${ticketId}`]);
   }
 
 
@@ -52,20 +52,33 @@ export class TicketListComponent {
   currentPageRange = '';
 
   ngOnInit(): void {
+    console.log('Component initialized.');
     this.fetchTickets();
   }
 
   fetchTickets(): void {
+    console.log('Fetching tickets from service...');
     this.ticketService.getTickets().subscribe(
-      (data) => {
-        this.tickets = data;
-        //this.updateDisplayedTickets();
+      (response) => {
+        console.log('API Response:', response);
+
+        // Ensure the response contains the expected data
+        if (response?.isRequestSuccess && Array.isArray(response.data)) {
+          console.log('Extracted tickets data:', response.data);
+          this.filteredTickets = response.data;
+        } else {
+          console.warn('Unexpected API response structure:', response);
+          this.filteredTickets = []; // Fallback to an empty array
+        }
       },
       (error) => {
         console.error('Error fetching tickets:', error);
+        this.filteredTickets = []; // Fallback to an empty array in case of an error
       }
     );
   }
+
+
 
   //ngAfterViewInit() {
   //  if (this.paginator) {
@@ -174,7 +187,7 @@ export class TicketListComponent {
     switch (status) {
       case 'Complete':
         return { bgColor: 'green-10', textColor: 'green' };
-      case 'InProgress':
+      case 'Active':
         return { bgColor: 'yellow-10', textColor: 'yellow-10' };
       case 'Cancelled':
         return { bgColor: 'white-edgar', textColor: 'neutral-gray' };
@@ -193,5 +206,40 @@ export class TicketListComponent {
       '2-weeks': new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000), // Last 2 weeks
       '1-month': new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000), // Last 1 month
     };
+  }
+
+  showFilterModal = false;
+  filterConfigs = [
+    {
+      key: 'status',
+      label: 'Status',
+      options: [
+        { label: 'In Progress', value: 'InProgress' },
+        { label: 'Complete', value: 'Complete' },
+        { label: 'Pending', value: 'Pending' }
+      ]
+    },
+    {
+      key: 'priority',
+      label: 'Priority',
+      options: [
+        { label: 'High', value: 'High' },
+        { label: 'Medium', value: 'Medium' },
+        { label: 'Low', value: 'Low' }
+      ]
+    }
+  ];
+
+  openFilterModal(): void {
+    this.showFilterModal = true;
+  }
+
+  handleFilters(filters: any): void {
+    this.selectedPriority = filters.priority || '';
+    this.showFilterModal = false;
+  }
+
+  closeFilterModal(): void {
+    this.showFilterModal = false;
   }
 }

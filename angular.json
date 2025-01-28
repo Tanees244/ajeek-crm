@@ -47,7 +47,8 @@
             "prerender": true,
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "baseHref": "/crm/"
           },
           "configurations": {
             "production": {

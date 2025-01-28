@@ -1,4 +1,34 @@
 {
-  "partner_dashboard": "لوحة الشركاء",
-  "search_prompt": "هل تبحث عن عميل أو تذاكر؟"
+  //language selection
+  "welcome": "يكمل",
+  "language_selection": "حدد لغتك المفضلة",
+
+  //sign in
+  "sign_in": "تسجيل الدخول",
+  "user_name": "اسم المستخدم",
+  "user_password": "كلمة المرور",
+  "forget_password": "نسيت كلمة المرور",
+  "No_account_prompt": "ليس لديك حساب؟ اتصل بنا",
+
+  //dashboard
+  "partner_dashboard": "لوحة القيادة الشريك",
+  "header_update_prompt": "لديك 90 تذكرة معلقة و150 تذكرة تم حلها هذا الشهر",
+  "search_prompt": "البحث عن عميل وتذكرة؟",
+  "total_tickets": "إإجمالي التذاكر",
+  "avg_resolution_rate": "متوسط ​​معدل الدقة",
+  "conversion_rate": "معدل التحويل",
+  "active_technicians": "الفنيون النشطون",
+  "yearly_tickets_stats": "إحصائيات التذاكر السنوية",
+  "pending_stats": "التذاكر المعلقة",
+  "active_stats": "التذاكر النشطة",
+  "resolved_stats": "التذاكر التي تم حلها",
+  "monthly_tickets_status": "حالة التذاكر الشهرية",
+  "monthly_in_progress": "قيد التقدم",
+  "monthly_pending": "معلق",
+  "monthly_completed": "مكتمل",
+  "pending_tickets_by_priority": "التذاكر المعلقة حسب الأولوية",
+  "pending_high": "أولوية عالية",
+  "pending_medium": "أولوية متوسطة",
+  "pending_low": "أولوية منخفضة",
+  "avg_rsp_time_pending": "متوسط ​​وقت الاستجابة"
 }

@@ -3,7 +3,7 @@
     <div class="flex-1 relative" *ngFor="let step of steps; let i = index">
       <div class="border-2 rounded p-4 shadow-md transition-all duration-300"
            [ngClass]="currentStep >= step.number ? 'bg-primary-10 border-primary' : 'bg-white border-white-edgar'">
-        <div [ngClass]="currentStep === step.number ? 'text-primary text-[10px]' : 'text-neutral-gray text-[10px]'">
+        <div [ngClass]="currentStep >= step.number ? 'text-primary text-[10px]' : 'text-neutral-gray text-[10px]'">
           Step {{step.number}}
         </div>
         <div [ngClass]="currentStep >= step.number ? 'text-black font-bold' : 'text-neutral-gray font-bold'">
@@ -32,7 +32,6 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <!-- Customer Details -->
       <div class="bg-[#F6F6F6] border border-white-edgar rounded">
         <h2 class="bg-white font-bold text-h5 p-4">Customer Details:</h2>
         <div class="bg-[#F6F6F6] border-t border-white-edgar p-4">

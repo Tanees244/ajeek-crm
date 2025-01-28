@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { CrmRouterService } from '../../../../../core/services/crm-router.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,13 +10,13 @@ import { CrmRouterService } from '../../../../../core/services/crm-router.servic
   styleUrls: []
 })
 export class SidebarComponent {
-  constructor(private crmRouter: CrmRouterService) { }
+  constructor(private router: Router) { }
 
   @Input() isCollapsed: boolean = false;
   logout() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.clear();
-    this.crmRouter.navigate(['login']); 
+    this.router.navigate(['login']); 
   }
 }

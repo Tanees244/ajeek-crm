@@ -4,7 +4,6 @@ import { Router, RouterModule } from '@angular/router';
 import { ButtonComponent } from '../../../../../shared/components/button/button.component';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule, MatPaginator, PageEvent } from '@angular/material/paginator';
-import { CrmRouterService } from '../../../../../core/services/crm-router.service';
 
 interface Technician {
   id: string;
@@ -31,7 +30,7 @@ interface Technician {
 })
 export class TechnicianListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private crmRouter: CrmRouterService) { }
+  constructor(private router: Router) { }
 
   technicians: Technician[] = [
     {
@@ -251,6 +250,6 @@ export class TechnicianListComponent {
   }
 
   navigateToTechnicianProfile(techId: string): void {
-    this.crmRouter.navigate(['dashboard','technicians','technician',techId]);
+    this.router.navigate([`dashboard/technicians/technician/${techId}`]);
   }
 }

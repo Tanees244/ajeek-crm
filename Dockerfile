@@ -1,28 +1,33 @@
-# Step 1: Use official Node.js image as a base
+# Step 1: Use Node.js image to build the Angular app
 FROM node:20 AS build
 
-# Step 2: Set working directory
+# Set working directory
 WORKDIR /app
 
-# Step 3: Copy package.json and package-lock.json (if available)
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Step 4: Install dependencies
+# Install dependencies
 RUN npm install
 
-# Step 5: Copy all project files
+# Copy all project files
 COPY . .
 
-# Step 6: Build Angular application
-RUN npm run build  --configuration=production
+# Build Angular application
+RUN npm run build
 
-# Step 7: Use Nginx to serve the built application
+# Step 2: Use Nginx to serve the built application
 FROM nginx:alpine
 
-
+# Copy custom Nginx configuration
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-RUN rm -rf /usr/share/nginx/html/*
-COPY --from=build /app/dist/ajeek-crm/browser /usr/share/nginx/html
-RUN mv /usr/share/nginx/html/index.csr.html /usr/share/nginx/html/index.html
-EXPOSE 80
 
+# Remove existing Nginx content and copy Angular build output
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /app/dist/ajeek-crm /usr/share/nginx/html
+
+# Rename index.csr.html to index.html (if needed)
+RUN mv /usr/share/nginx/html/index.csr.html /usr/share/nginx/html/index.html || true
+
+# Expose port 80
+EXPOSE 80
