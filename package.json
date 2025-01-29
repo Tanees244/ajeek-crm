@@ -1,14 +1,12 @@
 {
   "name": "ajeek-crm",
   "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --configuration production",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:AjeekCRM": "node dist/server/server.mjs"
-  },
+"scripts": {
+  "ng": "ng",
+  "build": "ng build --configuration production && ng run ajeek-crm:server",
+  "start": "node dist/server/server.mjs",
+  "vercel-build": "ng build --configuration production && ng run ajeek-crm:server"
+},
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.0.0",
