@@ -4,6 +4,10 @@
   "newProjectRoot": "projects",
   "projects": {
     "ajeek-crm": {
+      "projectType": "application",
+      "root": "src", 
+      "sourceRoot": "src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -22,19 +26,32 @@
               "src/styles.css"
             ],
             "scripts": []
-          }
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
         },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/server",
-            "main": "src/main.server.ts"
-          }
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ajeek-crm:build:production"
+            },
+            "development": {
+              "buildTarget": "ajeek-crm:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
