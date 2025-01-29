@@ -4,9 +4,10 @@
 "scripts": {
   "ng": "ng",
   "build": "ng build --configuration production && ng run ajeek-crm:server",
-  "start": "node dist/server/server.mjs",
-  "vercel-build": "ng build --configuration production && ng run ajeek-crm:server"
-},
+  "vercel-build": "ng build --configuration production && ng run ajeek-crm:server",
+  "start": "node dist/server/server.mjs"
+}
+,
   "private": true,
   "dependencies": {
     "@angular/animations": "^19.0.0",

@@ -1,15 +1,5 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "dist/server/server.mjs",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "dist/browser/**",
-        "use": "@vercel/static"
-      }
-    ],
     "routes": [
       {
         "src": "/(.*)",
