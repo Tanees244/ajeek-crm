@@ -1,14 +1,13 @@
-<div class="layout">
+<div class="flex h-screen overflow-hidden">
   <app-sidebar [isCollapsed]="isCollapsed"></app-sidebar>
-  <div class="main-content">
+  <div class="flex flex-col flex-1 h-screen overflow-hidden">
     <app-header (toggleSidebarEvent)="toggleSidebar()"></app-header>
-    <div class="content">
-      <div class="header">
-        <div class="page-info">
-          <h1 class="page-title">Partner Dashboard</h1>
+    <div class="flex-1 overflow-y-auto p-[30px]">
+      <div class="flex flex-col ">
+        <h1 class="text-h3 font-bold m-0">{{ 'partner_dashboard' | translate }}</h1>
+        <div class="flex justify-between items-center">
           <app-breadcrumb></app-breadcrumb>
         </div>
-        <span class="page-number">Page - 1.1</span>
       </div>
       <router-outlet></router-outlet>
     </div>

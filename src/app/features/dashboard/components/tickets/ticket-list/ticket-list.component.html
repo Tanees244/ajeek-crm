@@ -1,102 +1,138 @@
-<div class="bg-gray-50 w-full">
-  <div class="max-w-7xl mx-auto">
-    <!-- Header with filters -->
-    <div class="flex justify-between items-center mb-4">
-      <div class="flex items-center space-x-2">
-        <span class="text-gray-500">Row Per Page:</span>
-        <select class="border rounded px-2 py-1">
-          <option>50</option>
-        </select>
-        <span class="text-gray-500">50 Files</span>
+<div class="w-full py-5 overflow-x-auto">
+  <!-- Partner Info Section -->
+  <div class="flex justify-between items-center bg-white border border-white-edgar p-5 rounded shadow-md mb-5 gap-2">
+    <div class="flex items-center gap-5">
+      <div class="w-12 h-12 rounded-full overflow-hidden">
+        <img src="assets/icons/avatar.svg" alt="Partner Avatar" class="w-full h-full object-cover" />
       </div>
+      <div>
+        <h2 class="text-h4 font-bold text-black">Partner Dashboard</h2>
+        <p class="text-h6 font-normal font-secondary text-neutral-gray">
+          You have <span class="text-primary font-medium underline">{{ pendingTickets }}</span> Pending Tickets &
+          <span class="text-primary font-medium underline">{{ resolvedTickets }}</span> Resolved This Month.
+        </p>
+      </div>
+    </div>
+    <app-button label="Register New Ticket"
+                type="button"
+                buttonType="primary"
+                iconUrl="assets/icons/plus.svg"
+                customClass="py-4 px-8"
+                (click)="navigateToRegisterTicket()">
+    </app-button>
+  </div>
 
-      <div class="flex space-x-2">
-        <select class="border rounded px-3 py-1.5 text-gray-600">
-          <option>Select Priority</option>
-        </select>
-        <select class="border rounded px-3 py-1.5 text-gray-600">
-          <option>Select Location</option>
-        </select>
-        <select class="border rounded px-3 py-1.5 text-gray-600">
-          <option>Product Type</option>
-        </select>
-        <select class="border rounded px-3 py-1.5 text-gray-600">
-          <option>Sort By: Last 7 Days</option>
-        </select>
+  <!-- Filters -->
+  <div class="flex flex-col items-center bg-white rounded border border-white-edgar">
+    <div class="flex w-full gap-4 items-center justify-between border-b p-5 border-white-edgar">
+      <h1 class="font-bold text-black text-h4">Tickets List</h1>
+      <button class="flex items-center justify-between gap-x-4" (click)="openFilterModal()">
+        <img src="assets/icons/filter.svg" />
+        <p class="text-tertiary font-semibold text-h5">Filters</p>
+      </button>
+    </div>
 
-        <div class="flex items-center">
-          <input type="text" placeholder="Search for Tickets" class="border rounded-l px-3 py-1.5">
-          <button class="bg-cyan-500 text-white px-4 py-1.5 rounded-r">Search</button>
-        </div>
+    <div class="flex flex-row w-full p-5 justify-between items-center gap-5">
+      <!--<div class="flex items-center">
+        <label class="text-neutral-gray text-p font-secondary mr-2">Rows Per Page</label>
+        <select [value]="pageSize"
+                (change)="onPageSizeChange($event)"
+                class="px-2 py-1 border border-white-edgar rounded focus:outline-primary font-secondary text-neutral-gray text-p form-select">
+          <option *ngFor="let option of pageSizeOptions" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+        <label class="text-neutral-gray text-p font-secondary ml-2">Entries</label>
+      </div>-->
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <input type="text" placeholder="Search for Tickets" class="flex-1 px-6 py-2 border border-white-edgar rounded focus:border-primary focus:outline-none">
+        <app-button label="Search"
+                    type="button"
+                    buttonType="primary"
+                    customClass="h-[35px] px-8">
+        </app-button>
       </div>
     </div>
 
-    <!-- Table -->
-    <div class="bg-white rounded-lg shadow">
-      <table class="min-w-full">
-        <thead>
-          <tr class="border-b">
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Ticket ID</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Created At</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Customer Name</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Product</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Priority</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">City</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Assigned Tech</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Assigned At</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
-            <th class="px-6 py-3 text-left text-sm font-semibold text-gray-600">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b hover:bg-gray-50">
-            <td class="px-6 py-4 text-sm text-gray-600">10931235</td>
-            <td class="px-6 py-4 text-sm text-gray-600">2024-12-19</td>
-            <td class="px-6 py-4 text-sm text-gray-600">Mustafa Ali</td>
-            <td class="px-6 py-4 text-sm text-gray-600">Ac, Refrigerator</td>
-            <td class="px-6 py-4">
-              <span class="inline-flex items-center justify-center w-6 h-6 bg-red-100 text-red-600 rounded-full font-bold">P</span>
-            </td>
-            <td class="px-6 py-4 text-sm text-gray-600">Riyadh</td>
-            <td class="px-6 py-4 text-sm text-blue-600">Abdul Malik</td>
-            <td class="px-6 py-4 text-sm text-gray-600">2024-12-19</td>
-            <td class="px-6 py-4">
-              <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">In Progress</span>
-            </td>
-            <td class="px-6 py-4">
-              <div class="flex items-center space-x-2">
-                <button class="p-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                  </svg>
-                </button>
-                <button class="bg-gray-700 text-white px-3 py-1 rounded text-sm">Manage</button>
-              </div>
-            </td>
-          </tr>
-          <!-- Add more rows as needed -->
-        </tbody>
-      </table>
 
-      <!-- Pagination -->
-      <div class="flex items-center justify-between px-6 py-3 border-t">
-        <div class="text-sm text-gray-500">
-          Showing 1 - 10 of 10 entries
-        </div>
-        <div class="flex items-center space-x-2">
-          <button class="p-1 rounded border">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <span class="w-8 h-8 flex items-center justify-center bg-gray-700 text-white rounded">1</span>
-          <button class="p-1 rounded border">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
+    <!-- Ticket List -->
+    <table class="table-auto border-collapse w-full">
+      <thead class="bg-[#F6F6F6]">
+        <tr>
+          <th class="px-4 py-2">Ticket ID</th>
+          <th class="px-4 py-2">Created At</th>
+          <th class="px-4 py-2">Customer Name</th>
+          <th class="px-4 py-2">No of Products</th>
+          <th class="px-4 py-2">Priority</th>
+          <th class="px-4 py-2">No of Issues</th>
+          <th class="px-4 py-2">Updated At</th>
+          <th class="px-4 py-2">Status</th>
+          <th class="px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="filteredTickets.length === 0">
+          <td colspan="12" class="text-center py-8">No tickets available</td>
+        </tr>
+        <tr *ngFor="let ticket of filteredTickets" class="border-white-edgar border-b">
+          <td class="px-4 py-6 font-bold text-p">{{ ticket.id }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.createdAt }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.customerDetails?.name}}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.noOfProducts }}</td>
+          <td class="px-4 py-2 flex justify-center items-center">
+            <div [style.backgroundColor]="getPriorityStyles(ticket.priority).bgColor"
+                 class="flex items-center justify-center rounded-full p-1 w-12 h-12">
+              <img [src]="getPriorityStyles(ticket.priority).icon"
+                   alt="Priority Icon"
+                   class="w-4 h-4" />
+            </div>
+          </td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ ticket.noOfIssues }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ ticket.updatedAt }}</td>
+          <td [style.backgroundColor]="getStatusStyles(ticket.status).bgColor"
+              class="px-4 py-2 font-secondary text-h6 font-normal"
+              [style.textColor]="getStatusStyles(ticket.status).textColor">{{ ticket.status }}</td>
+          <td class="px-4 py-2 flex items-center gap-4">
+            <img src="assets/icons/edit.svg" alt="Edit Icon"
+                 class="w-5 h-5 cursor-pointer"
+                 title="Edit Ticket">
+            <img src="assets/icons/delete.svg" alt="Delete Icon"
+                 class="w-5 h-5 cursor-pointer"
+                 title="Delete Ticket">
+            <app-button label="Manage"
+                        type="button"
+                        buttonType="secondary"
+                        customClass="py-3 px-8"
+                        (click)="navigateToTicketDetails(ticket.id)">
+            </app-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="flex flex-row w-full items-center justify-between px-6 border-t border-white-edgar ">
+      <div>
+        <span class="font-secondary font-normal text-p text-neutral-gray">
+          {{ currentPageRange }}
+        </span>
       </div>
+      <!--<div>
+        <mat-paginator [length]="totalItems"
+                       [pageSize]="pageSize"
+                       (page)="onPageChange($event)"
+                       class="!bg-transparent">
+        </mat-paginator>
+      </div>-->
     </div>
   </div>
+
+  <!-- Pagination -->
+  <!--<pagination-controls (pageChange)="page = $event"></pagination-controls>-->
 </div>
+
+
+<app-filter-modal *ngIf="showFilterModal"
+                  [filters]="filterConfigs"
+                  (filterApplied)="handleFilters($event)" 
+                  (modalClosed)="closeFilterModal()">
+</app-filter-modal>

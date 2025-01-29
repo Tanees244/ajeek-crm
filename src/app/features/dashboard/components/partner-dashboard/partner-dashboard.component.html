@@ -1,61 +1,176 @@
-<div class="dashboard-container">
-  <div class="partner-info">
-    <div class="partner-profile">
-      <div class="avatar">
-        <!-- Default avatar image placeholder -->
-        <img src="assets/icons/avatar.svg" alt="Partner Avatar">
+<div class="w-full py-5 overflow-x-auto">
+  <div
+    class="flex justify-between items-center bg-white border border-white-edgar p-5 rounded-lg shadow-md mb-5 gap-2"
+  >
+    <div class="flex items-center gap-5">
+      <div class="w-12 h-12 rounded-full overflow-hidden">
+        <img
+          src="assets/icons/avatar.svg"
+          alt="Partner Avatar"
+          class="w-full h-full object-cover"
+        />
       </div>
-      <div class="info">
-        <h2 class="title">Partner Dashboard</h2>
-        <p class="ticket-stats">
-          You have <span class="pending">{{pendingTickets}}</span> Pending Tickets &
-          <span class="resolved">{{resolvedTickets}}</span> Resolved This Month.
+      <div>
+        <h2 class="text-h4 font-bold text-black">Partner Dashboard</h2>
+        <p class="text-h6 font-normal font-secondary text-neutral-gray">
+          You have
+          <span class="text-primary font-medium underline">{{
+            pendingTickets
+          }}</span>
+          Pending Tickets &
+          <span class="text-primary font-medium underline">{{
+            resolvedTickets
+          }}</span>
+          Resolved This Month.
         </p>
       </div>
     </div>
-    <button class="register-btn" (click)="navigateToRegisterTicket()">
-      <i class="fas fa-plus"></i>
-      Register New Ticket
-    </button>
-
+    <app-button
+      label="Register New Ticket"
+      type="button"
+      buttonType="primary"
+      iconUrl="assets/icons/plus.svg"
+      customClass="py-4 px-8"
+      (click)="navigateToRegisterTicket()"
+    >
+    </app-button>
   </div>
 
-  <div class="search-section">
-    <div class="search-label">Looking for a Customer or Tickets?</div>
-    <div class="search-container">
-      <input type="text" placeholder="Search for Tickets" class="search-input">
-      <button class="search-btn">Search</button>
+  <div
+    class="flex flex-col md:flex-row justify-between items-center my-8 gap-5"
+  >
+    <div class="text-primary text-h5 font-bold">
+      {{ "search_prompt" | translate}}
+    </div>
+    <div class="flex flex-col sm:flex-row items-center gap-4">
+      <input
+        type="text"
+        placeholder="Search for Tickets"
+        class="flex-1 px-6 py-4 border border-white-edgar rounded focus:border-primary focus:outline-none"
+      />
+      <app-button
+        label="Search"
+        type="button"
+        buttonType="primary"
+        customClass="h-[45px] px-8"
+      >
+      </app-button>
     </div>
   </div>
-  <div class="kpi-section">
-    <app-metric-card title="Total Tickets"
-                     [value]="100239"
-                     unit=""
-                     [trend]="19.01"
-                     imgSrc="assets/kpiLogo/tickets.svg">
+
+  <div class="flex flex-wrap justify-between my-5">
+    <app-metric-card
+      title="Total Tickets"
+      [value]="100239"
+      unit=""
+      [trend]="19.01"
+      imgSrc="assets/kpiLogo/tickets.svg"
+    >
     </app-metric-card>
 
-    <app-metric-card title="Avg. Res Rate"
-                     [value]="89"
-                     unit="%"
-                     [trend]="19.01"
-                     imgSrc="assets/kpiLogo/resRate.svg">
+    <app-metric-card
+      title="Avg. Resolution Rate"
+      [value]="89"
+      unit="%"
+      [trend]="19.01"
+      imgSrc="assets/kpiLogo/resRate.svg"
+    >
     </app-metric-card>
 
-    <app-metric-card title="Conversion Rate"
-                     [value]="96"
-                     unit="%"
-                     [trend]="19.01"
-                     imgSrc="assets/kpiLogo/conversionRate.svg">
+    <app-metric-card
+      title="Conversion Rate"
+      [value]="96"
+      unit="%"
+      [trend]="19.01"
+      imgSrc="assets/kpiLogo/conversionRate.svg"
+    >
     </app-metric-card>
 
-    <app-metric-card title="Active Technicians"
-                     [value]="96"
-                     unit="%"
-                     [trend]="-19.01"
-                     imgSrc="assets/kpiLogo/technicians.svg">
+    <app-metric-card
+      title="Active Technicians"
+      [value]="96"
+      unit="%"
+      [trend]="-19.01"
+      imgSrc="assets/kpiLogo/technicians.svg"
+    >
     </app-metric-card>
   </div>
 
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+    <!-- Bar Chart -->
+    <div class="bg-white rounded-lg shadow py-4 px-2">
+      <div
+        class="flex items-center justify-between border-b border-white-edgar"
+      >
+        <h3 class="text-h6 font-bold mb-4">Yearly Tickets Stats</h3>
+        <div class="flex flex-row gap-x-2 p-4 rounded bg-primary">
+          <img src="assets/icons/share.svg" class="w-4 h-4" />
+          <p class="font-medium text-white text-[12px]">Export</p>
+        </div>
+      </div>
+      <canvas
+        baseChart
+        [datasets]="barChartData.datasets"
+        [labels]="barChartData.labels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="'bar'"
+      >
+      </canvas>
+    </div>
 
+    <!-- Doughnut Chart -->
+    <div class="bg-white rounded-lg shadow p-4">
+      <h6 class="font-semibold">Monthly Tickets Status</h6>
+      <div class="border-b border-white-edgar"></div>
+
+      <canvas
+        baseChart
+        [datasets]="doughnutChartData.datasets"
+        [labels]="doughnutChartData.labels"
+        [options]="doughnutChartOptions"
+        [plugins]="doughnutChartPlugins"
+        [type]="'doughnut'"
+      >
+      </canvas>
+      <div class="grid grid-cols-3 gap-2 mt-4 text-center text-sm">
+        <div>
+          <div class="font-bold">7321</div>
+          <div class="text-gray-600">In Progress</div>
+        </div>
+        <div>
+          <div class="font-bold">5023</div>
+          <div class="text-gray-600">Pending</div>
+        </div>
+        <div>
+          <div class="font-bold">3393</div>
+          <div class="text-gray-600">Completed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Priority Bar Chart -->
+    <div class="bg-white rounded-lg shadow p-4">
+      <h3 class="text-lg font-semibold mb-4">Pending Tickets by Priority</h3>
+      <div class="space-y-4">
+        <div *ngFor="let priority of priorities" class="space-y-2">
+          <div class="flex justify-between text-sm">
+            <span>{{ priority.name }}</span>
+            <span>{{ priority.value }}%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2">
+            <div
+              class="h-2 rounded-full"
+              [style.width.%]="priority.value"
+              [class]="priority.colorClass"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-6 pt-4 border-t">
+        <div class="text-xl font-bold">5.70</div>
+        <div class="text-gray-600 text-sm">Average Response Time</div>
+      </div>
+    </div>
+  </div>
 </div>

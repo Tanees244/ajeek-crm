@@ -1,0 +1,69 @@
+<div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50" *ngIf="isVisible" (click)="closeModal()">
+  <div class="bg-white py-8 px-6 rounded w-[850px] relative" (click)="$event.stopPropagation()">
+    <!-- Close Button -->
+    <button (click)="closeModal()" class="absolute top-6 right-6 p-2 border border-neutral-gray rounded-[2px]">
+      <img src="assets/icons/close.svg" alt="Close" class="w-6 h-6" />
+    </button>
+
+    <div class="bg-[#F6F6F6] mt-12 mb-6 p-4 rounded">
+      <h2 class="font-bold text-h5 mb-0">Select Product Address</h2>
+      <p class="font-normal text-p text-secondary">Choose the appliance(s) Address you are submitting the ticket for.</p>
+      <div class="flex gap-x-4">
+        <input type="text"
+               placeholder="Search for Serial No."
+               class="flex-1 px-6 py-3 border border-white-edgar rounded focus:border-primary focus:outline-none">
+        <app-button label="Search"
+                    type="button"
+                    buttonType="primary"
+                    customClass="h-[40px] px-8">
+        </app-button>
+      </div>
+    </div>
+
+    <div class="flex justify-end items-center px-4 py-4">
+      <label class="text-neutral-gray text-p font-secondary mr-2">Rows Per Page</label>
+      <select class="px-2 py-1 border border-white-edgar rounded focus:outline-primary font-secondary text-neutral-gray text-p form-select">
+        <option>
+          5
+        </option>
+      </select>
+      <label class="text-neutral-gray text-p font-secondary ml-2">Entries</label>
+    </div>
+
+    <div class="overflow-y-auto max-h-[320px]">
+      <table class="table-auto border-collapse w-full">
+        <thead class="bg-[#F6F6F6]">
+          <tr>
+            <th class="px-6 py-2 text-left">Product ID</th>
+            <th class="px-4 py-2 text-left">Product Name</th>
+            <th class="px-4 py-2 text-left">Product Type</th>
+            <th class="px-4 py-2 text-left">Brand</th>
+            <th class="px-4 py-2 text-left">Warranty</th>
+            <th class="px-4 py-2 text-left">Serial Number</th>
+            <th class="px-4 py-2 text-left">Model Number</th>
+            <th class="px-4 py-2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of products" class="border-white-edgar border-b items-center">
+            <td class="px-6 py-2 font-bold text-h6">{{ prod.productId }}</td>
+            <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.productName }}</td>
+            <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ prod.productType }}</td>
+            <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ prod.brand }}</td>
+            <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.warranty }}</td>
+            <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.serialNumber }}</td>
+            <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.modelNumber }}</td>
+            <td class="py-5">
+              <div class="flex items-center justify-between">
+                <button class="text-primary font-bold underline" (click)="selectProduct(prod)">
+                  Select Product
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

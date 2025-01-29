@@ -4,6 +4,12 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { PartnerDashboardComponent } from './components/partner-dashboard/partner-dashboard.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
+import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { CommunicationComponent } from './components/communication/communication.component';
+//import { CustomerDetailsComponent } from './components/tickets/register-ticket/step-1/customer-details/customer-details.component';
+//import { ProductSelectionComponent } from './components/tickets/register-ticket/product-selection/product-selection.component';
+//import { TimeSlotComponent } from './components/tickets/register-ticket/time-slot/time-slot.component';
 
 @NgModule({
   imports: [
@@ -11,7 +17,23 @@ import { TicketsComponent } from './components/tickets/tickets.component';
     RouterModule,
     DashboardComponent, // Import instead of declare for standalone components
     PartnerDashboardComponent,
-    TicketsComponent
+    //TicketsComponent
+  ],
+  declarations: [
+    //CustomerDetailsComponent,
+    //ProductSelectionComponent,
+    //TimeSlotComponent
+  
+    //TicketDetailsComponent
+  
+    //TechniciansDetailsComponent,
+    //TechnicianDetailsComponent,
+    //TechnicianListComponent,
+    //TechniciansComponent
+  
+    //NotificationsComponent
+  
+    //CommunicationComponent
   ]
 })
 export class DashboardModule { }

@@ -1,0 +1,28 @@
+<div class="bg-white rounded border border-white-edgar max-w-8xl shadow-md mt-6 ">
+  <h2 class="text-h4 font-bold p-4 border-b">Notifications</h2>
+
+  <div class="space-y-1 p-4">
+    <div *ngFor="let notification of notifications" class="flex items-start gap-3">
+      <!-- Timeline -->
+      <div class="flex flex-col items-center min-w-[80px]">
+        <div class="text-h5 font-bold text-neutral-gray">{{ notification.date }}</div>
+        <div class="text-h5 font-medium text-neutral-gray mb-1">{{ notification.time }}</div>
+        <div class="w-[2px] h-16 bg-blue-200"></div>
+      </div>
+
+      <!-- Notification Content -->
+      <div [ngClass]="[
+            'flex-1 p-3 rounded border border-white-edgar mb-2',
+            notification.type === 'cancelled' ? 'bg-red-10' : '',
+            notification.type === 'completed' ? 'bg-green-10' : ''
+          ]">
+        <div class="text-h6 font-bold">{{ getNotificationTitle(notification.type) }}</div>
+        <p class="text-p text-secondary font-normal">{{ notification.message }}</p>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="loadPrevious()" class="text-blue-500 text-sm font-medium mt-4 px-2">
+    Load Previous
+  </button>
+</div>

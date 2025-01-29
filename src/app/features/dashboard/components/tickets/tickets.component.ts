@@ -4,8 +4,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-tickets',
   imports: [RouterModule],
-  templateUrl: './tickets.component.html',
-  styleUrl: './tickets.component.css'
+  template: `<router-outlet></router-outlet>`,
 })
 export class TicketsComponent {
 

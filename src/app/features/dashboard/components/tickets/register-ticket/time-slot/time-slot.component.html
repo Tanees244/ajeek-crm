@@ -1,0 +1,114 @@
+<div class="bg-white rounded border border-white-edgar p-6 shadow-sm mb-6">
+  <h2 class="text-h4 font-bold mb-2">Select Your Availability</h2>
+  <p class="text-p font-secondary text-neutral-gray text-normal mb-6">
+    Specify your preferred time slots for each product service. This will allow
+    us to schedule a technician visit that works best for you. You can choose a
+    time slot for each product individually.
+  </p>
+
+  <div class="rounded border border-white-edgar">
+    <div class="p-6 border-b border-white-edgar">
+      <div class="flex justify-between items-center">
+        <h3 class="text-h4 font-bold">
+          For Product 1 (Refrigerator, Model: Samsung RS50N3513SA):
+        </h3>
+        <button
+          (click)="loadMoreDays()"
+          class="text-cyan-500 text-sm hover:text-cyan-600"
+        >
+          Next 5 Days >
+        </button>
+      </div>
+    </div>
+
+    <div class="p-6">
+      <!-- Technician Assignment -->
+      <div class="bg-[#F6F6F6] border-l-4 border-primary mb-6 p-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h4 class="text-h5 font-bold mb-1">Assigned Technician</h4>
+            <p class="text-p font-normal font-secondary text-neutral-gray">
+              If the selected technician is unavailable at the chosen time, the
+              request will be reassigned to another technician with the required
+              skills.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="assets/icons/avatar.svg" class="w-8 h-8" />
+            <span class="text-sm">Assign to Shiekh Nizam</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Date Selection -->
+      <div class="mb-6">
+        <h4 class="text-h5 font-bold mb-4">Select Date/Day</h4>
+        <div class="grid grid-cols-5 gap-4">
+          <ng-container *ngFor="let day of visibleDays">
+            <div [class]="getDayClass(day)" (click)="selectDay(day)">
+              <!-- Conditional text for Yesterday, Today, and Tomorrow -->
+              <div class="text-xs text-gray-500">
+                {{ day.relativeName }}
+              </div>
+              <div class="font-medium">{{ day.name }}</div>
+              <div class="text-xs text-gray-500">{{ day.dateNumber }}</div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+      <!-- Time Slots -->
+      <div>
+        <h4 class="text-h5 font-bold mb-4">Select Slot</h4>
+        <div class="grid grid-cols-4 mb-4">
+          <div
+            *ngFor="
+              let slotName of ['Morning', 'Afternoon', 'Evening', 'Night']
+            "
+            class="text-center py-2"
+          >
+            {{ slotName }}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-2 mb-6">
+          <div class="grid grid-cols-4 gap-2">
+            <ng-container *ngFor="let slot of getTimeSlots(selectedDay)">
+              <button
+                [class]="
+                  'py-2 px-4 rounded text-sm text-center ' +
+                  getSlotClass(slot.status)
+                "
+                [disabled]="slot.status === 'unavailable'"
+                (click)="selectTimeSlot(slot)"
+              >
+                {{ slot.startTime }} to {{ slot.endTime }}
+              </button>
+            </ng-container>
+          </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="flex flex-wrap gap-4 mb-6 text-xs">
+          <div class="flex items-center">
+            <div class="w-4 h-4 bg-neutral-gray rounded mr-2"></div>
+            <span>Available</span>
+          </div>
+          <div class="flex items-center">
+            <div class="w-4 h-4 bg-gray-200 rounded mr-2"></div>
+            <span>Unavailable</span>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <button
+            class="bg-cyan-500 text-white px-6 py-2 rounded hover:bg-cyan-600 transition-colors"
+            (click)="onSubmit()"
+          >
+            Submit Ticket
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

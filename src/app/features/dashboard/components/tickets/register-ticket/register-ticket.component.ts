@@ -1,60 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../../../../../shared/components/button/button.component';
+import { AddUserModalComponent } from '../../../../../shared/components/modal/add-user-modal/add-user-modal.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { ProductSelectionComponent } from './product-selection/product-selection.component';
+import { TimeSlotComponent } from './time-slot/time-slot.component';
 
 @Component({
   selector: 'app-register-ticket',
-  imports: [CommonModule],
-  templateUrl: './register-ticket.component.html',
-  styleUrl: './register-ticket.component.css'
+  imports: [CommonModule, CustomerDetailsComponent, ProductSelectionComponent, TimeSlotComponent],
+  templateUrl: './register-ticket.component.html'
 })
 export class RegisterTicketComponent {
+  @ViewChild('addUserModal') addUserModal!: AddUserModalComponent;
+  currentStep = 1
 
-  currentStep = 1;
+
+  isTicketRegistered = false; 
+
+  onStep3Submit() {
+    this.isTicketRegistered = true; 
+  }
 
   steps = [
     { number: 1, title: 'Enter Customer Details' },
     { number: 2, title: 'Select Product/Appliance' },
-    { number: 3, title: 'Select Time Slot' }
+    { number: 3, title: 'Select Time Slot' },
   ];
 
-  products = [
-    {
-      id: '12341233',
-      name: 'Samsung Split AC 1.5T',
-      type: 'Air Conditioner',
-      brand: 'Samsung',
-      warranty: '1 Year',
-      serialNumber: 'SAM123456789',
-      modelNumber: 'AC-SPLIT-150JT'
-    }
-    // Add more products as needed
-  ];
+  customers: any[] = [];
+  handleCustomerAdded(customerData: any): void {
+    this.customers.push(customerData);
+  }
 
-  days = [
-    { name: 'Thursday', date: 'December 28', isSelected: true },
-    { name: 'Friday', date: 'December 29', isSelected: false },
-    // Add more days
-  ];
-
-  timePeriods = ['Morning', 'Afternoon', 'Evening', 'Night'];
-
-  timeSlots = [
-    {
-      period: 'Morning',
-      times: [
-        { range: '6:00 AM to 7:00 AM', colorClass: 'bg-green-50 border-green-200' },
-        { range: '7:00 AM to 8:00 AM', colorClass: 'bg-yellow-50 border-yellow-200' }
-      ]
-    }
-    // Add more slots
-  ];
-
-  statusLegend = [
-    { label: 'All skills matched', colorClass: 'bg-green-500' },
-    { label: 'Few or more skills matched', colorClass: 'bg-yellow-500' },
-    { label: 'No skills matched', colorClass: 'bg-red-500' },
-    { label: 'Unavailable', colorClass: 'bg-gray-300' }
-  ];
+  updateStep(stepNumber: number): void {
+    this.currentStep = stepNumber; 
+  }
 
   nextStep() {
     if (this.currentStep < this.steps.length) {
@@ -67,5 +48,4 @@ export class RegisterTicketComponent {
       this.currentStep--;
     }
   }
-
 }

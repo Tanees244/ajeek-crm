@@ -1,0 +1,361 @@
+<div class="bg-white rounded border border-white-edgar p-6 shadow-sm mb-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-h4 font-bold">Register your Ticket</h2>
+      <p class="text-p text-neutral-gray font-secondary font-normal">Step-by-Step ticket Submission Form</p>
+    </div>
+    <app-button label="Add New Product"
+                type="button"
+                buttonType="primary"
+                iconUrl="assets/icons/plus.svg"
+                customClass="py-4 px-8"
+                (click)="openAddNewProductModal()">
+    </app-button>
+  </div>
+
+  <div *ngIf="!selectedProducts.length; else detailsView" class="items-center border border-white-edgar rounded">
+    <div class="flex w-full gap-4 bg-[#F6F6F6] p-4 items-center justify-between">
+      <div>
+        <h1 class="font-bold text-black text-h5">Select Product/Appliance</h1>
+        <h1 class="font-normal font-secondary text-neutral-gray text-p">Choose the appliance(s) you are submitting the ticket for. </h1>
+      </div>
+      <div class="flex gap-x-4">
+        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select">
+          <option value="">Select Category</option>
+          <option value="1-week">Last 1 Week</option>
+          <option value="2-weeks">Last 2 Weeks</option>
+          <option value="1-month">Last 1 Month</option>
+        </select>
+        <select class="px-2 text-neutral-gray focus:outline-primary py-3 border border-white-edgar rounded form-select">
+          <option value="">Select Brand</option>
+          <option value="1-week">Last 1 Week</option>
+          <option value="2-weeks">Last 2 Weeks</option>
+          <option value="1-month">Last 1 Month</option>
+        </select>
+        <input type="text"
+               placeholder="Search for Serial No."
+               class="flex-1 px-6 py-3 border border-white-edgar rounded focus:border-primary focus:outline-none">
+        <app-button label="Search"
+                    type="button"
+                    buttonType="primary"
+                    customClass="h-[40px] px-8">
+        </app-button>
+      </div>
+    </div>
+
+    <div class="bg-white px-4 py-8">
+      <!-- TODO Add pagination -->
+    </div>
+
+    <table class="table-auto border-collapse w-full">
+      <thead class="bg-[#F6F6F6]">
+        <tr>
+          <th class="px-6 py-2 text-left">Product ID</th>
+          <th class="px-4 py-2 text-left">Product Name</th>
+          <th class="px-4 py-2 text-left">Product Type</th>
+          <th class="px-4 py-2 text-left">Brand</th>
+          <th class="px-4 py-2 text-left">Warranty</th>
+          <th class="px-4 py-2 text-left">Serial Number</th>
+          <th class="px-4 py-2 text-left">Model Number</th>
+          <th class="px-4 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of products" class="border-white-edgar border-b items-center">
+          <td class="px-6 py-2 font-bold text-h6">{{ prod.productId }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.productName }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ prod.productType }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-neutral-gray">{{ prod.brand }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.warranty }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.serialNumber }}</td>
+          <td class="px-4 py-2 font-secondary text-h6 font-normal text-tertiary">{{ prod.modelNumber}}</td>
+          <td class="py-5">
+            <div class="flex items-center justify-between">
+              <button class="text-primary font-bold underline" (click)="selectProduct(prod)">
+                Select Product
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #detailsView>
+  <ng-container *ngFor="let product of selectedProducts">
+    <div class="border border-white-edgar rounded">
+      <div class="flex flex-row bg-[#F6F6F6] justify-between items-center px-6 py-4 mb-4">
+        <div>
+          <h2 class="text-h5 font-bold">Product Detail: <span class="text-h5 font-normal">{{ product.productName }}</span></h2>
+          <p class="text-p text-neutral-gray font-secondary font-normal">Please review the details of the selected product before proceeding with your request.</p>
+        </div>
+        <div class="flex gap-x-6">
+          <button class="text-primary font-bold underline" (click)="unselectProduct(product.productId)">Unselect Product</button>
+          <button class="px-4 py-2 bg-primary text-white rounded font-bold flex items-center gap-2"
+                  (click)="toggleCollapse(product.productId)">
+            <img src="assets/icons/collapse.svg"
+                 class="transition-transform duration-300 py-1"
+                 [ngClass]="{ 'rotate-180':!collapsedState[product.productId] }" />
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!collapsedState[product.productId]" class="flex flex-col gap-y-6 p-6">
+        <div class="flex flex-col border border-white-edgar px-4 rounded py-6 gap-y-6">
+          <div class="grid grid-cols-4 gap-4">
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Name</label>
+              <input type="text" id="productName" [value]="product?.productName" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+            <div>
+              <label for="brand" class="block mb-1 text-h6 font-bold">Brand</label>
+              <input type="text" id="brand" [value]="product?.brand" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+            <div>
+              <label for="productModel" class="block mb-1 text-h6 font-bold">Model</label>
+              <input type="text" id="productModel" [value]="product?.modelNumber" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+            <div>
+              <label for="productType" class="block mb-1 text-h6 font-bold">Product Type</label>
+              <input type="text" id="productType" [value]="product?.productType" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4">
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Serial Number</label>
+              <input type="text" id="productName" [value]="product?.productName" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+            <div>
+              <label for="brand" class="block mb-1 text-h6 font-bold">Purchase Date</label>
+              <input type="date" id="brand" [value]="product?.brand" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+            <div>
+              <label for="productModel" class="block mb-1 text-h6 font-bold">Warranty Status</label>
+              <input type="text" id="productModel" [value]="product?.modelNumber" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+            <div>
+              <label for="productType" class="block mb-1 text-h6 font-bold">Last Maintenance/Service Date:</label>
+              <input type="date" id="productType" [value]="product?.productType" readonly
+                     class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1">
+            <div>
+              <label for="productName" class="block mb-1 text-h6 font-bold">Product Description (Optional)</label>
+              <textarea type="text" id="productName" [value]="product?.productName"
+                        class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray min-h-[100px]"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col border border-white-edgar rounded gap-y-6">
+          <div class="flex flex-row bg-[#F6F6F6] justify-between items-center px-6 py-4">
+            <div>
+              <h2 class="text-h5 font-bold">Product Address</h2>
+              <p class="text-p text-neutral-gray font-secondary font-normal">Please review the current location of the selected product before proceeding with your request</p>
+            </div>
+            <div>
+              <button class="text-primary font-bold underline" (click)="openChooseAddressModal()">Choose Other Address</button>
+            </div>
+          </div>
+          <div class="flex flex-col px-6 py-4 gap-y-6">
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label for="address" class="block mb-1 text-h6 font-bold">Address</label>
+                <input type="text"
+                       id="address"
+                       name="address"
+                       placeholder="Enter address"
+                       [value]="customers[0]?.address"
+                       readonly
+                       class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+              </div>
+              <div>
+                <label for="apartment" class="block mb-1 text-h6 font-bold">Apartment, Suite, Building</label>
+                <input type="text"
+                       id="apartment"
+                       name="apartment"
+                       placeholder="Enter apartment details"
+                       [value]="customers[0]?.apartment"
+                       readonly
+                       class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+              </div>
+            </div>
+
+            <!-- Dropdown Fields -->
+            <div class="grid grid-cols-4 gap-4">
+              <div>
+                <label for="country" class="block mb-1 text-h6 font-bold">Country</label>
+                <select id="country"
+                        name="country"
+                        [value]="customers[0]?.country"
+                        disabled
+                        class="w-full py-3 px-2 border rounded focus:outline-none text-secondary">
+                </select>
+              </div>
+              <div>
+                <label for="state" class="block mb-1 text-h6 font-bold">State/Province</label>
+                <input type="text"
+                       id="state"
+                       name="state"
+                       placeholder="Enter state"
+                       [value]="customers[0]?.state"
+                       readonly
+                       class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+              </div>
+              <div>
+                <label for="city" class="block mb-1 text-h6 font-bold">City</label>
+                <input type="text"
+                       id="city"
+                       name="city"
+                       placeholder="Enter city"
+                       [value]="customers[0]?.city"
+                       readonly
+                       class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+              </div>
+              <div>
+                <label for="zipCode" class="block mb-1 text-h6 font-bold">Zip Code</label>
+                <input type="text"
+                       id="zipCode"
+                       name="zipCode"
+                       placeholder="Enter zip code"
+                       [value]="customers[0]?.zipCode"
+                       readonly
+                       class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col border border-white-edgar rounded mt-6">
+          <div class="flex flex-row bg-[#F6F6F6] justify-between items-center px-6 py-4">
+            <div>
+              <h2 class="text-h5 font-bold">Product Issues</h2>
+              <p class="text-p text-neutral-gray font-secondary font-normal">Please provide the details of the product issues before proceeding with your request</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col px-6 py-4 gap-y-6">
+            <!-- Header -->
+            <div class="flex flex-row bg-[#F6F6F6] justify-between items-center px-4 py-2 border-l-4 border-primary">
+              <div>
+                <label class="block mb-1 text-h6 font-bold">Issue Type</label>
+                <p class="text-p text-neutral-gray">Select all the issues that apply to the product you are reporting</p>
+              </div>
+              <div>
+                <button class="text-primary font-bold underline"
+                        (click)="showAllIssues = !showAllIssues">
+                  {{ showAllIssues ? 'View Less' : 'View All' }}
+                </button>
+              </div>
+            </div>
+
+            <div [ngClass]="{ 'grid-cols-4': true, 'gap-4': true, 'grid': true }">
+              <ng-container *ngFor="let issue of (showAllIssues ? issues : limitedIssues); let i = index">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" class="form-checkbox text-primary" [id]="'issue-' + i" />
+                  <span class="text-neutral-gray">{{ issue }}</span>
+                </label>
+              </ng-container>
+            </div>
+
+            <div>
+              <textarea id="issueDescription"
+                        rows="4"
+                        placeholder="Please describe the issue in detail..."
+                        class="w-full py-3 px-2 border border-white-edgar rounded focus:border-primary focus:outline-none font-secondary text-neutral-gray placeholder-neutral-gray"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col border border-white-edgar rounded mt-6">
+          <div class="flex flex-row bg-[#F6F6F6] justify-between items-center px-6 py-4">
+            <div>
+              <h2 class="text-h5 font-bold">Set Priority</h2>
+              <p class="text-p text-neutral-gray font-secondary font-normal">Please select the priority of the issue</p>
+            </div>
+          </div>
+          <div class="flex gap-x-4 p-6">
+            <label class="flex items-center gap-8 cursor-pointer px-4 py-2 border rounded transition-all"
+                   [ngClass]="{ 'border-red': selectedPriority === 'high', 'border-white-edgar': selectedPriority !== 'high' }">
+              <span class="flex items-center gap-2">
+                <span class="bg-red-10 p-2 rounded-full">
+                  <img src="assets/icons/redFlag.svg" class="w-5 h-5" />
+                </span>
+                <span [ngClass]="{ 'text-red': selectedPriority === 'high', 'text-neutral-gray': selectedPriority !== 'high' }">High Priority</span>
+              </span>
+              <input type="radio"
+                     name="priority"
+                     value="high"
+                     (change)="selectedPriority = 'high'" />
+            </label>
+
+            <label class="flex items-center gap-8 cursor-pointer px-4 py-2 border rounded transition-all"
+                   [ngClass]="{ 'border-yellow': selectedPriority === 'medium', 'border-white-edgar': selectedPriority !== 'medium' }">
+              <span class="flex items-center gap-2">
+                <span class="bg-yellow-10 p-2 rounded-full">
+                  <img src="assets/icons/yellowFlag.svg" class="w-4 h-4" />
+                </span>
+                <span [ngClass]="{ 'text-yellow': selectedPriority === 'medium', 'text-neutral-gray': selectedPriority !== 'medium' }">Medium Priority</span>
+              </span>
+              <input type="radio"
+                     name="priority"
+                     value="medium"
+                     (change)="selectedPriority = 'medium'" />
+            </label>
+
+            <label class="flex items-center gap-8 cursor-pointer px-4 py-2 border rounded transition-all"
+                   [ngClass]="{ 'border-green': selectedPriority === 'low', 'border-white-edgar': selectedPriority !== 'low' }">
+              <span class="flex items-center gap-2">
+                <span class="bg-green-10 p-2 rounded-full">
+                  <img src="assets/icons/greenFlag.svg" class="w-5 h-5" />
+                </span>
+                <span [ngClass]="{'text-green': selectedPriority === 'low', 'text-neutral-gray': selectedPriority !== 'low' }">Low Priority</span>
+              </span>
+              <input type="radio"
+                     name="priority"
+                     value="low"
+                     (change)="selectedPriority = 'low'" />
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </ng-container>
+    <div class="flex flex-col mt-6 gap-y-6">
+      <div class="flex items-center gap-x-4 w-full">
+        <div class="flex-grow border-b border-white-edgar"></div>
+        <button class="flex items-center gap-2" (click)="openProductListingModal()">
+          <img src="assets/icons/addButton.svg" alt="Add Button" />
+          <span class="px-4 py-2 font-bold">Add Another Product</span>
+        </button>
+      </div>
+      <div class="flex justify-end gap-x-4">
+        <app-button label="Back"
+                    type="button"
+                    buttonType="secondary"
+                    customClass="py-4 px-8"
+                    (click)="prevStep()">
+        </app-button>
+        <app-button label="Next Step"
+                    type="button"
+                    buttonType="primary"
+                    customClass="py-4 px-8"
+                    (click)="nextStep()">
+        </app-button>
+      </div>
+    </div>
+   
+</ng-template>
+
+<app-add-product-modal #addProductModal (productAdded)="handleProductsAdded($event)"></app-add-product-modal>
+<app-address-listing-modal #addressModal ></app-address-listing-modal>
+<app-product-listing-modal #productListingModal  (productSelected)="selectProduct($event)"></app-product-listing-modal>

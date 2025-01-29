@@ -6,3 +6,10 @@
     @apply font-primary text-paragraph bg-body-bg;
   }
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+

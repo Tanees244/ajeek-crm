@@ -1,37 +1,57 @@
-<nav class="header">
-  <div class="header-container">
-    <!-- Left Section -->
-    <div class="left-section">
+<nav class="flex items-center justify-between bg-white px-5 h-[80px] shadow-sm w-full box-border">
+  <div class="flex items-center justify-between w-full">
+    <div class="flex items-center gap-2">
       <button (click)="toggleSidebar()"
-              class="toggle-sidebar-btn"
-              [class.rotated]="isRotated">
-        <img src="assets/icons/menuBar.svg" alt="Toggle Sidebar" class="icon" />
+              class="p-2 bg-none border-none cursor-pointer transition-transform hover:bg-white-smoke-30 rounded-md"
+              [ngClass]="{ 'rotate-180': isRotated }">
+        <img src="assets/icons/menuBar.svg" alt="Toggle Sidebar" class="w-5 h-5 transition-transform duration-300" />
       </button>
-      <div class="search-container">
-        <input type="search" placeholder="Search" class="search-input">
+      <div class="flex items-center">
+        <input type="search" placeholder="Search"
+               class="w-50 p-2 border border-white-edgar rounded focus:outline-primary focus:border-none">
       </div>
     </div>
 
-    <!-- Right Section -->
-    <div class="right-section">
-      <button class="icon-btn">
-        <img src="assets/icons/globe.svg" alt="Global" class="icon" />
+    <div class="flex items-center gap-x-4">
+      <div class="relative">
+        <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md"
+                (click)="toggleLanguageDropdown()">
+          <img src="assets/icons/globe.svg" alt="Global" class="w-5 h-5" />
+        </button>
+        <div *ngIf="isLanguageDropdownVisible"
+             class="absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-md w-40 z-10">
+          <ul class="flex flex-col">
+            <li (click)="setLanguage('en')"
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                [class.font-bold]="currentLanguage === 'en'">
+              English
+            </li>
+            <li (click)="setLanguage('ar')"
+                class="p-2 hover:bg-gray-100 cursor-pointer"
+                [class.font-bold]="currentLanguage === 'ar'">
+              Arabic
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <button class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md"
+              (click)="toggleFullScreen()">
+        <img src="assets/icons/fullScreen.svg" alt="Full Screen" class="w-5 h-5" />
       </button>
-      <button class="icon-btn">
-        <img src="assets/icons/bell.svg" alt="Notifications" class="icon" />
-      </button>
-      <button class="icon-btn" (click)="toggleFullScreen()">
-        <img src="assets/icons/fullScreen.svg" alt="Full Screen" class="icon" />
-      </button>
-      <div class="divider"></div>
-      <div class="user-info">
-        <img src="assets/user-avatar.png" alt="User" class="user-avatar" />
+      <div class="h-7 w-px bg-white-edgar"></div>
+      <div class="flex items-center gap-2">
+        <img src="assets/icons/avatar.svg" alt="User" class="w-8 h-8 rounded-full" />
         <span>John</span>
       </div>
-      <div class="divider"></div>
-      <button class="icon-btn">
-        <img src="assets/icons/cog.svg" alt="Settings" class="icon" />
-      </button>
+      <div class="h-7 w-px bg-white-edgar"></div>
+      <a routerLink="/dashboard/notifications"
+         class="p-2 bg-none border-none cursor-pointer transition hover:bg-white-smoke-30 rounded-md">
+        <div>
+          <img src="assets/icons/bell.svg" alt="Notifications" class="w-5 h-5" />
+        </div>
+      </a>
     </div>
   </div>
 </nav>

@@ -1,42 +1,97 @@
-<aside class="sidebar" [class.collapsed]="isCollapsed">
-  <div class="sidebar-content">
-    <!-- Sidebar Header -->
-    <div class="sidebar-header">
-      <img src="assets/logo/logoFilled.svg" alt="Main Logo" class="logo" />
-      <h1 *ngIf="!isCollapsed">Ajeek</h1>
+<aside class="sidebar flex flex-col justify-between h-screen transition-all duration-300 bg-secondary text-white"
+       [class.w-20]="isCollapsed"
+       [class.w-72]="!isCollapsed">
+  <div class="sidebar-content flex flex-col">
+    <div class="sidebar-header flex items-center p-3 border-b border-white-smoke-15 h-[80px]"
+         [class.border-none]="isCollapsed">
+      <img src="assets/logo/logoFilled.svg"
+           alt="Main Logo"
+           class="logo"
+           [class.w-14]="!isCollapsed"
+           [class.w-12]="isCollapsed"
+           [class.h-14]="!isCollapsed"
+           [class.h-12]="isCollapsed"
+           [class.mr-3]="!isCollapsed" />
+      <h1 *ngIf="!isCollapsed" class="text-[30px] font-bold">Ajeek</h1>
     </div>
 
-    <!-- Navigation Section -->
-    <nav class="navigation">
-      <span *ngIf="!isCollapsed">Menu</span>
-      <a routerLink="/dashboard/partner" routerLinkActive="active" class="nav-item">
-        <img src="assets/icons/dashboard.svg" alt="Dashboard Logo" class="MenuItem" />
-        <span *ngIf="!isCollapsed">Dashboard</span>
+    <nav class="flex flex-col flex-grow p-4 space-y-2">
+      <span *ngIf="!isCollapsed" class="m-4 mb-2 text-h5 font-bold">Menu</span>
+      <a routerLink="/dashboard/partner"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
+         [ngClass]="{
+           'p-4': !isCollapsed,
+           'p-3': isCollapsed
+         }"
+         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div>
+          <img src="assets/icons/dashboard.svg" alt="Dashboard Logo" class="w-5 h-5" />
+        </div>
+        <span class="mx-3" [class.hidden]="isCollapsed">Dashboard</span>
       </a>
-      <a routerLink="/dashboard/tickets" routerLinkActive="active" class="nav-item">
-        <img src="assets/icons/tickets.svg" alt="Tickets Logo" class="MenuItem" />
-        <span *ngIf="!isCollapsed">Tickets</span>
+      <a routerLink="/dashboard/tickets"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
+         [ngClass]="{
+           'p-4': !isCollapsed,
+           'p-3': isCollapsed
+         }"
+         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div>
+          <img src="assets/icons/tickets.svg" alt="Tickets Logo" class="w-5 h-5" />
+        </div>
+        <span class="mx-3" [class.hidden]="isCollapsed">Tickets</span>
       </a>
-      <a routerLink="/technician" routerLinkActive="active" class="nav-item">
-        <img src="assets/icons/technicians.svg" alt="Technician Logo" class="MenuItem" />
-        <span *ngIf="!isCollapsed">Technician</span>
+      <a routerLink="/dashboard/technicians"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
+         [ngClass]="{
+           'p-4': !isCollapsed,
+           'p-3': isCollapsed
+         }"
+         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div>
+          <img src="assets/icons/technicians.svg" alt="Technician Logo" class="w-5 h-5" />
+        </div>
+        <span class="mx-3" [class.hidden]="isCollapsed">Technician</span>
       </a>
-      <a routerLink="/chat" routerLinkActive="active" class="nav-item">
-        <img src="assets/icons/chat.svg" alt="Chat Logo" class="MenuItem" />
-        <span *ngIf="!isCollapsed">Chat</span>
+      <a routerLink="/dashboard/communication"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
+         [ngClass]="{
+           'p-4': !isCollapsed,
+           'p-3': isCollapsed
+         }"
+         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div>
+          <img src="assets/icons/chat.svg" alt="Chat Logo" class="w-5 h-5" />
+        </div>
+        <span class="mx-3" [class.hidden]="isCollapsed">Chat</span>
       </a>
-      <a routerLink="/alert" routerLinkActive="active" class="nav-item">
-        <img src="assets/icons/alerts.svg" alt="Alert Logo" class="MenuItem" />
-        <span *ngIf="!isCollapsed">Alerts</span>
+      <a routerLink="/admin"
+         routerLinkActive="bg-white-smoke-30 shadow-md"
+         [ngClass]="{
+      'p-4': !isCollapsed,
+      'p-3': isCollapsed
+    }"
+         class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md">
+        <div>
+          <img src="assets/icons/admin.png" alt="IAM Logo" class="w-5 h-5" />
+        </div>
+        <span class="mx-3" [class.hidden]="isCollapsed">IAM</span>
       </a>
     </nav>
+  </div>
 
-    <!-- Logout Section -->
-    <div class="logout">
-      <a routerLink="/login" class="nav-item">
-        <img src="assets/icons/signOut.svg" alt="Logout Logo" class="MenuItem" />
-        <span *ngIf="!isCollapsed">Logout</span>
-      </a>
+  <div class="logout p-4">
+    <div 
+       [ngClass]="{
+           'p-4': !isCollapsed,
+           'p-3': isCollapsed
+         }"
+       class="flex items-center text-h5 font-bold rounded-l transition-all duration-300 hover:bg-white-smoke-15 hover:shadow-md active:bg-white-smoke-15 cursor-pointer"
+       (click)=logout()>
+      <div>
+        <img src="assets/icons/signOut.svg" alt="Logout Logo" class="w-5 h-5" />
+      </div>
+      <span class="mx-3" [class.hidden]="isCollapsed">Logout</span>
     </div>
   </div>
 </aside>

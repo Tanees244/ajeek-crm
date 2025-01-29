@@ -1,204 +1,106 @@
-<!--<div class="max-w-7xl mx-auto p-6">
-  <div class="flex items-center justify-between mb-8">
-    <div class="flex-1 relative" *ngFor="let step of steps; let i = index">-->
-      <!-- Fixed class binding syntax -->
-      <!--<div [ngClass]="['border-2 rounded-lg p-4 bg-white', currentStep> = step.number ? 'border-cyan-500' : 'border-gray-200' ]">
-        <div [ngClass]="[
-             'text-sm mb-1' ,
-             currentStep>
-          = step.number ? 'text-cyan-500' : 'text-gray-400'
-          ]">
+<ng-container *ngIf="!isTicketRegistered; else ticketRegisteredTemplate" class="py-6 ">
+  <div class="flex items-center justify-between mb-8 bg-white border border-white-edgar rounded mt-6 gap-x-8 p-6">
+    <div class="flex-1 relative" *ngFor="let step of steps; let i = index">
+      <div class="border-2 rounded p-4 shadow-md transition-all duration-300"
+           [ngClass]="currentStep >= step.number ? 'bg-primary-10 border-primary' : 'bg-white border-white-edgar'">
+        <div [ngClass]="currentStep >= step.number ? 'text-primary text-[10px]' : 'text-neutral-gray text-[10px]'">
           Step {{step.number}}
         </div>
-        <div [ngClass]="currentStep >= step.number ? 'text-gray-900' : 'text-gray-400'">
+        <div [ngClass]="currentStep >= step.number ? 'text-black font-bold' : 'text-neutral-gray font-bold'">
           {{step.title}}
         </div>
-      </div>-->
-      <!-- Connecting line -->
-      <!--<div *ngIf="i < steps.length - 1"
-           class="absolute w-full h-0.5 bg-gray-200 right-0 top-1/2 -translate-y-1/2">
       </div>
     </div>
-  </div>-->
-
-  <!-- Step content containers -->
-  <!--<div [ngSwitch]="currentStep">-->
-    <!-- Step 1: Customer Details -->
-    <!--<div *ngSwitchCase="1" class="bg-white rounded-lg p-6 shadow-sm">
-      <div class="flex justify-between items-center mb-6">
-        <div>
-          <h2 class="text-lg font-semibold">Register your Ticket</h2>
-          <p class="text-sm text-gray-500">Step-by-Step ticket Submission Form</p>
-        </div>
-        <button class="bg-cyan-500 text-white px-4 py-2 rounded-lg flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
-          </svg>
-          Add New Customer
-        </button>
-      </div>
-
-      <div>
-        <h3 class="font-semibold mb-1">Search Customer</h3>
-        <p class="text-gray-500 text-sm mb-4">Search for a customer by their number to view all their details.</p>
-        <div class="flex gap-4">
-          <div class="flex-1 relative">
-            <div class="absolute inset-y-0 left-3 flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <input type="text" placeholder="Search customer by number"
-                   class="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:border-cyan-500">
-          </div>
-          <button class="bg-cyan-500 text-white px-8 py-2 rounded-lg">Enter</button>
-        </div>
-      </div>
-    </div>-->
-
-    <!-- Step 2: Product Selection -->
-    <!--<div *ngSwitchCase="2" class="bg-white rounded-lg p-6 shadow-sm">
-      <div class="flex justify-between items-center mb-6">
-        <div>
-          <h2 class="text-lg font-semibold">Select Product/Appliance</h2>
-          <p class="text-sm text-gray-500">Choose the appliance(s) you are submitting the ticket for</p>
-        </div>
-        <button class="bg-cyan-500 text-white px-4 py-2 rounded-lg">Add New Product</button>
-      </div>
-
-      <div class="flex gap-4 mb-6">
-        <select class="border rounded-lg px-4 py-2 w-48">
-          <option>Select Category</option>
-        </select>
-        <select class="border rounded-lg px-4 py-2 w-48">
-          <option>Select Brand</option>
-        </select>
-        <div class="flex-1 flex gap-2">
-          <input type="text" placeholder="Search for Serial No."
-                 class="border rounded-lg px-4 py-2 flex-1">
-          <button class="bg-cyan-500 text-white px-6 py-2 rounded-lg">Search</button>
-        </div>
-        <div class="flex items-center gap-2 text-sm text-gray-600">
-          <span>Row Per Page:</span>
-          <select class="border rounded px-2 py-1">
-            <option>10</option>
-          </select>
-          <span>Entries</span>
-        </div>
-      </div>
-
-      <table class="w-full">
-        <thead>
-          <tr class="border-b">
-            <th class="text-left py-3 px-4">Product ID</th>
-            <th class="text-left py-3 px-4">Product Name</th>
-            <th class="text-left py-3 px-4">Product Type</th>
-            <th class="text-left py-3 px-4">Brand</th>
-            <th class="text-left py-3 px-4">Warranty</th>
-            <th class="text-left py-3 px-4">Serial Number</th>
-            <th class="text-left py-3 px-4">Model Number</th>
-            <th class="text-left py-3 px-4">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let product of products" class="border-b">
-            <td class="py-3 px-4">{{product.id}}</td>
-            <td class="py-3 px-4">{{product.name}}</td>
-            <td class="py-3 px-4">{{product.type}}</td>
-            <td class="py-3 px-4">{{product.brand}}</td>
-            <td class="py-3 px-4">{{product.warranty}}</td>
-            <td class="py-3 px-4">{{product.serialNumber}}</td>
-            <td class="py-3 px-4">{{product.modelNumber}}</td>
-            <td class="py-3 px-4">
-              <button class="text-cyan-500">Select Product</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>-->
-
-    <!-- Step 3: Time Slot Selection -->
-    <!--<div *ngSwitchCase="3" class="bg-white rounded-lg p-6 shadow-sm">
-      <h2 class="text-lg font-semibold mb-2">Select Your Availability</h2>
-      <p class="text-sm text-gray-500 mb-6">
-        Specify your preferred time slots for each product service. This will allow us to schedule a technician visit that works best for you. You can choose a time slot for each product individually.
-      </p>
-
-      <div class="border rounded-lg p-4 mb-6">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="font-medium">For Product 1 (Refrigerator, Model: Samsung RS50N3513SA):</h3>
-          <button class="text-cyan-500">Next 5 Days →</button>
-        </div>
-
-        <div class="mb-6">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="font-medium">Assigned Technician</span>
-            <span class="text-sm text-gray-500">
-              - If the selected technician is unavailable at the chosen time, the request will be reassigned to another technician with the required skills.
-            </span>
-            <button class="ml-auto text-cyan-500 flex items-center gap-1">
-              <img src="/api/placeholder/24/24" class="rounded-full" alt="technician">
-              Assign to Sheikh Nizam
-            </button>
-          </div>
-        </div>-->
-
-        <!-- Date Selection -->
-        <!--<div class="mb-6">
-          <h4 class="font-medium mb-4">Select Date/Day</h4>
-          <div class="grid grid-cols-5 gap-4">
-            <div *ngFor="let day of days"
-                 [class]="'text-center p-4 rounded-lg ' + (day.isSelected ? 'bg-cyan-50' : 'bg-gray-50')">
-              <div class="font-medium">{{day.name}}</div>
-              <div class="text-sm text-gray-500">{{day.date}}</div>
-            </div>
-          </div>
-        </div>-->
-
-        <!-- Time Slots -->
-        <!--<div>
-          <h4 class="font-medium mb-4">Select Slot</h4>
-          <div class="grid grid-cols-4 gap-4 mb-4">
-            <div *ngFor="let period of timePeriods" class="text-center font-medium">
-              {{period}}
-            </div>
-          </div>
-          <div class="grid grid-cols-4 gap-4">
-            <div *ngFor="let slot of timeSlots">
-              <div *ngFor="let time of slot.times"
-                   [class]="'border rounded p-2 mb-2 text-center ' + time.colorClass">
-                {{time.range}}
-              </div>
-            </div>
-          </div>
-        </div>-->
-
-        <!-- Legend -->
-        <!--<div class="mt-6 flex items-center gap-6">
-          <div *ngFor="let status of statusLegend" class="flex items-center gap-2">
-            <div [class]="'w-3 h-3 rounded-sm ' + status.colorClass"></div>
-            <span class="text-sm">{{status.label}}</span>
-          </div>
-        </div>
-      </div>
-
-      <button class="bg-cyan-500 text-white px-6 py-2 rounded-lg float-right">
-        Submit Ticket
-      </button>
-    </div>
-  </div>-->
-
-  <!-- Navigation buttons -->
-  <!--<div class="flex justify-between mt-6">
-    <button *ngIf="currentStep > 1"
-            (click)="previousStep()"
-            class="px-6 py-2 border rounded-lg">
-      Previous
-    </button>
-    <button *ngIf="currentStep < steps.length"
-            (click)="nextStep()"
-            class="ml-auto bg-cyan-500 text-white px-6 py-2 rounded-lg">
-      Next
-    </button>
   </div>
-</div>-->
+
+  <div [ngSwitch]="currentStep">
+    <app-customer-details *ngSwitchCase="1" (stepChange)="updateStep($event)"></app-customer-details>
+    <app-product-selection *ngSwitchCase="2" (stepChange)="updateStep($event)"></app-product-selection>
+    <app-time-slot *ngSwitchCase="3" (submit)="onStep3Submit()"></app-time-slot>
+  </div>
+</ng-container>
+
+
+<ng-template #ticketRegisteredTemplate>
+  <div class="max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-6">
+    <div class="text-center mb-6">
+      <div class="flex justify-center items-center">
+        <img src="assets/icons/confirmationLogo.svg" alt="Logout Logo" class="w-48 h-48" />
+      </div>
+      <h1 class="text-h4 font-bold mt-4">Your ticket has been successfully submitted.</h1>
+      <p class="text-p text-secondary font-bold"><span class="text-primary">Ticket ID:  #T-342123</span>. Please refer to this ID for any future updates or inquiries.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="bg-[#F6F6F6] border border-white-edgar rounded">
+        <h2 class="bg-white font-bold text-h5 p-4">Customer Details:</h2>
+        <div class="bg-[#F6F6F6] border-t border-white-edgar p-4">
+          <p class="text-neutral-gray"><span class="font-bold text-black">Name:</span> John Doe</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Contact:</span> john.doeemail.com +966 512 345 678</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Location:</span> 1234 Elm St, Riyadh, KSA</p>
+        </div>
+      </div>
+
+      <!-- Assigned To -->
+      <div class="bg-[#F6F6F6] border border-white-edgar rounded">
+        <h2 class="bg-white font-bold text-h5 p-4">Assigned To:</h2>
+        <div class="border-t border-white-edgar p-4">
+          <p class="text-neutral-gray"><span class="font-bold text-black">Name:</span> Sheikh Nizam</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Contact:</span> sheikh.nizamemail.com <br> +966 112 234 123</p>
+          <p class="text-neutral-gray"><span class="font-bold text-black">Location:</span> 1234 Elm St, Riyadh, KSA</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[#F6F6F6] border border-white-edgar rounded">
+      <h2 class="bg-white font-bold text-h5 p-4">Product Details:</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Refrigerator Details -->
+        <div class="p-4">
+          <h3 class="font-bold mb-2">Details of Refrigerator:</h3>
+          <ul class="list-disc list-inside text-neutral-gray">
+            <li>Product Type: Refrigerator</li>
+            <li>Brand: Samsung</li>
+            <li>Model: RS50N3513SA</li>
+            <li>Serial Number: 1234567890</li>
+            <li>Purchase Date: 2024-08-15</li>
+          </ul>
+          <h4 class="font-bold mt-4 mb-2">Issues:</h4>
+          <ul class="list-disc list-inside text-neutral-gray">
+            <li>Overheating</li>
+            <li>Powering On Issues</li>
+            <li>Error Codes</li>
+            <li>Panel Malfunctions</li>
+            <li>Excessive Noise</li>
+          </ul>
+          <p class="mt-2 text-neutral-gray"><span class="font-bold text-black">Address:</span> King Khalid International Airport Road, Riyadh 13412</p>
+        </div>
+
+        <!-- AC Details -->
+        <div class="border-l-2 border-[#BABABA] p-6">
+          <div class="">
+            <h3 class="font-bold ">Details of AC:</h3>
+            <ul class="list-disc list-inside text-neutral-gray">
+              <li>Product Type: AC</li>
+              <li>Brand: Dawlance</li>
+              <li>Model: RS50123DSFDA</li>
+              <li>Serial Number: 1231231232</li>
+              <li>Purchase Date: 2024-08-15</li>
+            </ul>
+            <h4 class="font-bold  mt-4 mb-2">Issues:</h4>
+            <ul class="list-disc list-inside text-neutral-gray">
+              <li>Overheating</li>
+              <li>Powering On Issues</li>
+              <li>Error Codes</li>
+              <li>Panel Malfunctions</li>
+              <li>Excessive Noise</li>
+            </ul>
+            <p class="mt-2 text-neutral-gray"><span class="font-bold text-black">Address:</span> Al Ameen Abdullah Al Ali Al Naeem Street, Al Malaz, Riyadh 12836</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+

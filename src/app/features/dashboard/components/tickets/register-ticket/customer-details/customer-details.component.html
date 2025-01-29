@@ -1,0 +1,109 @@
+<div class="bg-white rounded border border-white-edgar p-6 shadow-sm mb-6">
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <h2 class="text-h4 font-bold">Register your Ticket</h2>
+      <p class="text-p text-neutral-gray font-secondary font-normal">Step-by-Step ticket Submission Form</p>
+    </div>
+    <app-button label="Add New Customer"
+                type="button"
+                buttonType="primary"
+                iconUrl="assets/icons/plus.svg"
+                customClass="py-4 px-8"
+                (click)="openAddNewCustomerModal()">
+    </app-button>
+  </div>
+
+  <div class="flex flex-col bg-[#F6F6F6] p-4 rounded">
+    <div class="flex items-center justify-between w-full">
+      <div>
+        <h3 class="font-bold text-p mb-1">Search Customer</h3>
+        <p class="text-neutral-gray text-p">Search for a customer by their number to view all their details.</p>
+      </div>
+      <div class="flex items-center space-x-2">
+        <div class="relative w-full flex">
+          <img src="assets/icons/searchIcon.svg"
+               alt="Search Icon"
+               class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5">
+          <input type="text"
+                 [(ngModel)]="searchId"
+                 placeholder="Search customer by number"
+                 class="w-full pr-16 pl-12 py-2 border rounded focus:outline-none focus:border-primary text-base leading-tight transition-all duration-200">
+        </div>
+        <app-button label="Enter"
+                    type="button"
+                    buttonType="primary"
+                    customClass="py-2 px-6"
+                    (click)="fetchCustomerDetails()">
+        </app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="customers.length > 0" class="bg-white rounded border border-white-edgar p-6 shadow-sm mb-6">
+  <div>
+    <h2 class="text-h4 font-bold">Customer Details</h2>
+    <p class="text-p text-neutral-gray font-secondary font-normal">Customer found successfully. Below are the details.</p>
+  </div>
+  <div class="border border-white-edgar rounded p-6 mt-6">
+    <form class="space-y-6">
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <label for="fullName" class="block mb-1 text-h6 font-bold">Full Name</label>
+          <input type="text"
+                 id="fullName"
+                 name="fullName"
+                 placeholder="Enter full name"
+                 [value]="customers[0]?.name"
+                 readonly
+                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+        <div>
+          <label for="email" class="block mb-1 text-h6 font-bold">Email Address</label>
+          <input type="email"
+                 id="email"
+                 name="email"
+                 placeholder="Enter email address"
+                 [value]="customers[0]?.email"
+                 readonly
+                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+        <div>
+          <label for="phone" class="block mb-1 text-h6 font-bold">Phone Number</label>
+          <input type="tel"
+                 id="phone"
+                 name="phone"
+                 placeholder="Enter phone number"
+                 [value]="customers[0]?.phone_no"
+                 readonly
+                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+        <div>
+          <label for="companyName" class="block mb-1 text-h6 font-bold">Company Name</label>
+          <input type="text"
+                 id="companyName"
+                 name="companyName"
+                 placeholder="Enter company name"
+                 [value]="customers[0]?.companyName"
+                 readonly
+                 class="w-full py-3 px-2 border rounded focus:outline-none text-secondary placeholder-neutral-gray" />
+        </div>
+      </div>
+
+      <div class="mt-6 flex justify-end">
+        <app-button label="Next Step"
+                    type="button"
+                    buttonType="primary"
+                    customClass="py-3 px-12"
+                    (click)="nextStep()">
+        </app-button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<p *ngIf="error" class="text-red-500 mt-2">{{ error }}</p>
+<p *ngIf="!error && !isLoading && customers?.length === 0" class="text-gray-500 mt-2">No customer found.</p>
+
+<app-add-user-modal #addUserModal (customerAdded)="handleCustomerAdded($event)"></app-add-user-modal>
