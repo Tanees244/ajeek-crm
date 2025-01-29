@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:AjeekCRM": "node dist/server/server.mjs"
+    "serve:ssr:ajeek-crm": "node dist/server/server.mjs"
   },
   "private": true,
   "dependencies": {
