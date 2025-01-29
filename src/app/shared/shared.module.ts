@@ -27,7 +27,7 @@ import { FilterModalComponent } from './components/modal/filter-modal/filter-mod
     //ProductListingModalComponent
   
     // FilterComponent,
-    FilterModalComponent
+    // FilterModalComponent
   ],
   imports: [CommonModule, BreadcrumbComponent, ButtonComponent],
   exports: [],
